@@ -1,0 +1,6 @@
+/* tab-bar-slide.css — motion-anything recipe · App UI micro-interaction */
+.ui-tabs{position:relative;display:flex;gap:6px;background:#fff;border:1px solid #ececf1;border-radius:18px;padding:7px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.ui-tabs .ind{position:absolute;top:7px;left:7px;width:56px;height:42px;border-radius:13px;background:#efeaff;transition:transform .42s cubic-bezier(.34,1.4,.5,1)}
+.ui-tabs .tb{position:relative;width:56px;height:42px;border:0;background:none;font-size:19px;color:#9aa0aa;cursor:pointer;transition:color .25s}
+.ui-tabs .tb.on{color:#8b7cf6}
+@media(prefers-reduced-motion:reduce){.ui-tabs .ind{transition:none}}

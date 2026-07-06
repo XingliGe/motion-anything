@@ -1,0 +1,1305 @@
+{
+  "_note": "Curated video templates collected from nexu-io/open-design (prompt-templates/video). HyperFrames templates © HeyGen (Apache-2.0); see each source. Used here as a matching/guidance catalog for the motion-anything video generator.",
+  "count": 58,
+  "templates": [
+    {
+      "id": "hyperframes-html-in-canvas-iphone-device",
+      "title": "HyperFrames HTML-in-Canvas: 3D iPhone + MacBook Product Demo",
+      "summary": "A 15-second product demo where a real GLTF iPhone 15 Pro Max and MacBook Pro float on a clean stage with the actual app UI rendering live on their screens via drawElementImage. Morphing glass lens flare + 360° turntable. Built on the vfx-iphone-device catalog block.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "3d",
+        "iphone",
+        "macbook",
+        "product-demo"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-iphone-device"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-text-cursor",
+      "title": "HyperFrames HTML-in-Canvas: Cinematic Text Cursor Reveal",
+      "summary": "An 8-second dramatic text reveal with cursor glow, chromatic shadow rays, and directional lighting on a black stage. Real DOM typography under live shader post-processing. Built on the vfx-text-cursor catalog block.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "text",
+        "cinematic",
+        "shader"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-text-cursor.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-text-cursor.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-text-cursor"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-shatter",
+      "title": "HyperFrames HTML-in-Canvas: Glass Shatter Outro",
+      "summary": "A 12-second HTML shatter outro — a real product page or pricing card holds for a beat, then explodes into refracting glass fragments with depth blur and chromatic dispersion. Built on the vfx-shatter catalog block. Pairs as an end-card after a longer composition.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "shatter",
+        "outro",
+        "destruction"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-shatter"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-liquid-background",
+      "title": "HyperFrames HTML-in-Canvas: Liquid Background Hero",
+      "summary": "A 12-second hero with HTML content floating above an organic liquid surface — vertex-displaced subdivided plane, real-time wave dynamics, captured DOM rides on top crisp and readable. Built on the vfx-liquid-background catalog block.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "liquid",
+        "displacement",
+        "hero"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-liquid-background"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-liquid-glass",
+      "title": "HyperFrames HTML-in-Canvas: Liquid Glass Landing Reveal",
+      "summary": "A 20-second voronoi liquid-glass reveal of a real product landing page — DOM is captured live via drawElementImage, shattered into refracting glass cells, then settles into a clean hero shot. Built on the vfx-liquid-glass catalog block.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "liquid-glass",
+        "webgl",
+        "product-promo"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-glass.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-glass.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-liquid-glass"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-magnetic",
+      "title": "HyperFrames HTML-in-Canvas: Magnetic Field Visualisation",
+      "summary": "A 15-second magnetic-field particle visualisation reacting to a live DOM heatmap or chart — particles trace field lines that bend around the captured HTML, ideal for ML/data products. Built on the vfx-magnetic catalog block.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "magnetic",
+        "particles",
+        "data"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-magnetic.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-magnetic.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-magnetic"
+      }
+    },
+    {
+      "id": "hyperframes-html-in-canvas-portal-reveal",
+      "title": "HyperFrames HTML-in-Canvas: Portal Reveal Dashboard",
+      "summary": "A 10-second dimensional portal opens onto a live data dashboard — DOM captured in real time, volumetric light spill, portal-edge particles. Built on the vfx-portal catalog block. Designed for keynote-style data hero shots.",
+      "category": "VFX / HTML-in-Canvas",
+      "tags": [
+        "hyperframes",
+        "html-in-canvas",
+        "portal",
+        "dashboard",
+        "keynote"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-portal.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-portal.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/blocks/vfx-portal"
+      }
+    },
+    {
+      "id": "hyperframes-money-counter-hype",
+      "title": "HyperFrames: $0 → $10K Money Counter Hype (9:16)",
+      "summary": "A 6-second vertical 1080×1920 HyperFrames hype clip — Apple-style $0 → $10,000 counter with green flash, money burst particles, cash-stack icon, kicker headline. Built on the HyperFrames `apple-money-count` catalog block.",
+      "category": "Short Form",
+      "tags": [
+        "hyperframes",
+        "vertical",
+        "hype",
+        "counter",
+        "money"
+      ],
+      "aspect": "9:16",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/apple-money-count.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/apple-money-count.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/apple-money-count"
+      }
+    },
+    {
+      "id": "hyperframes-app-showcase-three-phones",
+      "title": "HyperFrames: 12-Second App Showcase — Three Floating Phones",
+      "summary": "A 12-second 16:9 app showcase composition — three floating iPhone screens hover in 3D space, each rotating in turn to surface a different feature, beat-synced label callouts, end logo lockup. Built directly on the HyperFrames `app-showcase` catalog block.",
+      "category": "Product",
+      "tags": [
+        "hyperframes",
+        "app-showcase",
+        "product",
+        "3d",
+        "mobile"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/app-showcase.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/app-showcase.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/app-showcase"
+      }
+    },
+    {
+      "id": "hyperframes-brand-sizzle-reel",
+      "title": "HyperFrames: 30-Second Brand Sizzle Reel",
+      "summary": "A 30-second 16:9 HyperFrames sizzle reel — fast cuts, beat-synced kinetic typography, audio-reactive scale on display words, shader transitions between five scenes, end-card with logo bloom. Modelled on the aisoc-hype archetype from the student kit.",
+      "category": "Marketing",
+      "tags": [
+        "hyperframes",
+        "sizzle",
+        "kinetic-typography",
+        "audio-reactive",
+        "brand"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://x.com/HeyGen/status/2044827454460871072"
+      }
+    },
+    {
+      "id": "hyperframes-saas-product-promo-30s",
+      "title": "HyperFrames: 30-Second SaaS Product Promo (Linear-style)",
+      "summary": "A 30-second HyperFrames composition modelled on Linear/ClickUp-style product films — UI 3D reveals, beat-synced kinetic typography, animated UI screenshots, end-card with logo outro. Built from HF catalog blocks (ui-3d-reveal, app-showcase, logo-outro) plus shader transitions between scenes.",
+      "category": "Marketing",
+      "tags": [
+        "hyperframes",
+        "product-promo",
+        "saas",
+        "linear-style",
+        "kinetic-typography"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/app-showcase.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/app-showcase.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://x.com/HeyGen/status/2048882211022311614"
+      }
+    },
+    {
+      "id": "hyperframes-logo-outro-cinematic",
+      "title": "HyperFrames: 4-Second Cinematic Logo Outro",
+      "summary": "A 4-second 16:9 logo outro — piece-by-piece wordmark assembly with bloom, shimmer sweep across the final lockup, soft grain overlay, single-line CTA. Built on the HyperFrames `logo-outro`, `shimmer-sweep`, and `grain-overlay` blocks.",
+      "category": "Branding",
+      "tags": [
+        "hyperframes",
+        "logo",
+        "outro",
+        "endcard",
+        "branding"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/logo-outro"
+      }
+    },
+    {
+      "id": "hyperframes-product-reveal-minimal",
+      "title": "HyperFrames: 5-Second Minimal Product Reveal",
+      "summary": "A 5-second HyperFrames composition for a high-end product reveal — dark canvas, single warm accent, slow push-in title card, kinetic kicker line, restrained motion. The agent renders MP4 from HTML+GSAP via puppeteer; no stock footage needed.",
+      "category": "Cinematic",
+      "tags": [
+        "hyperframes",
+        "product",
+        "minimal",
+        "title-card"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/logo-outro.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://x.com/HeyGen/status/2044827454460871072"
+      }
+    },
+    {
+      "id": "hyperframes-social-overlay-stack",
+      "title": "HyperFrames: 9:16 Social Overlay Stack (X · Reddit · Spotify · Instagram)",
+      "summary": "A 15-second vertical 1080×1920 HyperFrames composition that stacks four animated social cards over a face-cam loop — an X post, a Reddit reaction, a Spotify now-playing card, and an Instagram-follow CTA at the end. Each card is a HyperFrames catalog block; the choreography is the value-add.",
+      "category": "Short Form",
+      "tags": [
+        "hyperframes",
+        "vertical",
+        "social",
+        "overlay",
+        "tiktok"
+      ],
+      "aspect": "9:16",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/instagram-follow.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/instagram-follow.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/instagram-follow"
+      }
+    },
+    {
+      "id": "hyperframes-tiktok-karaoke-talking-head",
+      "title": "HyperFrames: 9:16 TikTok Talking-Head with Karaoke Captions",
+      "summary": "A vertical 1080×1920 HyperFrames short — TTS-narrated talking-head over a face-cam loop, with karaoke-style word-synced captions, animated lower third, and a tiktok-follow overlay at the end. Mirrors the may-shorts-19 archetype from the HyperFrames student kit.",
+      "category": "Short Form",
+      "tags": [
+        "hyperframes",
+        "vertical",
+        "tiktok",
+        "captions",
+        "karaoke",
+        "tts"
+      ],
+      "aspect": "9:16",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/tiktok-follow.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/tiktok-follow.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://x.com/HeyGen/status/2047333014024396873"
+      }
+    },
+    {
+      "id": "hyperframes-data-bar-chart-race",
+      "title": "HyperFrames: Animated Bar-Chart Race (NYT-style)",
+      "summary": "A 12-second 16:9 data infographic — animated bar + line chart with staggered category reveal, NYT-style serif headline, footnote source, kinetic value labels. Built directly on the HyperFrames `data-chart` catalog block.",
+      "category": "Data",
+      "tags": [
+        "hyperframes",
+        "data-viz",
+        "chart",
+        "infographic",
+        "editorial"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/data-chart.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/data-chart.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/data-chart"
+      }
+    },
+    {
+      "id": "hyperframes-flight-map-route",
+      "title": "HyperFrames: Apple-Style Flight Map (Origin → Destination)",
+      "summary": "An 8-second 16:9 cinematic flight-route map — realistic terrain zoom, animated plane gliding from origin to destination along a curved path, labelled cities, kinetic distance counter. Built directly on the HyperFrames `nyc-paris-flight` catalog block, repurposable for any city pair.",
+      "category": "Travel",
+      "tags": [
+        "hyperframes",
+        "map",
+        "travel",
+        "route",
+        "cinematic"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/nyc-paris-flight.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/nyc-paris-flight.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://hyperframes.heygen.com/catalog/nyc-paris-flight"
+      }
+    },
+    {
+      "id": "hyperframes-website-to-video-promo",
+      "title": "HyperFrames: Website-to-Video Pipeline (15-Second Marketing Cut)",
+      "summary": "A 15-second 16:9 HyperFrames composition that captures a live website at three viewport sizes, then animates between them with a chromatic radial split between scenes. Mirrors the hyperframes-sizzle student-kit archetype where the site is the source asset.",
+      "category": "Marketing",
+      "tags": [
+        "hyperframes",
+        "website-to-video",
+        "marketing",
+        "pipeline"
+      ],
+      "aspect": "16:9",
+      "model": "hyperframes-html",
+      "hyperframes": true,
+      "previewImageUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/ui-3d-reveal.png",
+      "previewVideoUrl": "https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/ui-3d-reveal.mp4",
+      "source": {
+        "repo": "heygen-com/hyperframes",
+        "license": "Apache-2.0",
+        "author": "HeyGen",
+        "url": "https://x.com/HeyGen/status/2048155061751288197"
+      }
+    },
+    {
+      "id": "3d-animated-boy-building-lego",
+      "title": "3D Animated Boy Building Lego",
+      "summary": "A multi-shot video prompt in 3D animation style describing a boy carefully assembling Lego pieces in a room, featuring time-lapse effects.",
+      "category": "General",
+      "tags": [],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/2dba80d5da706c3ea078ed69096c67d3/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/2dba80d5da706c3ea078ed69096c67d3/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Alex Zhang",
+        "url": "https://x.com/jojogh_007/status/2049123558102810714"
+      }
+    },
+    {
+      "id": "a-decade-of-refinement-glow-up",
+      "title": "A Decade of Refinement Glow-Up",
+      "summary": "A transformation prompt for Seedance 2.0 showing a man's transition from a casual 2016 setting to a luxurious 2026 Dubai lifestyle while maintaining character consistency.",
+      "category": "Advertising",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "product"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d2d6d15cbc6ef4d4d4c8c9a7de7007d7/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d2d6d15cbc6ef4d4d4c8c9a7de7007d7/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Maverick | AI",
+        "url": "https://x.com/RizwanAly07/status/2048948726623056366"
+      }
+    },
+    {
+      "id": "ancient-guardian-dragon-rescue",
+      "title": "Ancient Guardian Dragon Rescue",
+      "summary": "A detailed multi-shot cinematic prompt for a story about a girl in a rainy village saved by an emerging dragon, focusing on VFX and atmospheric sound.",
+      "category": "General",
+      "tags": [
+        "fantasy",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/18d35c93cc1d6ab0a8eff2a68e6d701b/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/18d35c93cc1d6ab0a8eff2a68e6d701b/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Jasmine Ai",
+        "url": "https://x.com/jasminekhan90_/status/2049038597333090769"
+      }
+    },
+    {
+      "id": "ancient-indian-kingdom-fpv-video",
+      "title": "Ancient Indian Kingdom FPV Video",
+      "summary": "A fast-paced FPV drone-style cinematic prompt depicting a mystical Indian kingdom with temples and jungles.",
+      "category": "General",
+      "tags": [
+        "cinematic",
+        "nature"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/146717bc1b96541c0da02f0ba053b9c3/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/146717bc1b96541c0da02f0ba053b9c3/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Shushant Lakhyani",
+        "url": "https://x.com/shushant_l/status/2049141805233672529"
+      }
+    },
+    {
+      "id": "animation-transfer-and-camera-tracking-prompt",
+      "title": "Animation transfer and camera tracking prompt",
+      "summary": "A technical prompt for Seedance 2.0 that applies a specific motion reference to a character while maintaining fixed camera tracking.",
+      "category": "General",
+      "tags": [],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/089e7cd70d20131d6d1b44741520eaee/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/089e7cd70d20131d6d1b44741520eaee/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Olivio Sarikas",
+        "url": "https://x.com/OlivioSarikas/status/2049093762077630628"
+      }
+    },
+    {
+      "id": "beat-synced-outfit-transformation-dance",
+      "title": "Beat-Synced Outfit Transformation Dance",
+      "summary": "A prompt for Seedance 2.0 that coordinates a character dance following breakdown frames while performing a beat-synced outfit change.",
+      "category": "General",
+      "tags": [
+        "fantasy"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://pbs.twimg.com/media/HG_FqHJboAA5vAe.jpg",
+      "previewVideoUrl": "",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Kashberg",
+        "url": "https://x.com/Kashberg_0/status/2049074008730247669"
+      }
+    },
+    {
+      "id": "character-intro-motion-graphics-sequence",
+      "title": "Character Intro Motion Graphics Sequence",
+      "summary": "A complex, multi-stage motion graphics prompt for introducing a team of characters with specific UI overlays and transitions, designed for the Seedance 2.0 model.",
+      "category": "Motion Graphics",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "3d-render"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d7697b00e2a3cb0ecb91273a772eda39/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d7697b00e2a3cb0ecb91273a772eda39/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "KANA",
+        "url": "https://x.com/KanaWorks_AI/status/2049281443956974029"
+      }
+    },
+    {
+      "id": "cinematic-birthday-celebration-sequence",
+      "title": "Cinematic Birthday Celebration Sequence",
+      "summary": "A highly detailed multi-shot video prompt for a birthday sequence, focusing on character consistency and emotional storytelling.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "cinematic-romance"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/47f113f50f5bd3794cbd83d2bb99320b/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/47f113f50f5bd3794cbd83d2bb99320b/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Soulful Ai",
+        "url": "https://x.com/soulful__ai/status/2048908956178001993"
+      }
+    },
+    {
+      "id": "cinematic-dragon-interaction-flight",
+      "title": "Cinematic Dragon Interaction & Flight",
+      "summary": "A detailed storyboard-style prompt for a video featuring a woman's emotional interaction with a dragon followed by a cinematic flight sequence.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/f72b7a26635bdf580a2899bf2682f7f6/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/f72b7a26635bdf580a2899bf2682f7f6/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "simply",
+        "url": "https://x.com/kingofdairyque/status/2049052738924023976"
+      }
+    },
+    {
+      "id": "cinematic-east-asian-woman-hand-dance",
+      "title": "Cinematic East Asian Woman Hand Dance",
+      "summary": "A highly detailed multi-shot cinematic video prompt for a stylized hand dance, featuring time-coded instructions for camera movement and character actions.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3b2699622675dd4b8b24808a1d7c4a34/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3b2699622675dd4b8b24808a1d7c4a34/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "阿绎 AYi",
+        "url": "https://x.com/AYi_AInotes/status/2049047545435889883"
+      }
+    },
+    {
+      "id": "cinematic-emotional-face-close-up",
+      "title": "Cinematic Emotional Face Close-up",
+      "summary": "A highly detailed technical prompt for Seedance 2.0 focusing on realistic skin textures and a series of complex emotional facial transitions.",
+      "category": "Cinematic",
+      "tags": [
+        "portrait",
+        "cinematic",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/4a47ba646e7cedd79363c861864b8714/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/4a47ba646e7cedd79363c861864b8714/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Ai Doctor",
+        "url": "https://x.com/DoctorAmna11/status/2049119918755283014"
+      }
+    },
+    {
+      "id": "cinematic-marine-biologist-exploration",
+      "title": "Cinematic Marine Biologist Exploration",
+      "summary": "A detailed cinematic video prompt for an underwater scene featuring a marine biologist discovering an ancient shipwreck in a coral reef.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/4394ac601188eb66755d2c92451665c6/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/4394ac601188eb66755d2c92451665c6/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "LudovicCreator",
+        "url": "https://x.com/LudovicCreator/status/2049190693550055726"
+      }
+    },
+    {
+      "id": "cinematic-music-podcast-and-guitar-technique",
+      "title": "Cinematic Music Podcast and Guitar Technique",
+      "summary": "An advanced cinematic prompt for generating a 4K music podcast video, with specific focus on guitar technique, pinch harmonics, and studio aesthetics.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "cyberpunk",
+        "fantasy"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c4515f4f328539e1ded2cc32f4ce63e7/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c4515f4f328539e1ded2cc32f4ce63e7/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "TheYudayVerse",
+        "url": "https://x.com/yuday9909/status/2048949262109880363"
+      }
+    },
+    {
+      "id": "cinematic-route-navigation-guide",
+      "title": "Cinematic Route Navigation Guide",
+      "summary": "A structured multi-scene prompt designed for Seedance to create a consistent walking navigation video featuring a recurring tour guide character and smooth transitions between real-world locations.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/49a08d9ecf7257120711ce6d7b158073/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/49a08d9ecf7257120711ce6d7b158073/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Michael Guo",
+        "url": "https://x.com/Michaelzsguo/status/2048966649982669053"
+      }
+    },
+    {
+      "id": "cinematic-street-racing-sequence-for-seedance-2",
+      "title": "Cinematic Street Racing Sequence for Seedance 2",
+      "summary": "A detailed, multi-shot prompt designed for Seedance 2 to generate a cinematic street racing sequence at night, focusing on intense driver focus, dynamic camera work, and explosive acceleration, struct",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "cyberpunk",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3a7fb0a6d706b9f568479bb720ce1ad4/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3a7fb0a6d706b9f568479bb720ce1ad4/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Pierrick Chevallier | IA",
+        "url": "https://x.com/CharaspowerAI/status/2039651574297792688"
+      }
+    },
+    {
+      "id": "cinematic-vampire-alley-fight-sequence",
+      "title": "Cinematic vampire alley fight sequence",
+      "summary": "A comprehensive action prompt for a short film scene involving dynamic camera movements and high-speed combat in a neon-lit alley.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "cyberpunk"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e665ecf343c35d97dd64e3b930a96fa5/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e665ecf343c35d97dd64e3b930a96fa5/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Cortex Visual ・ AI Movies",
+        "url": "https://x.com/Cortex__Visual/status/2049070872426688714"
+      }
+    },
+    {
+      "id": "crimson-horizon-sci-fi-cinematic-sequence",
+      "title": "Crimson Horizon Sci-Fi Cinematic Sequence",
+      "summary": "A comprehensive 9-shot cinematic video sequence for a sci-fi film titled 'Crimson Horizon', detailing everything from a rocket launch to an eerie alien encounter on Mars.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/ff7d9d956d3e812f4f99cf99e0552382/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/ff7d9d956d3e812f4f99cf99e0552382/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "wonder",
+        "url": "https://x.com/WonderBoy023/status/2049086862858367347"
+      }
+    },
+    {
+      "id": "cyberpunk-game-trailer-script",
+      "title": "Cyberpunk Game Trailer Script",
+      "summary": "An extensive video generation prompt for a cyberpunk game trailer, detailing character design, UI animations, and environmental transitions from a white void to a favela.",
+      "category": "General",
+      "tags": [
+        "cinematic",
+        "cyberpunk",
+        "3d-render"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/b6af40bfbe9ab029c5385fe3cdcf2893/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/b6af40bfbe9ab029c5385fe3cdcf2893/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Larus Canus",
+        "url": "https://x.com/MrLarus/status/2049004278908330226"
+      }
+    },
+    {
+      "id": "forbidden-city-cat-satire",
+      "title": "Forbidden City Cat Satire",
+      "summary": "A complex dark comedy prompt for Seedance 2.0 featuring an orange cat official and a hyena emperor in a satirical Qing dynasty setting.",
+      "category": "General",
+      "tags": [
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/0279a674ce138ab5a0a6f020a7273d89/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/0279a674ce138ab5a0a6f020a7273d89/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "The Anxious Mind",
+        "url": "https://x.com/drjoetw/status/2048996625654354333"
+      }
+    },
+    {
+      "id": "hollywood-haute-couture-fantasy-video-prompt",
+      "title": "Hollywood Haute Couture Fantasy Video Prompt",
+      "summary": "A detailed, multi-scene video generation prompt for Seedance 2.0, designed to create a Hollywood Haute Couture Fantasy film. The prompt specifies style, resolution (8K), rendering engine (Unreal Engin",
+      "category": "VFX / Fantasy",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "3d-render"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e066fab457509bc6809ea212ae5d6a51/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts/releases/download/videos/594.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "John",
+        "url": "https://x.com/johnAGI168/status/2025849650654122348"
+      }
+    },
+    {
+      "id": "hunched-character-animation",
+      "title": "Hunched Character Animation",
+      "summary": "Instruction for Seedance 2 to create an in-place walking animation for a specific character reference.",
+      "category": "General",
+      "tags": [],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d3d5dcaf102414a8cceca23d60b5c0d0/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/d3d5dcaf102414a8cceca23d60b5c0d0/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Olivio Sarikas",
+        "url": "https://x.com/OlivioSarikas/status/2049093747011670042"
+      }
+    },
+    {
+      "id": "live-action-anime-adaptation-water-vs-thunder-breathing-duel",
+      "title": "Live-Action Anime Adaptation: Water vs. Thunder Breathing Duel",
+      "summary": "A highly detailed, 15-second prompt for generating a live-action adaptation of an anime-style duel, featuring 'Water Breathing' (blue water dragon) versus 'Thunder Breathing' (golden lightning). The p",
+      "category": "Anime",
+      "tags": [
+        "anime",
+        "fantasy",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/870c9907c5740c3d98ed2d62328ca83b/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts/releases/download/videos/189.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "John",
+        "url": "https://x.com/johnAGI168/status/2021610292979876208"
+      }
+    },
+    {
+      "id": "luxury-supercar-cinematic-narrative",
+      "title": "Luxury Supercar Cinematic Narrative",
+      "summary": "A highly detailed multi-shot cinematic prompt for Seedance 2.0 involving a stylish man, Dobermans, and a vintage supercar in a misty mountain setting.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "action",
+        "nature"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/7e8983364a95fe333f0f88bd1085a0e8/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/7e8983364a95fe333f0f88bd1085a0e8/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Ivanna | AI Art & Prompts",
+        "url": "https://x.com/ivanka_humeniuk/status/2048962364083691774"
+      }
+    },
+    {
+      "id": "magical-academy-storyboard-sequence",
+      "title": "Magical Academy Storyboard Sequence",
+      "summary": "A detailed storyboard-style prompt for a cinematic sequence depicting a magical girl at an academy, covering arrival, discovery of power, and a magical duel.",
+      "category": "Advertising",
+      "tags": [
+        "cinematic"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c81825485052d7aff4ee2af086c7f307/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c81825485052d7aff4ee2af086c7f307/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Soulful Ai",
+        "url": "https://x.com/soulful__ai/status/2049186700199620777"
+      }
+    },
+    {
+      "id": "modern-rural-aesthetics-healing-short-film-video-prompt",
+      "title": "Modern Rural Aesthetics Healing Short Film Video Prompt",
+      "summary": "A detailed, three-shot prompt for Seedance 2.0 to generate a healing, cinematic short film in the Modern Rural Aesthetics style. It specifies the style (Cinematic Commercial, 4K/8K, Extreme Macro, nat",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "action",
+        "food"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/ce508b28e505ffce07247e2ab036d6f1/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts/releases/download/videos/288.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "John",
+        "url": "https://x.com/johnAGI168/status/2021818021354848258"
+      }
+    },
+    {
+      "id": "nightclub-flyer-atmospheric-animation",
+      "title": "Nightclub Flyer Atmospheric Animation",
+      "summary": "A subtle animation prompt for Seedance 2.0 to bring background and lighting elements to life while keeping the subject locked",
+      "category": "General",
+      "tags": [
+        "cinematic",
+        "typography"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/ac4aa8dd242046f292eab0e1333692ef/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/ac4aa8dd242046f292eab0e1333692ef/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Nash Deen",
+        "url": "https://x.com/DeenNash_Fu/status/2048912067361452121"
+      }
+    },
+    {
+      "id": "retro-hk-wuxia-film-aesthetic",
+      "title": "Retro HK Wuxia Film Aesthetic",
+      "summary": "A complex multi-part video prompt recreating 80s-90s Hong Kong Wuxia film aesthetics, featuring a character transformation from a cat to a human with stylized shots.",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "product"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/08b292a22998460684d2d5e56c3b6014/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/08b292a22998460684d2d5e56c3b6014/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Alex Zhang",
+        "url": "https://x.com/jojogh_007/status/2048969153202307329"
+      }
+    },
+    {
+      "id": "seedance-2-0-15-second-cinematic-japanese-romance-short-film",
+      "title": "Seedance 2.0: 15-Second Cinematic Japanese Romance Short Film",
+      "summary": "A highly detailed, 15-second multi-scene prompt for Seedance 2.0, designed to generate a cinematic, ultra-realistic Japanese high school pure love short film. The prompt specifies scene setting (empty",
+      "category": "Cinematic",
+      "tags": [
+        "cinematic",
+        "cinematic-romance"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/7f63ad253175a9ad1dac53de490efac8/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts/releases/download/videos/1402.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "AIGC｜阳家豪",
+        "url": "https://x.com/JiahaoYang_art/status/2033119940216344616"
+      }
+    },
+    {
+      "id": "seedance-2-0-80-year-old-rapper-mv",
+      "title": "Seedance 2.0: 80-Year-Old Rapper MV",
+      "summary": "A detailed, 15-second prompt for Seedance 2.0 to generate a 16:9 horizontal street rap music video (MV) featuring an 80-year-old woman. The prompt specifies the style (neon purple/blue cool tones, exp",
+      "category": "General",
+      "tags": [
+        "cyberpunk",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e011d2666b5ee19d5b9f8b9837b974c2/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts/releases/download/videos/1403.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "松果先森",
+        "url": "https://x.com/songguoxiansen/status/2033175478765289598"
+      }
+    },
+    {
+      "id": "sequence-and-movement-instruction-for-martial-arts-video",
+      "title": "Sequence and Movement Instruction for Martial Arts Video",
+      "summary": "A video prompt for Seedance 2.0 that instructs the model to animate a sequence based on a character sheet, focusing on specific movements and steps.",
+      "category": "General",
+      "tags": [
+        "fantasy",
+        "3d-render"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://pbs.twimg.com/media/HG-sP7Lb0AEmlWA.jpg",
+      "previewVideoUrl": "",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Aijaz",
+        "url": "https://x.com/iamsofiaijaz/status/2049045776001564680"
+      }
+    },
+    {
+      "id": "soul-switching-mirror-magic-sequence",
+      "title": "Soul-Switching Mirror Magic Sequence",
+      "summary": "A narrative video prompt describing a magical soul-switching event at a mirror, with specific camera instructions and emotional cues for each segment.",
+      "category": "VFX / Fantasy",
+      "tags": [
+        "cinematic"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e614b54b8f60956db3cd9cb765db1d09/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/e614b54b8f60956db3cd9cb765db1d09/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Soulful Ai",
+        "url": "https://x.com/soulful__ai/status/2049094162134532477"
+      }
+    },
+    {
+      "id": "toaster-rocket-jumpscare",
+      "title": "Toaster Rocket Jumpscare",
+      "summary": "A prompt for a realistic home-video style shot of an old man being jumpscared by a toaster launching bread like a rocket.",
+      "category": "General",
+      "tags": [
+        "food"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/fbf9f399fd8f4905a62661966d937ba8/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/fbf9f399fd8f4905a62661966d937ba8/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Marin",
+        "url": "https://x.com/MarinMethod/status/2049140113343394003"
+      }
+    },
+    {
+      "id": "traditional-dance-performance",
+      "title": "Traditional Dance Performance",
+      "summary": "A comprehensive video prompt for Seedance 2.0 to generate a graceful traditional dance based on choreography and identity reference images.",
+      "category": "Advertising",
+      "tags": [
+        "cinematic",
+        "fantasy",
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://pbs.twimg.com/media/HHAdco5aQAAtTCa.jpg",
+      "previewVideoUrl": "",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Sydney",
+        "url": "https://x.com/XSydneyFan/status/2049170241247449316"
+      }
+    },
+    {
+      "id": "video-seedance-desk-hologram-ar-realdesk",
+      "title": "Video - Desk Hologram AR on Real Workspace (Seedance 2.0)",
+      "summary": "A two-phase Seedance 2.0 workflow for the viral desk-hologram format: first lock a photoreal keyframe on a real developer desk (Open Design UI on the monitor, a cobalt-blue extraterrestrial hunter standing on the keyboard), then animate that still into a ~15s 9:16 image-to-video clip. Tuned for believable AR passthrough — medium-strength VFX, real desk clutter, monitor glow spill on the character, and light physical interactions (open mug, keyboard step, bow draw). Inspired by the desk-hologram Seedance 2.0 trend; no copyrighted character names in the prompt.",
+      "category": "Product",
+      "tags": [
+        "seedance-2.0",
+        "desk-hologram",
+        "ar",
+        "image-to-video",
+        "keyframe",
+        "photoreal",
+        "workspace",
+        "open-design",
+        "short-form",
+        "9:16"
+      ],
+      "aspect": "9:16",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://repo-assets.open-design.ai/resources/images/prompt-templates/video-seedance-desk-hologram-ar-realdesk-poster.jpg",
+      "previewVideoUrl": "https://repo-assets.open-design.ai/resources/videos/prompt-templates/video-seedance-desk-hologram-ar-realdesk.mp4",
+      "source": {
+        "repo": "nexu-io/open-design",
+        "license": "Apache-2.0",
+        "author": "open-design contributors",
+        "url": "https://x.com/VincentLogic/status/2063611686653981013"
+      }
+    },
+    {
+      "id": "video-seedance-three-kingdoms-guanyu-slaying-yanliang",
+      "title": "Video - Three Kingdoms ARPG - Guan Yu Slays Yan Liang (Seedance 2.0)",
+      "summary": "A ~10s in-engine cinematic action sequence bringing the companion image template game-screenshot-three-kingdoms-guanyu-slaying-yanliang to life. Guan Yu (关羽) rides his Red Hare horse straight into an enemy battle line, raises the Green Dragon Crescent Blade, and executes a single clean cleave of the opposing general Yan Liang. Tuned for Seedance 2.0 — tight camera discipline, one decisive strike, clean horse-and-blade physics, photoreal lighting, absolutely no gore on-screen (the strike is implied by a gold qi flash, not by any blood). Designed as the direct video companion to the matching image template so the still and the clip can be served as a pair. Reference image: the Guan Yu slaying-Yan-Liang screenshot template.",
+      "category": "Cinematic",
+      "tags": [
+        "game-cinematic",
+        "arpg",
+        "three-kingdoms",
+        "ancient-china",
+        "combat",
+        "cavalry",
+        "guanyu",
+        "key-visual",
+        "hud-safe",
+        "companion-to-image"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://repo-assets.open-design.ai/resources/images/prompt-templates/video-seedance-three-kingdoms-guanyu-slaying-yanliang-poster.jpg",
+      "previewVideoUrl": "https://repo-assets.open-design.ai/resources/videos/prompt-templates/video-seedance-three-kingdoms-guanyu-slaying-yanliang.mp4",
+      "source": {
+        "repo": "nexu-io/open-design",
+        "license": "Apache-2.0",
+        "author": "open-design contributors",
+        "url": "https://github.com/nexu-io/open-design"
+      }
+    },
+    {
+      "id": "video-seedance-three-kingdoms-lyubu-yuanmen-archery",
+      "title": "Video - Three Kingdoms ARPG - Lyu Bu Yuanmen Archery (Seedance 2.0)",
+      "summary": "A ~10s in-engine cinematic action sequence bringing the companion image template game-screenshot-three-kingdoms-lyubu-yuanmen-archery to life. Lyu Bu (吕布) stands at the center of a dusty military encampment between two facing armies, draws a red-lacquered longbow, holds a bead-on-draw, then looses a single gold-glowing qi-imbued arrow down the range toward a distant halberd planted in the ground. Tuned for Seedance 2.0 — tight camera discipline, a single decisive beat, crisp HUD-safe framing, clean bow/arrow physics, wind + dust + banner motion, and in-game-screenshot color grading. Designed as the direct video companion to the matching image template so the still and the clip can be served as a pair. Reference image: the Lyu Bu yuanmen-archery screenshot template.",
+      "category": "Cinematic",
+      "tags": [
+        "game-cinematic",
+        "arpg",
+        "three-kingdoms",
+        "ancient-china",
+        "combat",
+        "archery",
+        "lyubu",
+        "key-visual",
+        "hud-safe",
+        "companion-to-image"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://repo-assets.open-design.ai/resources/images/prompt-templates/video-seedance-three-kingdoms-lyubu-yuanmen-archery-poster.jpg",
+      "previewVideoUrl": "https://repo-assets.open-design.ai/resources/videos/prompt-templates/video-seedance-three-kingdoms-lyubu-yuanmen-archery.mp4",
+      "source": {
+        "repo": "nexu-io/open-design",
+        "license": "Apache-2.0",
+        "author": "open-design contributors",
+        "url": "https://github.com/nexu-io/open-design"
+      }
+    },
+    {
+      "id": "video-seedance-three-kingdoms-zhaoyun-cradle-escape",
+      "title": "Video - Three Kingdoms ARPG - Zhao Yun Cradle Escape (Seedance 2.0)",
+      "summary": "A ~12s in-engine cinematic action sequence bringing the companion image template game-screenshot-three-kingdoms-zhaoyun-cradle-escape to life. Zhao Yun (赵云) rides his warhorse through a broken Changban battlefield, cradling the infant heir A Dou in the crook of his left arm and wielding his spear in the right, parrying an incoming strike with a single PERFECT DODGE and vaulting past a fallen war-chariot to clear a path. Tuned for Seedance 2.0 — tight camera discipline, single continuous beat, believable one-arm spearwork, clean horse physics, and absolutely no visible harm to the infant. Designed as the direct video companion to the matching image template so the still and the clip can be served as a pair. Reference image: the Zhao Yun cradle-escape screenshot template.",
+      "category": "Cinematic",
+      "tags": [
+        "game-cinematic",
+        "arpg",
+        "three-kingdoms",
+        "ancient-china",
+        "combat",
+        "cavalry",
+        "zhaoyun",
+        "escort",
+        "key-visual",
+        "hud-safe",
+        "companion-to-image"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://repo-assets.open-design.ai/resources/images/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape-poster.jpg",
+      "previewVideoUrl": "https://repo-assets.open-design.ai/resources/videos/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape.mp4",
+      "source": {
+        "repo": "nexu-io/open-design",
+        "license": "Apache-2.0",
+        "author": "open-design contributors",
+        "url": "https://github.com/nexu-io/open-design"
+      }
+    },
+    {
+      "id": "vintage-disney-style-pirate-crocodile-animation",
+      "title": "Vintage Disney Style Pirate Crocodile Animation",
+      "summary": "A multi-scene narrative prompt for a classic vintage Disney-style animation featuring a crocodile pirate and bird pirates on a ship.",
+      "category": "General",
+      "tags": [],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3db7bf471d6244585f772e001af0c625/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/3db7bf471d6244585f772e001af0c625/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "migrok",
+        "url": "https://x.com/migrok293703/status/2049073744346239415"
+      }
+    },
+    {
+      "id": "viral-k-pop-dance-choreography",
+      "title": "Viral K-pop Dance Choreography",
+      "summary": "A detailed prompt for Seedance 2.0 to animate a character performing a dance based on a 16-panel storyboard reference.",
+      "category": "Social / Meme",
+      "tags": [
+        "fantasy",
+        "3d-render"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://pbs.twimg.com/media/HG-JpHkbUAA2B08.jpg",
+      "previewVideoUrl": "",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "MetaBynny",
+        "url": "https://x.com/MetaBynny/status/2049008203854184461"
+      }
+    },
+    {
+      "id": "wasteland-factory-chase",
+      "title": "Wasteland Factory Chase",
+      "summary": "A cinematic prompt for a high-speed desert wasteland scene featuring a moving industrial factory on legs and a rebel bike chase.",
+      "category": "General",
+      "tags": [
+        "action"
+      ],
+      "aspect": "16:9",
+      "model": "seedance-2.0",
+      "hyperframes": false,
+      "previewImageUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c00999fd2444b7303984afe02b739e64/thumbnails/thumbnail.jpg",
+      "previewVideoUrl": "https://customer-qs6wnyfuv0gcybzj.cloudflarestream.com/c00999fd2444b7303984afe02b739e64/downloads/default.mp4",
+      "source": {
+        "repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "license": "CC-BY-4.0",
+        "author": "Alexandra Aisling",
+        "url": "https://x.com/AllaAisling/status/2049132779288322134"
+      }
+    }
+  ]
+}

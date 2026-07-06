@@ -1,0 +1,25 @@
+spec_version: 1
+id: waves
+name: Waves
+description: A perlin-warped line field with a pointer wake — organic flowing lines.
+surfaces: [web, interaction]
+canvas: [web]
+target: [background, section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [background, hero, ambient, waves]
+intent_keywords: [waves, animated background, 动态背景]
+best_for: ["A full-bleed hero/section background"]
+avoid_when: ["Behind dense text without a scrim", "Multiple animated backgrounds at once"]
+restraint: { max_per_view: 1, notes: "One animated background per view; scrim behind text. Static frame under reduced-motion." }
+motion: { duration_ms: 0, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [waves.js], usage: "Copy the file(s); add a full-bleed <div class=\"waves\"></div>." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

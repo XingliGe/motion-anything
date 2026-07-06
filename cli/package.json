@@ -1,0 +1,31 @@
+{
+  "name": "motion-anything",
+  "version": "0.0.1",
+  "description": "The agentic motion layer — browse, reuse, and export motion recipes as portable AI skills.",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "bin": {
+    "motion-anything": "bin/motion.js",
+    "motion": "bin/motion.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nexu-io/motion-anything.git"
+  },
+  "keywords": [
+    "motion",
+    "animation",
+    "ai",
+    "skills",
+    "agent",
+    "framer-motion",
+    "gsap",
+    "lottie"
+  ]
+}

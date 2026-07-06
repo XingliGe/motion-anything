@@ -1,0 +1,52 @@
+/* border-beam.css — motion-anything recipe · category: ambient
+ * A small bright comet travels the border via a rotating conic-gradient masked to a thin ring.
+ * Livelier than shine-border. Compositor-friendly; fully static under reduced-motion. */
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.beam {
+  --beam-angle: 0deg;
+  --beam-color: #8b7cf6;
+  --beam-size: 1.5px;
+  position: relative;
+  border-radius: 16px;
+  background: #14151c;
+  color: #e7e8ee;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: var(--beam-size);
+  /* a tight bright arc (the comet head) + faint tail, everything else transparent */
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    color-mix(in srgb, var(--beam-color) 30%, transparent) 4%,
+    var(--beam-color) 8%,
+    #fff 9%,
+    var(--beam-color) 10%,
+    transparent 16%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 3px var(--beam-color));
+  animation: beam-travel 3s linear infinite;
+}
+@keyframes beam-travel { to { --beam-angle: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .beam::before { animation: none; background: none; filter: none;
+    border: var(--beam-size) solid rgba(139, 124, 246, 0.4); }
+}

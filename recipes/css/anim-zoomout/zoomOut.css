@@ -1,0 +1,22 @@
+/* zoomOut.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.zoomOut {
+  animation-name: zoomOut;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

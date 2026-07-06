@@ -1,0 +1,53 @@
+spec_version: 1
+id: button-press
+name: Button Press
+description: A button that springs down on press and pops back — tactile tap feedback.
+surfaces: [app, interaction]
+category: feedback-delight
+tech: [css, js]
+
+# 五维分类（建库标准）
+canvas:  [app]
+target:  [button]
+intent:  feedback-delight
+runtime: [css, js]
+export:  [skill, motion-json, html]
+
+dependencies: []
+tags: [button, press, tap, spring, feedback]
+
+intent_keywords:
+  - button
+  - press
+  - 按钮按压
+best_for:
+  - Native-feeling micro-interactions on App UI components
+  - Buttons, tabs, sheets, toasts and form controls in a mobile app
+avoid_when:
+  - Slowing down a frequent action (keep it short and snappy)
+  - Decorating a control that does not actually change state
+restraint:
+  max_per_view: 4
+  notes: Component-level feedback — many can coexist. Trigger on user intent; keep it quick and subtle.
+
+motion:
+  duration_ms: 300
+  easing: spring
+  reduced_motion: shorten
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [button-press.css, button-press.js]
+    usage: |
+      A self-contained App-UI micro-interaction. Copy the file(s) and wire the component as in preview.html.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

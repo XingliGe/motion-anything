@@ -1,0 +1,6 @@
+/* gooey-nav.css — hover-press · a pill slides under the active item. transform only. */
+.gnav{ position:relative; display:inline-flex; gap:4px; padding:5px; border-radius:999px; background:#14151c; border:1px solid #2a2b36; }
+.gnav .gn-pill{ position:absolute; top:5px; bottom:5px; border-radius:999px; background:linear-gradient(90deg,#8b7cf6,#6d54e6); transition: transform .35s cubic-bezier(.34,1.4,.5,1), width .35s cubic-bezier(.34,1.4,.5,1); z-index:0; }
+.gnav button{ position:relative; z-index:1; border:0; background:none; color:#c8c9d4; font:600 14px ui-sans-serif,system-ui,sans-serif; padding:9px 18px; border-radius:999px; cursor:pointer; transition:color .2s; }
+.gnav button.on{ color:#fff; }
+@media (prefers-reduced-motion: reduce){ .gnav .gn-pill{ transition:none } }

@@ -1,0 +1,25 @@
+spec_version: 1
+id: shuffle-text
+name: Shuffle Text
+description: Letters shuffle through random neighbors then settle into the word — a quick playful reveal.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css, js]
+dependencies: []
+tags: [text, shuffle, scramble, reveal, playful]
+intent_keywords: [shuffle text, letters shuffle, 洗牌文字, 乱序归位]
+best_for: ["A short label with a playful reveal"]
+avoid_when: ["Body copy; calm tones"]
+restraint: { max_per_view: 2, notes: "Short lines, fast. Final text is the real content; instant under reduced-motion." }
+motion: { duration_ms: 700, easing: linear, reduced_motion: instant, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css+js, files: [shuffle-text.js], usage: "Add class 'shuffle' + data-text; letters cycle then settle. Reduced-motion shows final text." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/text-animations/shuffle", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

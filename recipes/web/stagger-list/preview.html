@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>stagger-list · motion-anything recipe</title>
+  <link rel="stylesheet" href="stagger-list.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; text-align:center; margin-bottom:16px; }
+    ul { list-style:none; margin:0; padding:0; width:300px; }
+    li { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid #ececf1; border-radius:12px;
+      padding:13px 15px; margin-bottom:10px; box-shadow:0 6px 18px rgba(0,0,0,.04); }
+    .ic { width:30px; height:30px; border-radius:8px; background:#efeaff; display:grid; place-items:center; }
+    .replay { display:block; margin:14px auto 0; font-size:13px; color:#9aa0aa; background:none; border:0; cursor:pointer; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="badge">motion-anything · entrance · list</div>
+    <ul data-stagger>
+      <li><span class="ic">✦</span> One sentence → matched motion</li>
+      <li><span class="ic">◫</span> Component-level editing</li>
+      <li><span class="ic">{ }</span> Portable motion-JSON</li>
+      <li><span class="ic">⤓</span> Export as a reusable skill</li>
+    </ul>
+    <button class="replay" onclick="location.reload()">↻ replay</button>
+  </div>
+  <script src="stagger-list.js"></script>
+</body>
+</html>

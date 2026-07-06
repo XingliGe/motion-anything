@@ -1,0 +1,25 @@
+spec_version: 1
+id: target-cursor
+name: Target Cursor
+description: An animated target ring replaces the cursor and snaps onto interactive elements.
+surfaces: [web, interaction]
+canvas: [web]
+target: [button,section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [target cursor,ring cursor,靶心光标,吸附指针]
+intent_keywords: [target cursor,ring cursor,靶心光标,吸附指针]
+best_for: ["Target Cursor — one tasteful use"]
+avoid_when: ["Touch-only contexts; overuse; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Off/plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [target-cursor.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/animations/target-cursor, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

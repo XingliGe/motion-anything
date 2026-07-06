@@ -1,0 +1,58 @@
+spec_version: 1
+id: gradient-text
+name: Animated Gradient Text
+description: A slow gradient drifts through a headline — quiet premium emphasis on one line of type.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css]
+dependencies: []
+tags: [gradient, text, headline, ambient, premium, type]
+
+intent_keywords:
+  - gradient text
+  - animated headline color
+  - shimmering text
+  - premium heading
+  - 渐变文字
+  - 流光标题
+  - 高级感标题
+best_for:
+  - One hero word / short headline you want to feel premium
+  - A brand name or key metric that should quietly draw the eye
+avoid_when:
+  - Body copy or long text (hurts readability and contrast)
+  - More than one gradient headline on screen
+  - When strong color contrast for accessibility is required
+restraint:
+  max_per_view: 1
+  notes: >
+    One short phrase only. Keep the palette on-brand and the drift slow. Ensure a readable base
+    color; the animation stops (solid color) under reduced-motion.
+
+motion:
+  duration_ms: 6000
+  easing: ease-in-out
+  reduced_motion: static      # solid color, no drift
+  gpu_safe: true              # animates background-position of a text-clipped gradient
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [gradient-text.css]
+    usage: |
+      Add class "gradient-text" to an inline heading/span. A background gradient is clipped to the
+      text and its position animates. Set --g1/--g2/--g3 for brand colors. Pure CSS.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://magicui.design/docs/components/animated-gradient-text"
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

@@ -1,0 +1,25 @@
+spec_version: 1
+id: bounce-cards
+name: Bounce Cards
+description: A stack of cards springs and fans into place on load — a lively hero for a small set.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card]
+intent: entrance
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: entrance
+tech: [css,js]
+dependencies: []
+tags: [bounce cards,fan in cards,弹跳卡片,展开卡组]
+intent_keywords: [bounce cards,fan in cards,弹跳卡片,展开卡组]
+best_for: ["Bounce Cards — one tasteful use"]
+avoid_when: ["Overuse; touch-only where relevant; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [bounce-cards.css,bounce-cards.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/bounce-cards, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

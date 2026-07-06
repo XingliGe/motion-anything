@@ -1,0 +1,6 @@
+/* gradual-blur.css — ambient · progressive blur toward the bottom edge (backdrop-filter + mask). */
+.grad-blur { position: relative; }
+.grad-blur::after { content:""; position:absolute; left:0; right:0; bottom:0; height:90px; pointer-events:none;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  -webkit-mask: linear-gradient(to top, #000 30%, transparent); mask: linear-gradient(to top, #000 30%, transparent); }
+@media (prefers-reduced-motion: reduce){ .grad-blur::after{ } }

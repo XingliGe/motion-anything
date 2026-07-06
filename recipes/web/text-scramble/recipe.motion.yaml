@@ -1,0 +1,58 @@
+spec_version: 1
+id: text-scramble
+name: Text Scramble
+description: Glyphs shuffle then resolve into the final word — a techy decode reveal for one short line.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css, js]
+dependencies: []
+tags: [scramble, decode, glitch, matrix, kinetic, headline]
+
+intent_keywords:
+  - text scramble
+  - decode text
+  - glitch reveal
+  - matrix text
+  - 乱码解码
+  - 解码文字
+  - 科技感标题
+best_for:
+  - A hero word / short headline with a technical or futuristic tone
+  - Cycling between a few phrases on one line
+avoid_when:
+  - Long text or body copy (unreadable while scrambling)
+  - Calm / editorial / luxury tones (feels gimmicky)
+  - Anything that must be readable by a screen reader mid-animation
+restraint:
+  max_per_view: 1
+  notes: >
+    One short line only. Keep it fast (well under a second per phrase). The final, resolved text is
+    the accessible value — under reduced-motion it appears instantly with no scramble.
+
+motion:
+  duration_ms: 700
+  easing: linear
+  reduced_motion: instant     # shows final text immediately, no scramble
+  gpu_safe: true              # text content swaps only; no layout thrash beyond the line
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [text-scramble.js]
+    usage: |
+      Add class "scramble" and data-text="Final words" to an element. Call the exported
+      scrambleTo(el, text) to animate, or it auto-plays data-text on load. Respects reduced-motion.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://tympanus.net/Development/TextScrambleEffect/"   # technique popularized by Codrops
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

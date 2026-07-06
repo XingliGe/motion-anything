@@ -1,0 +1,44 @@
+spec_version: 1
+id: shiny-text
+name: Shiny Text
+description: A soft highlight sweeps across muted text — a quiet premium shimmer for one short label.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css]
+dependencies: []
+tags: [text, shine, shimmer, premium, label]
+intent_keywords:
+  - shiny text
+  - shimmer text
+  - premium label
+  - 流光文字
+  - 高光文字
+best_for:
+  - A muted "new" / "pro" label or a short CTA word you want to feel premium
+  - One short phrase, not body copy
+avoid_when:
+  - Body text or anything that must stay high-contrast/readable
+  - More than one shiny label on screen
+restraint:
+  max_per_view: 2
+  notes: One or two short labels. Keep it subtle; the base text stays readable. Static under reduced-motion.
+motion:
+  duration_ms: 3000
+  easing: linear
+  reduced_motion: static
+  gpu_safe: true
+entry: preview.html
+implementations:
+  - tech: css
+    files: [shiny-text.css]
+    usage: |
+      Add class "shiny" to an inline element. A moving highlight sweeps across the (muted) text via a
+      text-clipped gradient. Set --shiny-base / --shiny-hi. Pure CSS.
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

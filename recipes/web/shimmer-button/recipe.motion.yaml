@@ -1,0 +1,57 @@
+spec_version: 1
+id: shimmer-button
+name: Shimmer Button
+description: A soft band of light sweeps across a CTA on hover (or slowly at rest) — premium, restrained.
+surfaces: [web, interaction]
+canvas: [web]
+target: [button]
+intent: feedback-delight
+runtime: [css]
+export: [skill, motion-json, html]
+category: feedback-delight
+tech: [css]
+dependencies: []
+tags: [button, shimmer, sheen, cta, hover, premium]
+
+intent_keywords:
+  - shimmer button
+  - sheen sweep cta
+  - premium button hover
+  - shiny button
+  - 扫光按钮
+  - 高光 cta
+best_for:
+  - One primary call-to-action you want to feel premium
+  - A "Get started" / "Upgrade" button in a hero or pricing card
+avoid_when:
+  - Secondary or destructive buttons
+  - Many buttons at once (the sweep becomes noise)
+  - Anything that must read as calm/neutral
+restraint:
+  max_per_view: 1
+  notes: >
+    Reserve for the single primary CTA. Keep the sheen subtle and slow. Under reduced-motion the
+    sweep stops (a plain solid button remains).
+
+motion:
+  duration_ms: 2600
+  easing: ease-in-out
+  reduced_motion: static      # no sweep; solid button
+  gpu_safe: true              # animates transform of a masked highlight
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [shimmer-button.css]
+    usage: |
+      Add class "shimmer" to a button. A masked highlight sweeps across it (slowly at rest, faster
+      on hover). Pure CSS; no JS.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://magicui.design/docs/components/shimmer-button"
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

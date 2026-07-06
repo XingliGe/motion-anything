@@ -1,0 +1,53 @@
+spec_version: 1
+id: fx-letter-explode
+name: Letter Explode
+description: Letters fly in from everywhere and settle into the word.
+surfaces: [video]
+category: text-kinetic
+tech: [js]
+
+# 五维分类（建库标准）
+canvas:  [slides, video]
+target:  [text]
+intent:  text-kinetic
+runtime: [js]
+export:  [skill, html]
+
+dependencies: []
+tags: [text, letters, explode, kinetic]
+
+intent_keywords:
+  - text
+  - letters
+  - 字母爆炸
+best_for:
+  - Title cards, section breaks, or hero moments in slides / launch videos
+avoid_when:
+  - Web body content or anything that needs focused reading
+  - More than one bold effect on screen at once
+restraint:
+  max_per_view: 1
+  notes: A bold, attention-grabbing effect — slides / video first. On web pages use sparingly, one per screen.
+
+motion:
+  duration_ms: 0
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: js
+    files: [letter-explode.js, _util.js]
+    usage: |
+      Add data-fx="letter-explode" to a positioned container, then call HPX['letter-explode'](el).
+      Canvas-based; from Open Design's html-ppt fx pack. Guard prefers-reduced-motion.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://github.com/nexu-io/open-design"
+  attribution_required: true
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

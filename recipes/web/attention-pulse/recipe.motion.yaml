@@ -1,0 +1,57 @@
+spec_version: 1
+id: attention-pulse
+name: Attention Pulse
+description: A soft expanding ring that draws the eye to one element — a CTA, a badge, a new dot.
+
+# legacy aliases (kept for CLI / back-compat)
+surfaces: [web, interaction]
+category: attention
+tech: [css]
+
+# 五维分类（建库标准）
+canvas:  [web, app]
+target:  [button, icon]
+intent:  attention
+runtime: [css]
+export:  [skill, motion-json, html]
+
+dependencies: []
+tags: [attention, pulse, ring, cta, badge, nudge]
+
+intent_keywords:
+  - draw attention
+  - pulse ring
+  - notify dot
+  - 引导注意
+  - 脉冲提示
+best_for:
+  - A single primary CTA you want noticed
+  - An unread / new badge or notification dot
+avoid_when:
+  - More than one pulsing element on screen (attention splits, nothing wins)
+  - As decoration with no real call to act
+restraint:
+  max_per_view: 1
+  notes: One nudge per screen. A soft ring, not a strobe — never loop aggressively.
+
+motion:
+  duration_ms: 2000
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [attention-pulse.css]
+    usage: |
+      Add data-pulse to the element (set --pulse-color to taste). A soft ring expands and fades on loop.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

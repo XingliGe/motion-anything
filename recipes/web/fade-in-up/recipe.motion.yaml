@@ -1,0 +1,47 @@
+spec_version: 1
+id: fade-in-up
+name: Fade In Up
+description: A clean rise + fade for elements as they appear on the page (on load).
+surfaces: [web]
+category: entrance
+tech: [css, js]
+dependencies: []
+tags: [entrance, fade, rise, appear, stagger]
+
+intent_keywords:
+  - fade in
+  - appear smoothly
+  - entrance
+  - 入场
+  - 优雅出现
+best_for:
+  - Hero content and key elements appearing on first paint
+  - A staggered entrance for a small group of elements
+avoid_when:
+  - Long lists (use scroll-reveal so off-screen items animate as you reach them)
+  - Delaying content the user must read immediately by more than ~300ms
+restraint:
+  max_per_view: 3
+  notes: At most a few elements; stagger 40–80ms and finish within the slow band.
+
+motion:
+  duration_ms: 460
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [fade-in-up.css, fade-in-up.js]
+    usage: |
+      Add data-fade to elements (optional data-fade-delay="80"). On load they rise + fade in.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

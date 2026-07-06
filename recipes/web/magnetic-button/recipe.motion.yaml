@@ -1,0 +1,53 @@
+spec_version: 1
+id: magnetic-button
+name: Magnetic Button
+description: A button that subtly leans toward the cursor as it approaches, then springs back.
+surfaces: [web, interaction]
+category: hover-press
+tech: [css, js]
+dependencies: []
+tags: [hover, magnetic, cursor, button, playful, micro-interaction]
+
+intent_keywords:
+  - magnetic button
+  - playful hover
+  - alive
+  - snappy
+  - 磁吸
+  - 有生命力
+  - 活泼
+best_for:
+  - A single primary call-to-action you want to feel alive
+  - Hero buttons, "Get started" / "Try it"
+avoid_when:
+  - Dense UIs with many buttons (it would feel chaotic)
+  - Touch-only contexts (there is no cursor to attract)
+  - More than one or two magnetic targets on a screen
+restraint:
+  max_per_view: 2
+  notes: >
+    Reserve for the primary action(s). Keep the pull subtle (a few px) — it should feel alive,
+    not gimmicky. Disable on touch and under reduced-motion.
+
+motion:
+  duration_ms: 180
+  easing: spring-snappy
+  reduced_motion: none      # no movement; static button
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [magnetic-button.css, magnetic-button.js]
+    usage: |
+      Add class "magnetic" to a button (optionally data-magnet-strength="0.3"). Link the css + js;
+      it auto-attaches to .magnetic elements and pulls them toward the pointer within a hover radius.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

@@ -1,0 +1,32 @@
+/* toggle-spring.css — motion-anything recipe · category: feedback-delight · target: button
+ * A switch whose knob springs across on toggle. Transform only (GPU-safe).
+ * reduced-motion: quick linear slide, no overshoot. */
+
+.ms-toggle {
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: #d8d6cf;
+  border: 0;
+  padding: 3px;
+  cursor: pointer;
+  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ms-toggle .knob {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transform: translateX(0);
+  transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1); /* spring overshoot */
+  will-change: transform;
+}
+.ms-toggle.on { background: #8b7cf6; }
+.ms-toggle.on .knob { transform: translateX(22px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-toggle .knob { transition: transform 0.15s linear; }
+}

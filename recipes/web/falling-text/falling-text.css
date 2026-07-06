@@ -1,0 +1,4 @@
+/* falling-text.css — text-kinetic · letters drop in, staggered with a soft bounce. transform/opacity only. */
+[data-falling] .fl-c { display:inline-block; opacity:0; transform: translateY(-.7em); transition: opacity .5s ease-out, transform .6s cubic-bezier(.34,1.56,.64,1); transition-delay: var(--fl-d,0ms); }
+[data-falling].in .fl-c { opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ [data-falling] .fl-c{ opacity:1; transform:none; transition:none } }

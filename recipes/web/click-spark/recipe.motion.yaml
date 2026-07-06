@@ -1,0 +1,25 @@
+spec_version: 1
+id: click-spark
+name: Click Spark
+description: A quick burst of sparks flies from the point you click — a playful tap accent.
+surfaces: [web, interaction]
+canvas: [web]
+target: [button,section]
+intent: feedback-delight
+runtime: [js]
+export: [skill, motion-json, html]
+category: feedback-delight
+tech: [js]
+dependencies: []
+tags: [spark,click,burst,tap,delight]
+intent_keywords: [click spark, tap burst, 点击火花, 点按迸发]
+best_for: ["A playful primary action"]
+avoid_when: ["Serious/destructive actions; many at once"]
+restraint: { max_per_view: 6, notes: "Use sparingly; tasteful. Plain/static under reduced-motion." }
+motion: { duration_ms: 500, easing: ease-out, reduced_motion: graceful, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [click-spark.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

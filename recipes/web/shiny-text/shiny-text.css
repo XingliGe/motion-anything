@@ -1,0 +1,17 @@
+/* shiny-text.css — motion-anything recipe · category: text-kinetic
+ * A highlight band sweeps across muted text (text-clipped gradient). GPU-safe; static under reduced-motion. */
+.shiny {
+  --shiny-base: #8a8a94;
+  --shiny-hi: #ffffff;
+  background: linear-gradient(100deg, var(--shiny-base) 40%, var(--shiny-hi) 50%, var(--shiny-base) 60%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shiny-sweep 3s linear infinite;
+}
+@keyframes shiny-sweep { 0% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .shiny { animation: none; background: none; -webkit-text-fill-color: currentColor; color: var(--shiny-base); }
+}

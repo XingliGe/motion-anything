@@ -1,0 +1,20 @@
+/* flash.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  animation-name: flash;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

@@ -1,0 +1,25 @@
+spec_version: 1
+id: glitch-text
+name: Glitch Text
+description: An RGB-split glitch flickers across a headline — a techy, edgy reveal.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css]
+dependencies: []
+tags: [glitch,text,rgb,cyberpunk,techy]
+intent_keywords: [glitch text, cyberpunk headline, 故障文字, 抖动标题]
+best_for: ["A short techy headline"]
+avoid_when: ["Calm/editorial tones; body copy"]
+restraint: { max_per_view: 1, notes: "Use sparingly; tasteful. Plain/static under reduced-motion." }
+motion: { duration_ms: 700, easing: ease-out, reduced_motion: graceful, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css, files: [glitch-text.css], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

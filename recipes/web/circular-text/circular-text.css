@@ -1,0 +1,5 @@
+/* circular-text.css — ambient · characters placed on a circle; the ring slowly rotates. transform only. */
+.circ{ position:relative; width:160px; height:160px; animation: circ-spin 12s linear infinite; }
+.circ .circ-c{ position:absolute; left:50%; top:0; transform-origin: 0 80px; font:600 14px ui-sans-serif,system-ui,sans-serif; color:#c8bdff; }
+@keyframes circ-spin{ to{ transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .circ{ animation:none } }

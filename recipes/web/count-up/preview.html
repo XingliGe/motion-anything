@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>count-up · motion-anything recipe</title>
+  <link rel="stylesheet" href="count-up.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; text-align:center; margin-bottom:20px; }
+    .stats { display:flex; gap:48px; justify-content:center; flex-wrap:wrap; }
+    .stat { text-align:center; }
+    .num { font:700 46px ui-sans-serif, system-ui, sans-serif; color:#1a1d24; }
+    .lbl { color:#6b7280; font-size:14px; margin-top:4px; }
+    .replay { display:block; margin:34px auto 0; font-size:13px; color:#9aa0aa; background:none; border:0; cursor:pointer; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="badge">motion-anything · emphasis</div>
+    <div class="stats">
+      <div class="stat"><div class="num"><span data-count="10000" data-count-suffix="+">0</span></div><div class="lbl">Users</div></div>
+      <div class="stat"><div class="num"><span data-count="142" data-count-suffix="">0</span></div><div class="lbl">Design systems</div></div>
+      <div class="stat"><div class="num"><span data-count="99" data-count-suffix="%">0</span></div><div class="lbl">Tasteful</div></div>
+    </div>
+    <button class="replay" onclick="location.reload()">↻ replay</button>
+  </div>
+  <script src="count-up.js"></script>
+</body>
+</html>

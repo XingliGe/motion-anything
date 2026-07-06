@@ -1,0 +1,25 @@
+spec_version: 1
+id: gradual-blur
+name: Gradual Blur
+description: A soft progressive blur fades content out toward an edge — a premium way to hint "more below".
+surfaces: [web, interaction]
+canvas: [web]
+target: [section, list]
+intent: ambient
+runtime: [css]
+export: [skill, motion-json, html]
+category: ambient
+tech: [css]
+dependencies: []
+tags: [blur, gradient, mask, edge, scroll, premium]
+intent_keywords: [gradual blur, edge blur fade, scroll hint, 渐进模糊, 边缘虚化]
+best_for: ["The bottom/top edge of a scrolling list or long section"]
+avoid_when: ["When users need to read the edge content clearly"]
+restraint: { max_per_view: 2, notes: "A subtle affordance, not decoration. Backdrop-filter degrades gracefully where unsupported." }
+motion: { duration_ms: 0, easing: linear, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css, files: [gradual-blur.css], usage: "Add class 'grad-blur' to a container; a ::after masks a progressive blur at the bottom edge." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/animations/gradual-blur", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

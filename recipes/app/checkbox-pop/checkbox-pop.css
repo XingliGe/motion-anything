@@ -1,0 +1,7 @@
+/* checkbox-pop.css — motion-anything recipe · App UI micro-interaction */
+.ui-cbx{width:46px;height:46px;border-radius:13px;border:2px solid #d8d6df;background:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .3s cubic-bezier(.34,1.6,.5,1);padding:0}
+.ui-cbx.on{background:#8b7cf6;border-color:#8b7cf6;transform:scale(1.06)}
+.ui-cbx svg{width:26px;height:26px}
+.ui-cbx path{stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .34s ease .06s}
+.ui-cbx.on path{stroke-dashoffset:0}
+@media(prefers-reduced-motion:reduce){.ui-cbx,.ui-cbx path{transition:none}}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lottie-favorite · motion-anything recipe</title>
+  <style>
+    :root { color-scheme: light; }
+    html, body { margin:0; height:100%; }
+    body { display:grid; place-items:center; background:#f4f5f7;
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+    #lottie { width:220px; height:220px; }
+  </style>
+</head>
+<body>
+  <div id="lottie"></div>
+  <script src="../_runtime/lottie.min.js"></script>
+  <script>
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    lottie.loadAnimation({ container: document.getElementById('lottie'), renderer: 'svg',
+      loop: true, autoplay: !reduce, path: 'animation.json' });
+  </script>
+</body>
+</html>

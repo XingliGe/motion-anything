@@ -1,0 +1,26 @@
+/* attention-pulse.css — motion-anything recipe · category: attention
+ * A soft expanding ring to draw the eye to ONE element. Transform + opacity only.
+ * reduced-motion: no pulse. */
+
+[data-pulse] { position: relative; }
+[data-pulse]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--pulse-color, #8b7cf6);
+  opacity: 0;
+  transform: scale(1);
+  animation: ma-pulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+@keyframes ma-pulse {
+  0%   { opacity: 0.5; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(1.5); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-pulse]::after { animation: none; display: none; }
+}

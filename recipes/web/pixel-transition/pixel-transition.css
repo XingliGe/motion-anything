@@ -1,0 +1,7 @@
+/* pixel-transition.css — hover-press · pixel tiles flip in to reveal the back face on hover. opacity only. */
+.pixt{ position:relative; overflow:hidden; border-radius:14px; }
+.pixt .pixt-back{ position:absolute; inset:0; display:grid; opacity:0; }
+.pixt .px{ background:var(--pixt-color,#8b7cf6); opacity:0; transition:opacity .01s; }
+.pixt:hover .pixt-back{ opacity:1; }
+.pixt:hover .px{ opacity:1; transition-delay:var(--d,0ms); }
+@media (prefers-reduced-motion: reduce){ .pixt .pixt-back{ transition:none } .pixt:hover .px{ transition:none; opacity:1 } }

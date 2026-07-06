@@ -1,0 +1,52 @@
+spec_version: 1
+id: anim-slideinleft
+name: Animate · Slide In Left
+description: Slide In Left — a ready-made CSS keyframe animation from Animate.css.
+surfaces: [web, app, interaction]
+category: entrance
+tech: [css]
+
+canvas:  [web, app]
+target:  [section, text]
+intent:  entrance
+runtime: [css]
+export:  [skill, html]
+
+dependencies: []
+tags: [animate-css, css, keyframes, entrance, slideinleft]
+
+intent_keywords:
+  - slideinleft
+  - css animation
+  - 入场动效
+best_for:
+  - Drop-in CSS entrance / attention animation, no JS required
+avoid_when:
+  - Overusing on many elements at once (keep it restrained)
+  - Must-read content you do not want delayed
+restraint:
+  max_per_view: 3
+  notes: A ready-made CSS keyframe — restrained use; honor prefers-reduced-motion (disabled).
+
+motion:
+  duration_ms: 900
+  easing: ease
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [slideInLeft.css]
+    usage: |
+      Add class "slideInLeft" to an element (set animation-duration). Keyframes from Animate.css.
+
+license:
+  spdx: Hippocratic-2.1
+  upstream: "https://github.com/animate-css/animate.css"
+  attribution_required: true
+  notes: "© Daniel Eden. Animate.css under Hippocratic License 2.1 (ethical-source). Redistribution allowed with notice + attribution."
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

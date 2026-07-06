@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>spotlight-card · motion-anything recipe</title>
+  <link rel="stylesheet" href="spotlight-card.css" />
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; gap: 22px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #1b1c24, #0b0b12); color: #e7e8ee; }
+    .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b7cf6; }
+    .grid { display: grid; grid-template-columns: repeat(2, 220px); gap: 18px; }
+    .spotlight { padding: 24px; min-height: 130px; }
+    .spotlight h3 { margin: 0 0 8px; font-size: 16px; }
+    .spotlight p { margin: 0; font-size: 13px; color: #a2a4b0; line-height: 1.5; }
+    .hint { font-size: 13px; color: #7c7f8c; }
+  </style>
+</head>
+<body>
+  <div class="badge">motion-anything · hover-press</div>
+  <div class="grid">
+    <div class="spotlight"><h3>Realtime sync</h3><p>Every edit lands everywhere, instantly.</p></div>
+    <div class="spotlight"><h3>On-brand motion</h3><p>Recipes tuned to your design system.</p></div>
+    <div class="spotlight"><h3>Local &amp; open</h3><p>Runs on your machine. No lock-in.</p></div>
+    <div class="spotlight"><h3>Export anywhere</h3><p>Skill · JSON · HTML · MP4.</p></div>
+  </div>
+  <p class="hint">Move your cursor over the cards · glow follows the pointer · static on touch &amp; reduced-motion.</p>
+  <script src="spotlight-card.js"></script>
+</body>
+</html>

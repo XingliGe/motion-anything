@@ -1,0 +1,8 @@
+/* electric-border.css — ambient · a jittery dashed outline animates around a card. Static under reduced-motion. */
+.electric { --elec-color:#7cf; position:relative; border-radius:14px; background:#14151c; }
+.electric::before { content:""; position:absolute; inset:-2px; border-radius:16px; border:2px solid var(--elec-color);
+  filter: drop-shadow(0 0 4px var(--elec-color)); clip-path: inset(0 round 16px);
+  animation: elec-dash 0.9s linear infinite; opacity:.9; }
+.electric::before { border-style: dashed; stroke-dasharray: 6 6; }
+@keyframes elec-dash { to { transform: translateX(6px); } }
+@media (prefers-reduced-motion: reduce){ .electric::before{ animation:none; border-style:solid } }

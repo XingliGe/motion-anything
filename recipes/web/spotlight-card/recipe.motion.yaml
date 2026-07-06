@@ -1,0 +1,58 @@
+spec_version: 1
+id: spotlight-card
+name: Spotlight Card
+description: A soft radial spotlight follows the cursor across a card, revealing a subtle glow and border.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, section]
+intent: hover-press
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: hover-press
+tech: [css, js]
+dependencies: []
+tags: [spotlight, glow, hover, cursor, card, premium, micro-interaction]
+
+intent_keywords:
+  - spotlight card
+  - cursor glow
+  - hover glow
+  - premium card hover
+  - 光斑跟随
+  - 卡片高光
+  - 高级感 hover
+best_for:
+  - Feature cards / pricing tiles you want to feel premium on hover
+  - A grid of cards where one lights up under the pointer
+avoid_when:
+  - Text-dense reading surfaces (the glow distracts)
+  - Touch-only contexts (no cursor to follow) — it falls back to a static border
+  - More than a handful on screen animating at once
+restraint:
+  max_per_view: 6
+  notes: >
+    Keep the glow subtle and low-contrast. It should hint at interactivity, not strobe. Disable the
+    moving light under reduced-motion (a plain static border remains).
+
+motion:
+  duration_ms: 240
+  easing: ease-out
+  reduced_motion: opacity-only   # static border, no moving light
+  gpu_safe: true                 # paints a radial-gradient; no layout thrash
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [spotlight-card.css, spotlight-card.js]
+    usage: |
+      Add class "spotlight" to a card element. Link the css + js; JS writes --mx/--my (pointer
+      position) as CSS variables and the CSS paints a radial spotlight + border there.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://ui.aceternity.com/components/card-spotlight"   # technique popularized by Aceternity UI
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

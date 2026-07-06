@@ -1,0 +1,58 @@
+spec_version: 1
+id: toggle-spring
+name: Toggle Spring
+description: A switch whose knob springs across on toggle — a tactile, satisfying state change.
+
+# legacy aliases (kept for CLI / back-compat)
+surfaces: [web, interaction]
+category: feedback-delight
+tech: [css, js]
+
+# 五维分类（建库标准）
+canvas:  [web, app]
+target:  [button]
+intent:  feedback-delight
+runtime: [css, js]
+export:  [skill, motion-json, html]
+
+dependencies: []
+tags: [toggle, switch, spring, feedback, micro-interaction, state]
+
+intent_keywords:
+  - toggle switch
+  - springy switch
+  - satisfying toggle
+  - 开关动效
+  - 弹簧切换
+best_for:
+  - On/off switches in settings and forms
+  - Any binary state the user flips themselves
+avoid_when:
+  - Conveying loading/progress (use a spinner/skeleton, not a toggle)
+  - Overshoot so strong it feels gimmicky — keep the spring subtle
+restraint:
+  max_per_view: 6
+  notes: Many switches can coexist (settings lists). Trigger on user intent only; keep the spring gentle.
+
+motion:
+  duration_ms: 420
+  easing: spring
+  reduced_motion: shorten
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [toggle-spring.css, toggle-spring.js]
+    usage: |
+      Markup a switch as <button class="ms-toggle" data-toggle><span class="knob"></span></button>.
+      Clicking flips .on; the knob springs across. reduced-motion shortens to a quick linear slide.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

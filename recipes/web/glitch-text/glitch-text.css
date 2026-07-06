@@ -1,0 +1,7 @@
+/* glitch-text.css — text-kinetic · RGB-split glitch. transform/clip only. Steady under reduced-motion. */
+.glitch { position: relative; color: #e7e8ee; font-weight: 800; letter-spacing: .02em; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; }
+.glitch::before { color: #ff2d78; animation: glitch-x 2.6s infinite steps(2); clip-path: inset(0 0 55% 0); }
+.glitch::after { color: #2de2ff; animation: glitch-x 3.1s infinite reverse steps(2); clip-path: inset(55% 0 0 0); }
+@keyframes glitch-x { 0%,92%,100%{transform:translate(0)} 93%{transform:translate(-2px,1px)} 95%{transform:translate(2px,-1px)} 97%{transform:translate(-1px,-1px)} }
+@media (prefers-reduced-motion: reduce){ .glitch::before,.glitch::after{ display:none } }

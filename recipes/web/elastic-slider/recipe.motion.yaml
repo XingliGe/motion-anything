@@ -1,0 +1,25 @@
+spec_version: 1
+id: elastic-slider
+name: Elastic Slider
+description: A slider whose track stretches elastically as you drag past the ends — playful, tactile input.
+surfaces: [web, interaction]
+canvas: [web]
+target: [section]
+intent: feedback-delight
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: feedback-delight
+tech: [css,js]
+dependencies: []
+tags: [elastic slider,springy slider,弹性滑块,回弹滑动条]
+intent_keywords: [elastic slider,springy slider,弹性滑块,回弹滑动条]
+best_for: ["Elastic Slider — one tasteful use"]
+avoid_when: ["Touch-only contexts; overuse; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Off/plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [elastic-slider.css,elastic-slider.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/elastic-slider, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

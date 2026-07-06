@@ -1,0 +1,38 @@
+/* shimmer-button.css — motion-anything recipe · category: feedback-delight
+ * A masked highlight sweeps across a CTA. Transform of a pseudo-element only — GPU-safe.
+ * Reserve for one primary button; static under reduced-motion. */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background: #8b7cf6;
+  color: #fff;
+  font: 600 15px/1 ui-sans-serif, system-ui, sans-serif;
+  padding: 14px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-130%) skewX(-18deg);
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  animation: shimmer-sweep 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.shimmer:hover::after { animation-duration: 1.1s; }   /* quicken on hover */
+
+@keyframes shimmer-sweep {
+  0%, 55% { transform: translateX(-130%) skewX(-18deg); }
+  100%    { transform: translateX(130%) skewX(-18deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer::after { animation: none; display: none; }
+}

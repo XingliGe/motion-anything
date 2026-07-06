@@ -1,0 +1,53 @@
+spec_version: 1
+id: tab-bar-slide
+name: Tab Bar Slide
+description: A bottom tab bar whose active pill slides between tabs.
+surfaces: [app, interaction]
+category: page-transition
+tech: [css, js]
+
+# 五维分类（建库标准）
+canvas:  [app]
+target:  [button]
+intent:  page-transition
+runtime: [css, js]
+export:  [skill, motion-json, html]
+
+dependencies: []
+tags: [tab, navigation, bottom-bar, slide, mobile]
+
+intent_keywords:
+  - tab
+  - navigation
+  - 底栏切换
+best_for:
+  - Native-feeling micro-interactions on App UI components
+  - Buttons, tabs, sheets, toasts and form controls in a mobile app
+avoid_when:
+  - Slowing down a frequent action (keep it short and snappy)
+  - Decorating a control that does not actually change state
+restraint:
+  max_per_view: 4
+  notes: Component-level feedback — many can coexist. Trigger on user intent; keep it quick and subtle.
+
+motion:
+  duration_ms: 300
+  easing: spring
+  reduced_motion: shorten
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [tab-bar-slide.css, tab-bar-slide.js]
+    usage: |
+      A self-contained App-UI micro-interaction. Copy the file(s) and wire the component as in preview.html.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "motion",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["cli/bin/motion.js", "serve", "4600"],
+      "port": 4600
+    }
+  ]
+}

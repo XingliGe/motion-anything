@@ -1,0 +1,19 @@
+/* fadeInRightBig.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInRightBig {
+  animation-name: fadeInRightBig;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

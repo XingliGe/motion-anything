@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>toggle-spring · motion-anything recipe</title>
+  <link rel="stylesheet" href="toggle-spring.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; text-align:center; margin-bottom:18px; }
+    .panel { width:300px; background:#fff; border:1px solid #ececf1; border-radius:16px; padding:6px 18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.05); }
+    .opt { display:flex; align-items:center; justify-content:space-between; padding:15px 0; border-bottom:1px solid #f1f1f4; }
+    .opt:last-child { border-bottom:0; }
+    .opt span { font-size:15px; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="badge">motion-anything · feedback</div>
+    <div class="panel">
+      <div class="opt"><span>Reduced motion</span>
+        <button class="ms-toggle" data-toggle aria-pressed="false"><span class="knob"></span></button></div>
+      <div class="opt"><span>Auto-replay</span>
+        <button class="ms-toggle on" data-toggle aria-pressed="true"><span class="knob"></span></button></div>
+      <div class="opt"><span>Sound</span>
+        <button class="ms-toggle" data-toggle aria-pressed="false"><span class="knob"></span></button></div>
+    </div>
+  </div>
+  <script src="toggle-spring.js"></script>
+</body>
+</html>

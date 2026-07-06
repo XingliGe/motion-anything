@@ -1,0 +1,6 @@
+/* pixel-card.css — hover-press · pixel overlay shimmers on hover. opacity only. */
+.pxc{ position:relative; overflow:hidden; border-radius:14px; }
+.pxc .pxc-grid{ position:absolute; inset:0; display:grid; pointer-events:none; }
+.pxc .pxc-grid i{ background:var(--pxc-color,rgba(139,124,246,.5)); opacity:0; transition:opacity .4s ease; }
+.pxc:hover .pxc-grid i{ opacity:1; transition-delay:var(--d,0ms); }
+@media (prefers-reduced-motion: reduce){ .pxc:hover .pxc-grid i{ transition:none } }

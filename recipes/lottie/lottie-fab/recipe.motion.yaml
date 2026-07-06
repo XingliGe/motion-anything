@@ -1,0 +1,54 @@
+spec_version: 1
+id: lottie-fab
+name: Lottie · FAB
+description: A floating action button that morphs open — Lottie JSON.
+surfaces: [app, web, interaction]
+category: feedback-delight
+tech: [lottie]
+
+# 五维分类（建库标准；canvas 多值 —— 一个动效可跨多个场景）
+canvas:  [app, web]
+target:  [button]
+intent:  feedback-delight
+runtime: [lottie]
+export:  [skill, lottie, motion-json, html]
+
+dependencies: [lottie-web]
+tags: [lottie, fab, button]
+
+intent_keywords:
+  - fab
+  - button
+  - 悬浮按钮
+best_for:
+  - Portable JSON motion that plays identically on web and app (Lottie)
+  - Icon / control micro-animations exported from After Effects or Jitter
+avoid_when:
+  - A pure-CSS effect would do (don't ship the Lottie runtime for a simple fade)
+  - The JSON is heavy and the animation is purely decorative
+restraint:
+  max_per_view: 3
+  notes: Lottie ships a ~160KB runtime — reserve it for motion that earns it. Honor reduced-motion (don't autoplay).
+
+motion:
+  duration_ms: 0
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: lottie
+    files: [animation.json]
+    usage: |
+      Play with lottie-web: lottie.loadAnimation({ container, renderer:'svg', path:'animation.json' }).
+      Guard prefers-reduced-motion (autoplay:false). Runtime in recipes/lottie/_runtime/lottie.min.js.
+
+license:
+  spdx: MIT
+  upstream: "https://github.com/spemer/lottie-animations-json"
+  attribution_required: true
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

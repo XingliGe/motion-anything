@@ -1,0 +1,19 @@
+/* fadeInUp.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

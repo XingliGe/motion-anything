@@ -1,0 +1,20 @@
+/* scroll-reveal.css — motion-anything recipe · category: scroll-reveal
+ * Transforms + opacity only (GPU-safe). Ships a prefers-reduced-motion fallback. */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  /* base band (~520ms), ease-out for content entering toward the user */
+  transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}

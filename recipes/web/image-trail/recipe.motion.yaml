@@ -1,0 +1,25 @@
+spec_version: 1
+id: image-trail
+name: Image Trail
+description: Thumbnails trail behind the cursor and fade — a gallery/portfolio hero flourish.
+surfaces: [web, interaction]
+canvas: [web]
+target: [image,section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [image trail,cursor images,拖尾图片,光标残影]
+intent_keywords: [image trail,cursor images,拖尾图片,光标残影]
+best_for: ["Image Trail — one tasteful use"]
+avoid_when: ["Overuse; touch-only where relevant; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [image-trail.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/animations/image-trail, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

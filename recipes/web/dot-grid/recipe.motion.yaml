@@ -1,0 +1,25 @@
+spec_version: 1
+id: dot-grid
+name: Dot Grid
+description: An interactive dot grid — pointer proximity glow, shove on fast moves, click shockwave, elastic return.
+surfaces: [web, interaction]
+canvas: [web]
+target: [background, section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [background, hero, ambient, dot-grid]
+intent_keywords: [dot-grid, animated background, 动态背景]
+best_for: ["A full-bleed hero/section background"]
+avoid_when: ["Behind dense text without a scrim", "Multiple animated backgrounds at once"]
+restraint: { max_per_view: 1, notes: "One animated background per view; scrim behind text. Static frame under reduced-motion." }
+motion: { duration_ms: 0, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [dot-grid.js], usage: "Copy the file(s); add a full-bleed <div class=\"dot-grid\"></div>." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

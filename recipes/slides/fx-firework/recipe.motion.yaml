@@ -1,0 +1,53 @@
+spec_version: 1
+id: fx-firework
+name: Firework
+description: Fireworks launch and burst — a festive hero moment.
+surfaces: [video]
+category: feedback-delight
+tech: [js]
+
+# 五维分类（建库标准）
+canvas:  [slides, video]
+target:  [background]
+intent:  feedback-delight
+runtime: [js]
+export:  [skill, html]
+
+dependencies: []
+tags: [firework, celebration, delight]
+
+intent_keywords:
+  - firework
+  - celebration
+  - 烟花
+best_for:
+  - Title cards, section breaks, or hero moments in slides / launch videos
+avoid_when:
+  - Web body content or anything that needs focused reading
+  - More than one bold effect on screen at once
+restraint:
+  max_per_view: 1
+  notes: A bold, attention-grabbing effect — slides / video first. On web pages use sparingly, one per screen.
+
+motion:
+  duration_ms: 0
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: js
+    files: [firework.js, _util.js]
+    usage: |
+      Add data-fx="firework" to a positioned container, then call HPX['firework'](el).
+      Canvas-based; from Open Design's html-ppt fx pack. Guard prefers-reduced-motion.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://github.com/nexu-io/open-design"
+  attribution_required: true
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

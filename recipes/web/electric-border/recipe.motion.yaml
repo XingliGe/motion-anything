@@ -1,0 +1,25 @@
+spec_version: 1
+id: electric-border
+name: Electric Border
+description: A jittery electric outline traces a card — an energetic accent for one hero element.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, button]
+intent: ambient
+runtime: [css]
+export: [skill, motion-json, html]
+category: ambient
+tech: [css]
+dependencies: []
+tags: [electric, border, energy, ambient, accent]
+intent_keywords: [electric border, energetic outline, 电流边框, 能量描边]
+best_for: ["One hero card/CTA that should feel energetic"]
+avoid_when: ["Calm surfaces", "Many at once"]
+restraint: { max_per_view: 1, notes: "One per view; energetic by design. Static outline under reduced-motion." }
+motion: { duration_ms: 900, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css, files: [electric-border.css], usage: "Add class 'electric' to a card. Tune --elec-color. Pure CSS." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/animations/electric-border", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

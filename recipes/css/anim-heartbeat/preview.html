@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>anim-heartbeat · motion-anything recipe</title>
+  <link rel="stylesheet" href="heartBeat.css" />
+  <style>
+    :root{ color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,sans-serif; }
+    .box{ padding:16px 26px; border-radius:14px; background:#fff; border:1px solid #ececf1; box-shadow:0 10px 30px rgba(0,0,0,.06); font-weight:600; font-size:16px; color:#1a1d24; }
+  </style>
+</head>
+<body>
+  <div class="box heartBeat demo-anim" id="el">Heart Beat</div>
+  <script>
+    var el=document.getElementById("el");
+    var reduce=window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function play(){ el.classList.remove("heartBeat"); void el.offsetWidth; el.classList.add("heartBeat"); }
+    if(!reduce) setInterval(play, 2400);
+  </script>
+</body>
+</html>

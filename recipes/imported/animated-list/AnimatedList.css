@@ -1,0 +1,70 @@
+.scroll-list-container {
+  position: relative;
+  width: 500px;
+}
+
+.scroll-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.scroll-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-list::-webkit-scrollbar-track {
+  background: #120F17;
+}
+
+.scroll-list::-webkit-scrollbar-thumb {
+  background: #2F293A;
+  border-radius: 4px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.item {
+  padding: 16px;
+  background-color: #2F293A;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.item.selected {
+  background-color: #2F293A;
+}
+
+.item-text {
+  color: white;
+  margin: 0;
+}
+
+.top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, #120F17, transparent);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.bottom-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, #120F17, transparent);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}

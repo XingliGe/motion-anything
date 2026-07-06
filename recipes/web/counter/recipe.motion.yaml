@@ -1,0 +1,25 @@
+spec_version: 1
+id: counter
+name: Counter Roll
+description: Digits roll like an odometer up to the target number — a satisfying stat reveal.
+surfaces: [web, interaction]
+canvas: [web]
+target: [number]
+intent: emphasis
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: emphasis
+tech: [css,js]
+dependencies: []
+tags: [counter,odometer,number roll,数字滚动,里程表]
+intent_keywords: [counter,odometer,number roll,数字滚动,里程表]
+best_for: ["Counter Roll — one tasteful use"]
+avoid_when: ["Touch-only contexts; overuse; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Off/plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [counter.css,counter.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/counter, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

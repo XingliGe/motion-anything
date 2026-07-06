@@ -1,0 +1,40 @@
+---
+name: anim-shake
+description: |
+  Shake — a drop-in CSS keyframe animation from Animate.css (Hippocratic-2.1, © Daniel Eden).
+  No JS required. Honors prefers-reduced-motion. Use restrained; attribute Animate.css.
+triggers:
+  - "shake"
+  - "css animation"
+  - "强调动效"
+od:
+  mode: prototype
+  surface: web
+  platform: desktop
+  category: animation-motion
+  upstream: "https://github.com/animate-css/animate.css"
+  preview:
+    type: html
+  design_system:
+    requires: false
+  example_prompt: |
+    Apply shake (Animate.css) to the element as a emphasis animation, restrained, with a
+    prefers-reduced-motion fallback. Attribute Animate.css.
+---
+
+# Animate · Shake
+
+Shake — CSS keyframe animation from [Animate.css](https://github.com/animate-css/animate.css)
+(Hippocratic License 2.1, © Daniel Eden). Part of [motion-anything](https://github.com/nexu-io/motion-anything).
+
+## When to use it
+- A quick, drop-in CSS emphasis animation (no JS).
+
+## When NOT to use it (restraint)
+- Many at once / must-read content. Keep it restrained.
+
+## How to apply
+1. Copy `shake.css`. 2. Add class `shake` to the element + set `animation-duration`.
+
+## Accessibility & license
+- `prefers-reduced-motion`: disabled. Attribute Animate.css (Hippocratic-2.1).

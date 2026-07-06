@@ -1,0 +1,52 @@
+spec_version: 1
+id: xyz-flip-left
+name: XYZ · Flip Left
+description: Flip Left — a composable AnimXYZ entrance (xyz="fade flip-left-90").
+surfaces: [web, app, interaction]
+category: entrance
+tech: [css]
+
+canvas:  [web, app]
+target:  [section, text, card]
+intent:  entrance
+runtime: [css]
+export:  [skill, html]
+
+dependencies: ["@animxyz/core"]
+tags: [animxyz, css, composable, entrance, flip-left]
+
+intent_keywords:
+  - flip left
+  - animxyz
+  - 翻转左
+best_for:
+  - Composable, declarative entrance via the xyz="..." attribute
+  - Mixing fade + move + scale + rotate without writing keyframes
+avoid_when:
+  - You do not want to ship the AnimXYZ core CSS (~100KB) for one effect
+  - Overusing on many elements at once
+restraint:
+  max_per_view: 3
+  notes: Composable entrance — restrained use; honor prefers-reduced-motion (no autoplay).
+
+motion:
+  duration_ms: 900
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: []
+    usage: |
+      Include @animxyz/core CSS, set xyz="fade flip-left-90" on the element, toggle class xyz-in / xyz-out.
+
+license:
+  spdx: MIT
+  upstream: "https://animxyz.com"
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

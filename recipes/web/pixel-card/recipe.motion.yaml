@@ -1,0 +1,25 @@
+spec_version: 1
+id: pixel-card
+name: Pixel Card
+description: Pixel tiles light up in a wave across a card on hover — a subtle retro shimmer.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card]
+intent: hover-press
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: hover-press
+tech: [css,js]
+dependencies: []
+tags: [pixel card,retro shimmer,像素卡片,方块微光]
+intent_keywords: [pixel card,retro shimmer,像素卡片,方块微光]
+best_for: ["Pixel Card — one tasteful use"]
+avoid_when: ["Overuse; dense grids; reduced-motion contexts where it distracts"]
+restraint: { max_per_view: 3, notes: "Use sparingly. Plain/static under reduced-motion." }
+motion: { duration_ms: 600, easing: ease-out, reduced_motion: graceful, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [pixel-card.css,pixel-card.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/pixel-card, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

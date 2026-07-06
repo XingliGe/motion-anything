@@ -1,0 +1,6 @@
+/* elastic-slider.css — feedback-delight · a slider with a springy fill. transform/width only. */
+.es{ width:260px; }
+.es .es-track{ position:relative; height:8px; border-radius:6px; background:#2a2b36; cursor:pointer; }
+.es .es-fill{ position:absolute; left:0; top:0; bottom:0; border-radius:6px; background:linear-gradient(90deg,#8b7cf6,#39d98a); width:40%; transition: width .12s cubic-bezier(.34,1.56,.64,1); }
+.es .es-knob{ position:absolute; top:50%; width:18px; height:18px; border-radius:50%; background:#fff; transform:translate(-50%,-50%); box-shadow:0 2px 8px rgba(0,0,0,.3); transition: transform .12s cubic-bezier(.34,1.56,.64,1); }
+@media (prefers-reduced-motion: reduce){ .es .es-fill,.es .es-knob{ transition:none } }

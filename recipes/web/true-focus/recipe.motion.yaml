@@ -1,0 +1,25 @@
+spec_version: 1
+id: true-focus
+name: True Focus
+description: Words sit softly blurred; one snaps into focus at a time — draws the eye across a phrase.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css,js]
+dependencies: []
+tags: [focus,blur,text,attention,cycle]
+intent_keywords: [true focus, blur focus text, 聚焦文字, 逐词聚焦]
+best_for: ["A short phrase you want read word-by-word"]
+avoid_when: ["Long text; when everything must be sharp"]
+restraint: { max_per_view: 1, notes: "Use sparingly; tasteful. Plain/static under reduced-motion." }
+motion: { duration_ms: 600, easing: ease-out, reduced_motion: graceful, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [true-focus.css,true-focus.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

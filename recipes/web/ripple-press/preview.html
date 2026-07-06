@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ripple · motion-anything recipe</title>
+  <link rel="stylesheet" href="ripple.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; gap: 22px; text-align: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color: #1a1d24; }
+    .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b909a; }
+    .row { display: flex; gap: 14px; }
+    button.ripple { border: 0; color: #fff; background: #8b7cf6; font: 600 15px/1 ui-sans-serif, system-ui, sans-serif;
+      padding: 14px 22px; border-radius: 12px; cursor: pointer; }
+    button.ripple.alt { background: #1a1d24; }
+    .hint { font-size: 13px; color: #9aa0aa; }
+  </style>
+</head>
+<body>
+  <div class="badge">motion-anything · feedback-delight</div>
+  <div class="row">
+    <button class="ripple">✦ Get started</button>
+    <button class="ripple alt">Learn more</button>
+  </div>
+  <p class="hint">Click anywhere on a button · the ripple blooms from that point · none under reduced-motion.</p>
+  <script src="ripple.js"></script>
+</body>
+</html>

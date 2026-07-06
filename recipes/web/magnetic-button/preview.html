@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>magnetic-button · motion-anything recipe</title>
+  <link rel="stylesheet" href="magnetic-button.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color: #1a1d24; }
+    .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b909a; margin-bottom: 18px; }
+    h1 { font-size: 22px; margin: 0 0 28px; }
+    .hint { margin-top: 28px; font-size: 13px; color: #9aa0aa; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="badge">motion-anything · hover-press</div>
+    <h1>Move your cursor near the button</h1>
+    <button class="magnetic" data-magnet-strength="0.35">✦ Get started</button>
+    <p class="hint">Subtle pull toward the pointer · springs back · static on touch &amp; reduced-motion.</p>
+  </div>
+  <script src="magnetic-button.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* pulse.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

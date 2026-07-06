@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+.vercel
+.cache/
+
+# Runtime-generated projects (user/test artifacts; landing-demo placeholder is kept)
+app/projects/gen-*/
+app/projects/vid-*/
+app/projects/import-*/
+
+# user-authored skills (kept locally; _state tracked)
+app/user-skills/*/
+
+# AMR (vela) BYOK config — holds the user's runtime key, never commit
+app/user-amr.json
+app/user-byok.json
+
+# internal working docs — local only, never publish
+PROGRESS-internal.md

@@ -1,0 +1,6 @@
+/* counter.css — emphasis · digits roll vertically to the target. transform only. */
+.counter{ display:inline-flex; font:800 56px ui-sans-serif,system-ui,sans-serif; line-height:1; }
+.counter .dig{ display:inline-block; height:1em; overflow:hidden; }
+.counter .dig .strip{ display:flex; flex-direction:column; transition: transform 1s cubic-bezier(.16,1,.3,1); }
+.counter .dig .strip span{ height:1em; }
+@media (prefers-reduced-motion: reduce){ .counter .dig .strip{ transition:none } }

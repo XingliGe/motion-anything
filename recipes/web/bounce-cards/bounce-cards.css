@@ -1,0 +1,9 @@
+/* bounce-cards.css — entrance · cards spring + fan out on load, staggered. transform/opacity only. */
+.bcards{ position:relative; width:220px; height:150px; }
+.bcards .bc{ position:absolute; inset:0; margin:auto; width:180px; height:120px; border-radius:14px; box-shadow:0 12px 30px rgba(0,0,0,.4);
+  opacity:0; transform: translateY(20px) rotate(0deg) scale(.9); transition: opacity .5s ease-out, transform .6s cubic-bezier(.34,1.56,.64,1); transition-delay:var(--bc-d,0ms); }
+.bcards.in .bc{ opacity:1; }
+.bcards.in .bc:nth-child(1){ transform: translateX(-46px) rotate(-9deg); }
+.bcards.in .bc:nth-child(2){ transform: translateX(0) rotate(0deg); }
+.bcards.in .bc:nth-child(3){ transform: translateX(46px) rotate(9deg); }
+@media (prefers-reduced-motion: reduce){ .bcards .bc{ transition:none; opacity:1 } }

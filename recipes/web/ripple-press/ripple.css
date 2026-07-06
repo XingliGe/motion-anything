@@ -1,0 +1,24 @@
+/* ripple.css — motion-anything recipe · category: feedback-delight
+ * A ripple span spawned at the press point scales + fades. Transform/opacity only — GPU-safe. */
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.ripple > .ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.35;
+  background: currentColor;          /* inherits a tint from the button's text color */
+  pointer-events: none;
+  animation: ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom {
+  to { transform: scale(1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple > .ripple-wave { display: none; }   /* rely on native :active feedback */
+}

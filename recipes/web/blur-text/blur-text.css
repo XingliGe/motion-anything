@@ -1,0 +1,5 @@
+/* blur-text.css — text-kinetic · words resolve from blur, staggered. filter/opacity only. */
+[data-blur-text] .bt-w { display:inline-block; opacity:0; filter:blur(8px); transition: opacity .62s ease-out, filter .62s ease-out; transition-delay: var(--bt-d,0ms); }
+[data-blur-text].in .bt-w { opacity:1; filter:blur(0); }
+[data-blur-text] .bt-sp { display:inline-block; width:.28em; }
+@media (prefers-reduced-motion: reduce){ [data-blur-text] .bt-w{ opacity:1; filter:none; transition:none } }

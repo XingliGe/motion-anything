@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fx-matrix-rain · motion-anything recipe</title>
+  <style>
+    :root { --accent:#7c5cff; --accent-2:#22d3ee; --text-1:#eaeaf2; color-scheme:dark; }
+    html, body { margin:0; height:100%; }
+    body { background:#0b0b12; overflow:hidden; }
+    .stage { position:relative; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center;
+      font-family: ui-sans-serif, system-ui, sans-serif; }
+    .replay { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); font-size:13px; color:#9aa0aa;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:8px; padding:8px 14px; cursor:pointer; }
+      @media (max-height:240px){ .replay{ display:none; } }
+  </style>
+</head>
+<body>
+  <div class="stage" data-fx="matrix-rain"></div>
+  <button class="replay" onclick="location.reload()">↻ replay</button>
+  <script src="_util.js"></script>
+  <script src="matrix-rain.js"></script>
+  <script>
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      HPX['matrix-rain'](document.querySelector('.stage'));
+    }
+  </script>
+</body>
+</html>

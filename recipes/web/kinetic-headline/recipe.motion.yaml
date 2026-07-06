@@ -1,0 +1,54 @@
+spec_version: 1
+id: kinetic-headline
+name: Kinetic Headline
+description: Words (or letters) stagger in one after another — for a hero headline or a title card.
+surfaces: [web, video]
+category: text-kinetic
+tech: [css, js]
+dependencies: []
+tags: [text, headline, kinetic, stagger, typography, entrance, per-char, per-word]
+
+intent_keywords:
+  - kinetic text
+  - words stagger in
+  - animated headline
+  - per-character animation
+  - typewriter / wave / pop text
+  - 文字逐字入场
+  - 逐字/逐词动效
+  - 标题动效
+best_for:
+  - A single hero headline or one key line that earns a beat of attention
+  - Title cards in launch / release videos
+avoid_when:
+  - Body copy or anything the user must read immediately
+  - More than one kinetic headline per screen (they compete for attention)
+restraint:
+  max_per_view: 1
+  notes: One kinetic line per screen. Words mode for longer text; letters only for short lines.
+
+motion:
+  duration_ms: 520
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [kinetic-headline.css, kinetic-headline.js]
+    usage: |
+      Add data-kinetic to a heading (words by default; data-kinetic="letters" for short lines).
+      Pick a style with data-kinetic-anim — mirrors the video engine's kinetic presets:
+      rise (default) · fade · drop · pop · blur · flip · spin · slide · typewriter · wave (ambient).
+      e.g. <h1 data-kinetic="letters" data-kinetic-anim="pop">Launch</h1>. Staggered on load;
+      wave loops continuously. All styles fall back to plain text under prefers-reduced-motion.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

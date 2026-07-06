@@ -1,0 +1,8 @@
+/* stepper.css — feedback-delight · connectors fill + dots pop as steps complete. transform/color only. */
+.stepper{ display:inline-flex; align-items:center; }
+.stepper .st{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font:600 13px ui-sans-serif; background:#2a2b36; color:#8b909a; transition: background .3s, color .3s, transform .3s cubic-bezier(.34,1.56,.64,1); }
+.stepper .st.done{ background:#8b7cf6; color:#fff; transform:scale(1.08); }
+.stepper .bar{ width:56px; height:3px; background:#2a2b36; margin:0 4px; border-radius:2px; position:relative; overflow:hidden; }
+.stepper .bar::after{ content:""; position:absolute; inset:0; width:0; background:#8b7cf6; transition: width .4s ease; }
+.stepper .bar.fill::after{ width:100%; }
+@media (prefers-reduced-motion: reduce){ .stepper .st,.stepper .bar::after{ transition:none } }

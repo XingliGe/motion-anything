@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tab-bar-slide · motion-anything recipe</title>
+  <style>
+    :root{ --accent:#8b7cf6; color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.ui-tabs{position:relative;display:flex;gap:6px;background:#fff;border:1px solid #ececf1;border-radius:18px;padding:7px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.ui-tabs .ind{position:absolute;top:7px;left:7px;width:56px;height:42px;border-radius:13px;background:#efeaff;transition:transform .42s cubic-bezier(.34,1.4,.5,1)}
+.ui-tabs .tb{position:relative;width:56px;height:42px;border:0;background:none;font-size:19px;color:#9aa0aa;cursor:pointer;transition:color .25s}
+.ui-tabs .tb.on{color:#8b7cf6}
+@media(prefers-reduced-motion:reduce){.ui-tabs .ind{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="ui-tabs"><div class="ind"></div><button class="tb on">⌂</button><button class="tb">◎</button><button class="tb">☰</button></div>
+  <script>var tabs=[].slice.call(document.querySelectorAll('.ui-tabs .tb'));var ind=document.querySelector('.ui-tabs .ind');var i=0;
+function go(n){i=n;tabs.forEach(function(t,k){t.classList.toggle('on',k===n);});ind.style.transform='translateX('+(n*62)+'px)';}
+tabs.forEach(function(t,k){t.addEventListener('click',function(){go(k);});});
+setInterval(function(){go((i+1)%tabs.length);},1500);</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/* rotating-text.css — text-kinetic · word swaps in place (up-and-in). transform/opacity only. */
+.rot { display:inline-block; overflow:hidden; vertical-align:bottom; }
+.rot > .rot-w { display:inline-block; transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .45s; }
+.rot.swap > .rot-w { transform: translateY(-100%); opacity: 0; }
+@media (prefers-reduced-motion: reduce){ .rot > .rot-w{ transition:none } }

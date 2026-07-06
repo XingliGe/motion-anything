@@ -1,0 +1,58 @@
+spec_version: 1
+id: tilt-3d
+name: 3D Tilt
+description: A card tilts in 3D toward the pointer with a soft glare — tactile depth on hover.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, image]
+intent: hover-press
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: hover-press
+tech: [css, js]
+dependencies: []
+tags: [tilt, 3d, parallax, pointer, glare, card, depth]
+
+intent_keywords:
+  - 3d tilt
+  - card tilt on hover
+  - parallax tilt
+  - tactile card
+  - 3D 倾斜
+  - 卡片翻转跟随
+  - 立体 hover
+best_for:
+  - A hero product card, cover image, or single feature tile
+  - Portfolio thumbnails where depth adds delight
+avoid_when:
+  - Dense grids (many tilting cards feel chaotic and can induce motion sickness)
+  - Touch-only contexts (no pointer) — it stays flat
+  - Text-heavy cards where the tilt hurts readability
+restraint:
+  max_per_view: 3
+  notes: >
+    Keep the max tilt small (~8–10°). One or a few hero cards, not a whole grid. Flat under
+    reduced-motion and on touch.
+
+motion:
+  duration_ms: 200
+  easing: ease-out
+  reduced_motion: none        # stays flat
+  gpu_safe: true              # transform: rotateX/rotateY only
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [tilt-3d.css, tilt-3d.js]
+    usage: |
+      Add class "tilt" to a card. JS maps the pointer position to rotateX/rotateY (and a glare
+      position via --gx/--gy) within a max angle (data-tilt-max, default 10). Resets on leave.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://micku7zu.github.io/vanilla-tilt.js/"   # technique popularized by vanilla-tilt.js
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

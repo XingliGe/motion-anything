@@ -1,0 +1,5 @@
+/* true-focus.css — text-kinetic · words blurred except the focused one. filter only. */
+.tf { display:inline-flex; gap:.4em; flex-wrap:wrap; }
+.tf > .tf-w { filter: blur(5px); opacity:.6; transition: filter .5s ease, opacity .5s ease; }
+.tf > .tf-w.on { filter: blur(0); opacity:1; }
+@media (prefers-reduced-motion: reduce){ .tf > .tf-w{ filter:none; opacity:1 } }

@@ -1,0 +1,47 @@
+spec_version: 1
+id: card-lift-hover
+name: Card Lift
+description: A card that lifts toward the viewer on hover, with a deepening shadow.
+surfaces: [web, interaction]
+category: hover-press
+tech: [css]
+dependencies: []
+tags: [hover, card, lift, elevation, shadow, tactile]
+
+intent_keywords:
+  - hover lift
+  - card hover
+  - elevate on hover
+  - 悬停抬升
+  - 卡片悬浮
+best_for:
+  - Cards / tiles in a grid that are clickable
+  - Giving clickable surfaces a tactile, responsive feel
+avoid_when:
+  - Non-interactive cards (motion implies it is clickable)
+  - Very dense grids where many lifts at once feel noisy
+restraint:
+  max_per_view: 12
+  notes: Only on actually-clickable cards. Keep the lift small (a few px) and the shadow subtle.
+
+motion:
+  duration_ms: 200
+  easing: ease-out
+  reduced_motion: none      # static; no lift
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [card-lift-hover.css]
+    usage: |
+      Add class "lift-card" to a clickable card. Pure CSS — no JavaScript required.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

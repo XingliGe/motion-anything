@@ -1,0 +1,52 @@
+spec_version: 1
+id: scroll-reveal
+name: Scroll Reveal
+description: Content gently rises and fades into view as it scrolls into the viewport.
+surfaces: [web]
+category: scroll-reveal
+tech: [css, js]
+dependencies: []
+tags: [scroll, reveal, entrance, fade, intersection-observer, elegant]
+
+intent_keywords:
+  - elegant
+  - smooth
+  - premium
+  - reveal on scroll
+  - 高级感
+  - 优雅
+  - 滚动出现
+best_for:
+  - Long landing pages and content sections
+  - Bringing a calm sense of pace to a page
+avoid_when:
+  - Above-the-fold hero content the user must see instantly
+  - Revealing many elements at once without staggering (feels busy)
+restraint:
+  max_per_view: 3
+  notes: >
+    At most a few elements animating at once; stagger the rest (40–80ms steps), and let the whole
+    sequence finish within the `slow` band. Never delay critical above-the-fold content.
+
+motion:
+  duration_ms: 520
+  easing: ease-out
+  reduced_motion: none      # show end state instantly
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [scroll-reveal.css, scroll-reveal.js]
+    usage: |
+      Add data-reveal to any element (optionally data-reveal-delay="80"). Link the css + js;
+      an IntersectionObserver adds .is-in when the element scrolls into view.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

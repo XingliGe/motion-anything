@@ -1,0 +1,48 @@
+spec_version: 1
+id: loading-shimmer
+name: Loading Shimmer
+description: Skeleton placeholders with a soft sweeping shimmer while real content loads.
+surfaces: [web, interaction]
+category: loading
+tech: [css]
+dependencies: []
+tags: [loading, skeleton, shimmer, placeholder, perceived-performance]
+
+intent_keywords:
+  - loading skeleton
+  - shimmer placeholder
+  - content loading state
+  - 骨架屏
+  - 加载占位
+best_for:
+  - Placeholders for content still loading (cards, lists, profiles, media)
+  - Making a wait feel shorter (perceived performance)
+avoid_when:
+  - Loads under ~300ms — a flash of skeleton is worse than nothing
+  - As decoration when nothing is actually loading
+restraint:
+  max_per_view: 1
+  notes: One skeleton set per loading region. Not a delight effect — remove it the instant real content arrives.
+
+motion:
+  duration_ms: 1400
+  easing: ease-in-out
+  reduced_motion: static-skeleton
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [loading-shimmer.css]
+    usage: |
+      Add data-skeleton to placeholder blocks (give each a width/height). A soft highlight sweeps
+      across via transform. Remove the elements (or the attribute) when real content loads.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

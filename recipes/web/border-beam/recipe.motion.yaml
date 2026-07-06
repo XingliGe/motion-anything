@@ -1,0 +1,57 @@
+spec_version: 1
+id: border-beam
+name: Border Beam
+description: A small bright comet of light travels around the border once and again — a lively accent for one card.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, button, section]
+intent: ambient
+runtime: [css]
+export: [skill, motion-json, html]
+category: ambient
+tags: [border, beam, comet, ambient, glow, accent]
+tech: [css]
+dependencies: []
+
+intent_keywords:
+  - border beam
+  - traveling light border
+  - comet border
+  - animated outline accent
+  - 边框光点
+  - 环绕流光
+best_for:
+  - A single "new" / "featured" card or a hero CTA that should feel lively
+  - Drawing a beat of attention to one element without shouting
+avoid_when:
+  - Several elements at once (competing beams = noise)
+  - Calm / serious contexts
+  - When a quieter full-border glow fits better (use shine-border instead)
+restraint:
+  max_per_view: 1
+  notes: >
+    One beaming element per view. It is brighter/livelier than shine-border — use it sparingly.
+    Fully static under reduced-motion.
+
+motion:
+  duration_ms: 3000
+  easing: linear
+  reduced_motion: static      # beam stops; a plain static border remains
+  gpu_safe: true              # animates a masked conic-gradient rotation
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [border-beam.css]
+    usage: |
+      Wrap content in an element with class "beam". A masked rotating conic-gradient paints a small
+      bright comet that travels the border. Tune --beam-color / --beam-size / duration. Pure CSS.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://magicui.design/docs/components/border-beam"
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

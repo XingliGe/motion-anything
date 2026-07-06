@@ -1,0 +1,48 @@
+/* shine-border.css — motion-anything recipe · category: ambient
+ * A light travels around the border via a rotating conic-gradient masked to a thin ring.
+ * Compositor-friendly; fully static under reduced-motion. */
+
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.shine {
+  --shine-angle: 0deg;
+  --shine-width: 1.5px;
+  --shine-color: #8b7cf6;
+  position: relative;
+  border-radius: 16px;
+  background: #14151c;
+  color: #e7e8ee;
+  isolation: isolate;
+}
+.shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: var(--shine-width);
+  background: conic-gradient(
+    from var(--shine-angle),
+    transparent 0%,
+    var(--shine-color) 12%,
+    transparent 28%,
+    transparent 100%
+  );
+  /* mask to just the border ring */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: shine-spin 4s linear infinite;
+}
+@keyframes shine-spin {
+  to { --shine-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine::before { animation: none; background: none; border: var(--shine-width) solid rgba(139, 124, 246, 0.4); }
+}

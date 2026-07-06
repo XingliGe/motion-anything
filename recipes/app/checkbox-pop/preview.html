@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>checkbox-pop · motion-anything recipe</title>
+  <style>
+    :root{ --accent:#8b7cf6; color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.ui-cbx{width:46px;height:46px;border-radius:13px;border:2px solid #d8d6df;background:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .3s cubic-bezier(.34,1.6,.5,1);padding:0}
+.ui-cbx.on{background:#8b7cf6;border-color:#8b7cf6;transform:scale(1.06)}
+.ui-cbx svg{width:26px;height:26px}
+.ui-cbx path{stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .34s ease .06s}
+.ui-cbx.on path{stroke-dashoffset:0}
+@media(prefers-reduced-motion:reduce){.ui-cbx,.ui-cbx path{transition:none}}
+  </style>
+</head>
+<body>
+  <button class="ui-cbx" aria-label="toggle"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5 11-11"/></svg></button>
+  <script>var c=document.querySelector('.ui-cbx');
+c.addEventListener('click',function(){c.classList.toggle('on');});
+setInterval(function(){c.classList.toggle('on');},1500);</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>bottom-sheet · motion-anything recipe</title>
+  <style>
+    :root{ --accent:#8b7cf6; color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.ui-phone{position:relative;width:210px;height:150px;border-radius:20px;background:#eceaf3;border:1px solid #e3e1ea;overflow:hidden}
+.ui-phone .scrim{position:absolute;inset:0;background:rgba(20,18,30,.34);opacity:0;transition:opacity .3s}
+.ui-phone.open .scrim{opacity:1}
+.ui-sheet{position:absolute;left:0;right:0;bottom:0;height:96px;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.12);transform:translateY(100%);transition:transform .46s cubic-bezier(.32,1.3,.5,1);padding:10px 0}
+.ui-phone.open .ui-sheet{transform:none}
+.ui-sheet .grab{width:38px;height:4px;border-radius:3px;background:#d8d6df;margin:0 auto 12px}
+.ui-sheet .ln{height:10px;border-radius:5px;background:#edecf2;margin:8px 16px}
+@media(prefers-reduced-motion:reduce){.ui-sheet{transition:transform .2s linear}}
+  </style>
+</head>
+<body>
+  <div class="ui-phone"><div class="scrim"></div><div class="ui-sheet"><div class="grab"></div><div class="ln" style="width:60%"></div><div class="ln"></div></div></div>
+  <script>var p=document.querySelector('.ui-phone');
+function cycle(){p.classList.add('open');setTimeout(function(){p.classList.remove('open');},1900);}
+setTimeout(cycle,300);setInterval(cycle,3000);</script>
+</body>
+</html>

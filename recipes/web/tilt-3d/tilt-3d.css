@@ -1,0 +1,37 @@
+/* tilt-3d.css — motion-anything recipe · category: hover-press
+ * Pointer-driven 3D tilt (rotateX/rotateY) with a soft glare. Transform only — GPU-safe.
+ * Flat under reduced-motion / touch. */
+
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 200ms ease-out;
+  will-change: transform;
+  border-radius: 16px;
+  overflow: hidden;
+}
+/* soft glare that tracks the pointer */
+.tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  background: radial-gradient(200px circle at var(--gx) var(--gy), rgba(255, 255, 255, 0.22), transparent 60%);
+}
+.tilt:hover::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt { transform: none; transition: none; }
+  .tilt::after { display: none; }
+}
+@media (hover: none) {
+  .tilt { transform: none; }
+  .tilt::after { display: none; }
+}

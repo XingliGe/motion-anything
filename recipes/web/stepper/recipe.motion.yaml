@@ -1,0 +1,25 @@
+spec_version: 1
+id: stepper
+name: Stepper
+description: An animated step indicator fills as you advance — clear progress for a multi-step flow.
+surfaces: [web, interaction]
+canvas: [web]
+target: [list,section]
+intent: feedback-delight
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: feedback-delight
+tech: [css,js]
+dependencies: []
+tags: [stepper,progress steps,步骤条,分步指示]
+intent_keywords: [stepper,progress steps,步骤条,分步指示]
+best_for: ["Stepper — one tasteful use"]
+avoid_when: ["Overuse; touch-only where relevant; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [stepper.css,stepper.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/stepper, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

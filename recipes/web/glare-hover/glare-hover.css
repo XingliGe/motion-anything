@@ -1,0 +1,9 @@
+/* glare-hover.css — category: hover-press · a glare tracks the cursor across a card. Paint only; off on touch/reduced-motion. */
+.glare { --gx: 50%; --gy: 50%; position: relative; overflow: hidden; border-radius: 16px; isolation: isolate; }
+.glare::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 220ms ease-out;
+  background: radial-gradient(240px circle at var(--gx) var(--gy), rgba(255,255,255,.22), transparent 55%);
+}
+.glare:hover::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .glare::after { display: none; } }
+@media (hover: none) { .glare::after { display: none; } }

@@ -1,0 +1,19 @@
+/* bounceOutRight.css — from Animate.css (Hippocratic-2.1, © Daniel Eden) */
+@keyframes bounceOutRight {
+  20% {
+    opacity: 1;
+    transform: translate3d(-20px, 0, 0) scaleX(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(2000px, 0, 0) scaleX(2);
+  }
+}
+
+.bounceOutRight {
+  animation-name: bounceOutRight;
+}
+
+.demo-anim{ animation-duration:.9s; animation-fill-mode:both; }
+@media (prefers-reduced-motion:reduce){ .demo-anim{ animation:none !important; } }

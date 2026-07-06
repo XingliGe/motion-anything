@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tilt-3d · motion-anything recipe</title>
+  <link rel="stylesheet" href="tilt-3d.css" />
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; gap: 22px; text-align: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #1b1c24, #0b0b12); color: #e7e8ee; }
+    .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b7cf6; }
+    .tilt { width: 260px; height: 160px; padding: 22px; text-align: left;
+      background: linear-gradient(135deg, #2a2551, #14151c); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+    .tilt h3 { margin: 0 0 6px; font-size: 18px; }
+    .tilt p { margin: 0; font-size: 13px; color: #b7b9c6; }
+    .hint { font-size: 13px; color: #7c7f8c; }
+  </style>
+</head>
+<body>
+  <div class="badge">motion-anything · hover-press</div>
+  <div class="tilt" data-tilt-max="10">
+    <h3>motion, anything</h3>
+    <p>Tilt toward the pointer · soft glare · gentle depth.</p>
+  </div>
+  <p class="hint">Move your cursor over the card · small 3D tilt + glare · flat on touch &amp; reduced-motion.</p>
+  <script src="tilt-3d.js"></script>
+</body>
+</html>

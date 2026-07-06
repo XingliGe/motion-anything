@@ -1,0 +1,47 @@
+/* kinetic-headline.css — motion-anything recipe · category: text-kinetic
+ * Words/letters stagger in. The STYLE is chosen by data-kinetic-anim (→ .k-anim-* class in JS),
+ * mirroring the video engine's kinetic presets. Transform/opacity/filter only. Reduced-motion safe. */
+
+[data-kinetic] { display: inline-block; }
+
+/* base: hidden units that transition to their resting state on .is-in */
+[data-kinetic] .k-unit {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 520ms ease-out;
+  transition-delay: var(--k-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+[data-kinetic].is-in .k-unit { opacity: 1; transform: none; filter: none; }
+
+/* preserve spaces between word units */
+[data-kinetic] .k-space { display: inline-block; width: 0.28em; }
+
+/* ── presets: the initial (pre-reveal) state per style ───────────────────────── */
+.k-anim-rise  .k-unit { transform: translateY(0.5em); }
+.k-anim-drop  .k-unit { transform: translateY(-0.5em); }
+.k-anim-fade  .k-unit { transform: none; }
+.k-anim-slide .k-unit { transform: translateX(0.6em); }
+.k-anim-pop   .k-unit { transform: scale(0.4);
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }   /* overshoot */
+.k-anim-blur  .k-unit { transform: none; filter: blur(10px); }
+.k-anim-flip  .k-unit { transform: rotateX(-90deg); transform-origin: bottom; }
+.k-anim-spin  .k-unit { transform: rotate(-18deg) scale(0.6); }
+.k-anim-typewriter .k-unit { transform: none; transition-duration: 1ms; }  /* hard, staggered = typing */
+
+/* continuous, ambient — no reveal; each unit rides a slow wave */
+.k-anim-wave .k-unit {
+  opacity: 1;
+  animation: kh-wave 1.8s ease-in-out infinite;
+  animation-delay: var(--k-delay, 0ms);
+}
+@keyframes kh-wave { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.22em); } }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-kinetic] .k-unit {
+    opacity: 1 !important; transform: none !important; filter: none !important;
+    transition: none; animation: none !important;
+  }
+}

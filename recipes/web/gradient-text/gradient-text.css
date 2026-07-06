@@ -1,0 +1,30 @@
+/* gradient-text.css — motion-anything recipe · category: text-kinetic
+ * A gradient clipped to the text drifts slowly. Reserve for one short headline.
+ * Animates background-position only — GPU-safe; solid color under reduced-motion. */
+
+.gradient-text {
+  --g1: #8b7cf6;
+  --g2: #39d98a;
+  --g3: #ff8bd0;
+  background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3), var(--g1));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-text-drift 6s ease-in-out infinite;
+}
+@keyframes gradient-text-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--g1);                 /* fall back to a solid brand color */
+  }
+}

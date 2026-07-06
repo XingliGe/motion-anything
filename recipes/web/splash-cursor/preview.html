@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>splash-cursor · recipe</title>
+<style>:root{color-scheme:dark}html,body{margin:0;height:100vh;overflow:hidden;background:#05060a}.splash-cursor{position:absolute;inset:0}.cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:12px ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);z-index:2}</style></head>
+<body><div class="splash-cursor"></div><div class="cap">motion-anything · ambient · splash-cursor</div><script src="splash-cursor.js"></script>
+<script>/* demo driver (preview only): swirl a synthetic pointer so the fluid shows without a real mouse */
+(function(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t0=performance.now();
+  function swirl(t){ var e=(t-t0)/1000; if(e>2.6) return;
+    var cx=innerWidth/2, cy=innerHeight/2, r=Math.min(cx,cy)*0.45;
+    var x=cx+Math.cos(e*3.1)*r, y=cy+Math.sin(e*4.3)*r*0.7;
+    window.dispatchEvent(new MouseEvent(e<0.05?'mousedown':'mousemove',{clientX:x,clientY:y,bubbles:true}));
+    requestAnimationFrame(swirl); }
+  requestAnimationFrame(swirl);
+})();</script></body></html>

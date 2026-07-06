@@ -1,0 +1,1875 @@
+{
+  "version": 1,
+  "source": "nexu-io/open-design · design-templates",
+  "collected": "2026-07-02",
+  "templates": [
+    {
+      "id": "audio-jingle",
+      "title": "Audio Jingle",
+      "summary": "Audio generation skill — jingles, beds, voiceover, and sound effects. Routes music requests to Suno V5 / Udio / Lyria, speech to MiniMax TTS / FishAudio / ElevenLabs V3, and SFX to ElevenLabs SFX or AudioCraft. Output is one MP3/WAV file saved to the project folder.",
+      "category": "audio",
+      "tags": [
+        "music",
+        "jingle",
+        "bed",
+        "voiceover",
+        "tts",
+        "sound effect",
+        "音乐",
+        "配音",
+        "音效"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/audio-jingle"
+    },
+    {
+      "id": "blog-post",
+      "title": "Blog Post",
+      "summary": "A long-form article / blog post — masthead, hero image placeholder, article body with figures and pull quotes, author byline, related posts. Use when the brief asks for \"blog\", \"article\", \"post\", \"essay\", or \"case study\".",
+      "category": "prototype",
+      "tags": [
+        "blog",
+        "blog post",
+        "article",
+        "essay",
+        "case study",
+        "newsletter",
+        "博客",
+        "文章"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/blog-post"
+    },
+    {
+      "id": "clinical-case-report",
+      "title": "Clinical Case Report",
+      "summary": "Structured medical case presentation for clinical rounds, conferences, and documentation. Generates SOAP-format or narrative case reports with physiologically accurate vitals, labs, and evidence-based plans. Use when the brief mentions \"case report\", \"case presentation\", \"SOAP note\", \"clinical case\", \"ward rounds\", \"ca",
+      "category": "prototype",
+      "tags": [
+        "case report",
+        "case presentation",
+        "soap note",
+        "clinical case",
+        "ward rounds",
+        "patient presentation",
+        "case summary",
+        "medical case"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/clinical-case-report"
+    },
+    {
+      "id": "contact-widget",
+      "title": "Contact Widget",
+      "summary": "Self-contained floating chat widget with welcome screen, social links, meeting button, and message input. Single HTML file, zero dependencies.",
+      "category": "prototype",
+      "tags": [
+        "contact widget",
+        "chat widget",
+        "floating chat",
+        "live chat widget"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/contact-widget"
+    },
+    {
+      "id": "critique",
+      "title": "Critique",
+      "summary": "Run a 5-dimension expert design review on any HTML artifact in the project — Philosophy / Visual hierarchy / Detail / Functionality / Innovation, each scored 0–10. Outputs a single self-contained HTML report with a radar chart, evidence-backed scores, and three lists: Keep / Fix / Quick-wins. Use when the brief asks fo",
+      "category": "prototype",
+      "tags": [
+        "critique",
+        "design review",
+        "design audit",
+        "5 维度评审",
+        "5-dim review",
+        "audit my design",
+        "review my deck",
+        "review my landing page",
+        "评审",
+        "复盘"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/critique"
+    },
+    {
+      "id": "dashboard",
+      "title": "Dashboard",
+      "summary": "Admin / analytics dashboard in a single HTML file. Fixed left sidebar, top bar with user/search, main grid of KPI cards and one or two charts. Use when the brief asks for a \"dashboard\", \"admin\", \"analytics\", or \"control panel\" screen.",
+      "category": "prototype",
+      "tags": [
+        "dashboard",
+        "admin panel",
+        "analytics",
+        "control panel",
+        "后台",
+        "管理后台"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/dashboard"
+    },
+    {
+      "id": "dating-web",
+      "title": "Dating Web",
+      "summary": "A consumer-feeling dating / matchmaking dashboard — left rail navigation, ticker bar of community signals, headline KPIs, a 30-day mutual-matches bar chart, and a match-rate trend block. Editorial typography, restrained accent. Use when the brief asks for a \"dating site\", \"matchmaking\", \"community dashboard\", \"social n",
+      "category": "prototype",
+      "tags": [
+        "dating app",
+        "dating site",
+        "matchmaking",
+        "social dashboard",
+        "community dashboard",
+        "consumer dashboard",
+        "约会应用",
+        "婚恋"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/dating-web"
+    },
+    {
+      "id": "dcf-valuation",
+      "title": "Dcf Valuation",
+      "summary": "Discounted cash flow valuation and intrinsic value analysis for public companies. Use when the brief asks for DCF, fair value, intrinsic value, price target, undervalued or overvalued analysis, or \"what is this company worth?\"",
+      "category": "prototype",
+      "tags": [
+        "dcf",
+        "discounted cash flow",
+        "intrinsic value",
+        "fair value",
+        "price target",
+        "undervalued",
+        "overvalued",
+        "估值",
+        "内在价值"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/dcf-valuation"
+    },
+    {
+      "id": "digital-eguide",
+      "title": "Digital Eguide",
+      "summary": "A two-spread digital e-guide preview — page 1 is a cover (display title, author, \"What's inside\" stats, table of contents teaser); page 2 is a spread (lesson body with pull-quote and a step list). Lifestyle / creator brand tone. Use when the brief asks for an \"e-guide\", \"digital guide\", \"lookbook\", \"lead magnet\", \"crea",
+      "category": "prototype",
+      "tags": [
+        "e-guide",
+        "digital guide",
+        "lead magnet",
+        "lookbook",
+        "creator guide",
+        "playbook",
+        "pdf guide",
+        "ebook",
+        "电子指南",
+        "电子书"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/digital-eguide"
+    },
+    {
+      "id": "docs-page",
+      "title": "Docs Page",
+      "summary": "A documentation page — inline-start nav, scrollable article body, inline-end table of contents. Use when the brief mentions \"docs\", \"documentation\", \"guide\", \"API reference\", or \"tutorial\".",
+      "category": "prototype",
+      "tags": [
+        "docs",
+        "documentation",
+        "guide",
+        "tutorial",
+        "api reference",
+        "文档"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/docs-page"
+    },
+    {
+      "id": "email-marketing",
+      "title": "Email Marketing",
+      "summary": "A brand product-launch email — masthead with wordmark, hero image block, headline lockup with skewed-italic accent, body copy, primary CTA, and a specifications grid. Pure HTML email layout (centered single column, table fallback). Use when the brief asks for an \"email\", \"newsletter blast\", \"MJML\", \"product launch emai",
+      "category": "prototype",
+      "tags": [
+        "email",
+        "email template",
+        "newsletter",
+        "email blast",
+        "product launch email",
+        "mjml",
+        "邮件营销",
+        "邮件模板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/email-marketing"
+    },
+    {
+      "id": "eng-runbook",
+      "title": "Eng Runbook",
+      "summary": "An engineering runbook — service overview, alerts table, dashboards links, common procedures with copy-pasteable commands, on-call rotation, and an incident-response checklist. Use when the brief mentions \"runbook\", \"ops doc\", \"on-call guide\", \"SRE doc\", or \"运维手册\".",
+      "category": "prototype",
+      "tags": [
+        "runbook",
+        "ops doc",
+        "on-call",
+        "sre doc",
+        "service runbook",
+        "运维手册"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/eng-runbook"
+    },
+    {
+      "id": "finance-report",
+      "title": "Finance Report",
+      "summary": "Quarterly / monthly financial report — masthead with KPIs, revenue and burn charts, P&L summary table, top-line highlights, and an outlook paragraph. Use when the brief mentions \"financial report\", \"Q3 report\", \"MRR review\", \"P&L\", or \"财报\".",
+      "category": "prototype",
+      "tags": [
+        "financial report",
+        "finance report",
+        "quarterly report",
+        "p&l",
+        "mrr review",
+        "财报",
+        "财务报告"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/finance-report"
+    },
+    {
+      "id": "flowai-live-dashboard-template",
+      "title": "Flowai Live Dashboard Template",
+      "summary": "Team-management dashboard skill in the FlowAI aesthetic — three tabs (Team Members, Team Details, Activity Log), KPI stat row, member table, role distribution bar chart, online presence and activity sparklines, and a top-contributors panel, all in a single self-contained HTML file with light/dark theming, hoverable cha",
+      "category": "prototype",
+      "tags": [
+        "flowai dashboard",
+        "team dashboard",
+        "team management dashboard",
+        "interactive admin dashboard",
+        "workspace admin dashboard",
+        "团队管理后台",
+        "可交互后台"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/flowai-live-dashboard-template"
+    },
+    {
+      "id": "gamified-app",
+      "title": "Gamified App",
+      "summary": "A multi-frame gamified mobile-app prototype — three phone frames on a dark showcase stage. Frame 1: cover / poster, Frame 2: today's quests with XP ribbons and a level bar, Frame 3: quest detail. Vivid quest tiles, level ribbon, bottom tab bar. Use when the brief asks for a \"gamified app\", \"habit tracker\", \"RPG-style l",
+      "category": "prototype",
+      "tags": [
+        "gamified app",
+        "habit tracker",
+        "rpg app",
+        "level up app",
+        "daily quests",
+        "xp app",
+        "streak app",
+        "life management app",
+        "游戏化",
+        "习惯打卡"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/gamified-app"
+    },
+    {
+      "id": "github-dashboard",
+      "title": "Github Dashboard",
+      "summary": "GitHub repository analytics dashboard — stars, forks, contributors, issues, pull requests, recent activity, and top contributors. Use when the brief asks for a GitHub repo dashboard, open-source growth report, repository health page, or GitHub analytics view.",
+      "category": "prototype",
+      "tags": [
+        "github dashboard",
+        "repo dashboard",
+        "repository dashboard",
+        "github analytics",
+        "open source dashboard",
+        "github growth",
+        "仓库看板",
+        "GitHub 看板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/github-dashboard"
+    },
+    {
+      "id": "guizang-ppt",
+      "title": "Magazine Web Ppt",
+      "summary": "Generates an \"editorial magazine × electronic ink\" style horizontal-swipe web deck (a single HTML file), with a WebGL fluid background, serif headlines + sans-serif body, act dividers, big-number data pages, image grids, and more templates. Use when the user wants to make a talk / share / launch-style web deck, or ment",
+      "category": "deck",
+      "tags": [
+        "ppt",
+        "deck",
+        "slides",
+        "presentation",
+        "magazine",
+        "magazine style",
+        "magazine-style PPT",
+        "horizontal swipe",
+        "horizontal swipe deck",
+        "editorial magazine"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/guizang-ppt"
+    },
+    {
+      "id": "hr-onboarding",
+      "title": "Hr Onboarding",
+      "summary": "A new-hire onboarding plan as a single page — first week schedule, buddy + manager intro, learning track, equipment checklist, and \"you're set when…\" outcomes. Use when the brief mentions \"onboarding\", \"new hire\", \"first week plan\", or \"入职\".",
+      "category": "prototype",
+      "tags": [
+        "onboarding",
+        "new hire",
+        "first week",
+        "入职",
+        "新员工"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/hr-onboarding"
+    },
+    {
+      "id": "html-ppt-course-module",
+      "title": "Html Ppt Course Module",
+      "summary": "Online-course / workshop module deck — warm paper background + Playfair serif, persistent left sidebar of learning objectives, MCQ self-check page. Use for teaching modules, training materials, workshop slides.",
+      "category": "deck",
+      "tags": [
+        "course module",
+        "course slides",
+        "workshop",
+        "training deck",
+        "lesson",
+        "教学",
+        "课件"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-course-module"
+    },
+    {
+      "id": "html-ppt-graphify-dark-graph",
+      "title": "Html Ppt Graphify Dark Graph",
+      "summary": "暗底知识图谱 deck — #06060c→#0e1020 深夜渐变 + 漂浮 blur orbs、封面 SVG 力导向图谱、彩虹渐变标题、JetBrains Mono 命令行高亮、glass-morphism 卡片。适合 dev-tool / CLI / 知识图谱 / 数据可视化的发布会，\"AI-native + 科幻 + 暖色\" 调子。",
+      "category": "deck",
+      "tags": [
+        "知识图谱",
+        "graph deck",
+        "dark graph",
+        "dev tool launch",
+        "cli launch",
+        "data viz launch"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-graphify-dark-graph"
+    },
+    {
+      "id": "html-ppt-hermes-cyber-terminal",
+      "title": "Html Ppt Hermes Cyber Terminal",
+      "summary": "暗终端 honest-review deck — #0a0c10 黑底 + 56px 赛博网格 + CRT 暗角 + 扫描线、窗口红绿灯 chrome、`$ prompt` 命令行标题、薄荷绿 #7ed3a4 大字、JetBrains Mono、stroke-only 柱状图、blinking 光标、琥珀/绿/红三档 tag、暗色代码块。适合 CLI / agent / dev tool 测评（含 trace、diff、benchmark）。",
+      "category": "deck",
+      "tags": [
+        "terminal review",
+        "cli review",
+        "agent review",
+        "honest review",
+        "dev tool review",
+        "测评"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-hermes-cyber-terminal"
+    },
+    {
+      "id": "html-ppt-knowledge-arch-blueprint",
+      "title": "Html Ppt Knowledge Arch Blueprint",
+      "summary": "奶油蓝图架构 deck — 奶油纸 #F0EAE0 底色 + 单一锈红 #B5392A 高亮、48px 蓝图网格 mask、2px 黑边硬卡片、pipeline 步骤盒（其中一个抬高）、右侧锈红 insight callout、Playfair 衬线大字、SVG 虚线反馈环。零渐变零软阴影，认真且印刷友好。",
+      "category": "deck",
+      "tags": [
+        "architecture",
+        "blueprint",
+        "system design",
+        "架构图",
+        "data flow",
+        "engineering whitepaper"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-knowledge-arch-blueprint"
+    },
+    {
+      "id": "html-ppt-obsidian-claude-gradient",
+      "title": "Html Ppt Obsidian Claude Gradient",
+      "summary": "GitHub 暗紫渐变 deck — GitHub-dark #0d1117 + 紫蓝 radial 环境光 + 60px 网格 mask、居中布局、紫色 pill 标签、三色渐变标题（#a855f7→#60a5fa→#34d399）、GitHub 风代码 palette、紫色左边框高亮块。适合开发者工作流 / MCP / Agent / dev tool 教程，类似 GitHub Blog / Linear Changelog。",
+      "category": "deck",
+      "tags": [
+        "github dark",
+        "developer tutorial",
+        "mcp tutorial",
+        "agent tutorial",
+        "dev workflow",
+        "changelog deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-obsidian-claude-gradient"
+    },
+    {
+      "id": "html-ppt-pitch-deck",
+      "title": "Html Ppt Pitch Deck",
+      "summary": "Investor-ready 10-slide HTML pitch deck — white + blue→purple gradient hero, big numbers, traction bar chart, $4.5M-style ask page. Use when the user wants a fundraising deck, seed-round pitch, or VC meeting slides.",
+      "category": "deck",
+      "tags": [
+        "pitch deck",
+        "pitch",
+        "fundraising",
+        "seed round",
+        "investor deck",
+        "vc deck",
+        "pitch slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-pitch-deck"
+    },
+    {
+      "id": "html-ppt-presenter-mode-reveal",
+      "title": "Html Ppt Presenter Mode",
+      "summary": "演讲者模式专用 deck — tokyo-night 默认主题，5 套主题 T 键切换，每页带 150-300 字逐字稿示例（<aside class=\"notes\">），按 S 打开 popup（CURRENT / NEXT / SCRIPT / TIMER 四张磁吸卡片）。用于技术分享、公开演讲、课程讲解，怕忘词或要提词器的场景。",
+      "category": "deck",
+      "tags": [
+        "presenter mode",
+        "演讲者模式",
+        "逐字稿",
+        "speaker notes",
+        "提词器",
+        "presenter view",
+        "演讲"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-presenter-mode-reveal"
+    },
+    {
+      "id": "html-ppt-product-launch",
+      "title": "Html Ppt Product Launch",
+      "summary": "Launch keynote deck — dark hero + light content, warm orange→peach accent, feature cards, pricing tiers, CTA. Use when announcing a product, launching a feature, or doing a keynote-style reveal.",
+      "category": "deck",
+      "tags": [
+        "product launch",
+        "keynote",
+        "launch deck",
+        "feature reveal",
+        "launch slides",
+        "发布会"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-product-launch"
+    },
+    {
+      "id": "html-ppt-taste-brutalist",
+      "title": "Html Ppt Taste Brutalist",
+      "summary": "16:9 HTML deck in tactical-telemetry / CRT-terminal taste. Deactivated-CRT charcoal slides, white-phosphor monospace, hazard-red accent, scanline overlay, ASCII syntax, density over decoration. Distilled from Leonxlnx/taste-skill `brutalist-skill` (Tactical Telemetry mode).",
+      "category": "prototype",
+      "tags": [],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-taste-brutalist"
+    },
+    {
+      "id": "html-ppt-taste-editorial",
+      "title": "Html Ppt Taste Editorial",
+      "summary": "16:9 HTML deck in editorial-minimalist taste. Warm cream slides, serif display + grotesque body, hairline rules, monospace meta, generous macro-whitespace, one accent. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+      "category": "prototype",
+      "tags": [],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-taste-editorial"
+    },
+    {
+      "id": "html-ppt-tech-sharing",
+      "title": "Html Ppt Tech Sharing",
+      "summary": "Conference / internal tech-talk deck — GitHub-dark, JetBrains Mono, terminal code blocks, agenda + Q&A pages. Use for engineering presentations, internal sharing sessions, conference talks, and code-heavy walkthroughs.",
+      "category": "deck",
+      "tags": [
+        "tech sharing",
+        "tech talk",
+        "技术分享",
+        "engineering talk",
+        "conference talk",
+        "dev talk"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-tech-sharing"
+    },
+    {
+      "id": "html-ppt-testing-safety-alert",
+      "title": "Html Ppt Testing Safety Alert",
+      "summary": "红琥珀警示 deck — 顶/底 45° 红黑 hazard 条纹、红色删除线否定标题、L1/L2/L3 绿/琥珀/红 tier 卡片、圆点状态 alert box、policy-yaml 代码块（红左边框 + bad 关键词高亮）、红绿 checklist、Q1 事故堆叠柱状图。适合安全 / 风险 / 事故复盘 / 红队 / 上线前 AI 评审 / policy-as-code。",
+      "category": "deck",
+      "tags": [
+        "safety alert",
+        "incident",
+        "red team",
+        "risk review",
+        "事故复盘",
+        "安全评审",
+        "policy as code"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-testing-safety-alert"
+    },
+    {
+      "id": "html-ppt-weekly-report",
+      "title": "Html Ppt Weekly Report",
+      "summary": "Team weekly / status-update deck — corporate clarity, 8-cell KPI grid, shipped list, 8-week bar chart, next-week table. Use for 周报, business reviews, team status updates, and exec dashboards.",
+      "category": "deck",
+      "tags": [
+        "weekly report",
+        "周报",
+        "status update",
+        "team report",
+        "business review",
+        "wbr"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-weekly-report"
+    },
+    {
+      "id": "html-ppt-xhs-pastel-card",
+      "title": "Html Ppt Xhs Pastel Card",
+      "summary": "柔和马卡龙慢生活 deck — 奶油 #fef8f1 底 + 三个柔光 blob、Playfair 斜体衬线 display 标题混 sans 正文、28px 圆角马卡龙卡片（桃 / 薄荷 / 天 / 紫 / 柠 / 玫）、Playfair 斜体 01-04 序号、SVG donut 图、chip+page 顶栏。适合生活方式 / 个人成长 / 慢生活 / 情绪类内容，\"杂志、手作、不太科技\"的感觉。",
+      "category": "deck",
+      "tags": [
+        "pastel",
+        "macaron",
+        "lifestyle",
+        "slow living",
+        "慢生活",
+        "生活方式",
+        "个人成长"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-xhs-pastel-card"
+    },
+    {
+      "id": "html-ppt-xhs-white-editorial",
+      "title": "Html Ppt Xhs White Editorial",
+      "summary": "白底杂志风 deck — 纯白背景 + 顶部 10 色彩虹 bar、80-110px display 标题、紫→蓝→绿→橙→粉渐变文字、马卡龙软卡片组（粉/紫/蓝/绿/橙）、黑底白字 .focus pill、引用大块。同时适合发小红书图文 + 横版 PPT 双用。",
+      "category": "deck",
+      "tags": [
+        "白底杂志",
+        "杂志风",
+        "xhs editorial",
+        "white editorial",
+        "小红书白底",
+        "editorial deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-xhs-white-editorial"
+    },
+    {
+      "id": "html-ppt-zhangzara-8-bit-orbit",
+      "title": "Html Ppt Zhangzara 8 Bit Orbit",
+      "summary": "8-Bit Orbit — Pixel-art neon arcade aesthetic on a deep navy void. Anything that should feel like a CRT screen at 2am: cyberpunk, gaming, web3, indie dev tools, hackathon demos.",
+      "category": "deck",
+      "tags": [
+        "8-bit-orbit",
+        "zhangzara-8-bit-orbit",
+        "8-Bit Orbit",
+        "retro-tech",
+        "playful",
+        "geeky",
+        "neon",
+        "gaming pitch",
+        "hackathon demo",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-8-bit-orbit"
+    },
+    {
+      "id": "html-ppt-zhangzara-biennale-yellow",
+      "title": "Html Ppt Zhangzara Biennale Yellow",
+      "summary": "Biennale Yellow — Solar yellow on warm parchment with deep indigo serif and atmospheric sun-glow gradients. Anything that should feel like an art-biennale poster or a museum's annual programme: exhibition decks, arts-institution announcements, design conference brochures, curatorial pitches, literary publications, stud",
+      "category": "deck",
+      "tags": [
+        "biennale-yellow",
+        "zhangzara-biennale-yellow",
+        "Biennale Yellow",
+        "editorial",
+        "atmospheric",
+        "literary",
+        "considered",
+        "exhibition or biennale",
+        "arts institution programme",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-biennale-yellow"
+    },
+    {
+      "id": "html-ppt-zhangzara-block-frame",
+      "title": "Html Ppt Zhangzara Block Frame",
+      "summary": "BlockFrame — Neobrutalist deck with pastel-neon color blocks and chunky black borders. Anything that should feel pop-graphic and design-led: indie SaaS launches, agency credentials, creative reviews, brand redesigns.",
+      "category": "deck",
+      "tags": [
+        "block-frame",
+        "zhangzara-block-frame",
+        "BlockFrame",
+        "bold",
+        "playful",
+        "confident",
+        "graphic",
+        "creative agency pitch",
+        "indie SaaS launch",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-block-frame"
+    },
+    {
+      "id": "html-ppt-zhangzara-blue-professional",
+      "title": "Html Ppt Zhangzara Blue Professional",
+      "summary": "Blue Professional — Cream paper background with electric cobalt blue accents; clean modern professional. Anything that should feel modern-considered and lightly authoritative: B2B SaaS pitches, consulting deliverables, advisory updates, investor reports.",
+      "category": "deck",
+      "tags": [
+        "blue-professional",
+        "zhangzara-blue-professional",
+        "Blue Professional",
+        "professional",
+        "modern",
+        "clean",
+        "considered",
+        "B2B SaaS pitch",
+        "consulting deliverable",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-blue-professional"
+    },
+    {
+      "id": "html-ppt-zhangzara-bold-poster",
+      "title": "Html Ppt Zhangzara Bold Poster",
+      "summary": "Bold Poster — Editorial poster aesthetic with massive Shrikhand display and a single fire-engine red accent. Anything that should land like a magazine cover: brand manifestos, founder vision decks, editorial / cultural pitches, creative reviews.",
+      "category": "deck",
+      "tags": [
+        "bold-poster",
+        "zhangzara-bold-poster",
+        "Bold Poster",
+        "bold",
+        "editorial",
+        "dramatic",
+        "graphic",
+        "brand manifesto",
+        "creative-led pitch",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-bold-poster"
+    },
+    {
+      "id": "html-ppt-zhangzara-broadside",
+      "title": "Html Ppt Zhangzara Broadside",
+      "summary": "Broadside — Dark editorial canvas with a single fire orange accent and bilingual Latin/Chinese type stack. Anything that should land like a broadside newspaper headline: brand manifestos, magazine and cultural pitches, design talks, bilingual EN/CN decks, founder vision statements.",
+      "category": "deck",
+      "tags": [
+        "broadside",
+        "zhangzara-broadside",
+        "editorial",
+        "dramatic",
+        "graphic",
+        "punchy",
+        "brand manifesto",
+        "founder vision deck",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-broadside"
+    },
+    {
+      "id": "html-ppt-zhangzara-capsule",
+      "title": "Html Ppt Zhangzara Capsule",
+      "summary": "Capsule — Modular pill-shaped cards on warm bone with a full pastel-pop palette. Anything that should feel modular, modern, and a little Y2K: lifestyle brands, creator portfolios, DTC launches, beauty / wellness, agency credentials.",
+      "category": "deck",
+      "tags": [
+        "capsule",
+        "zhangzara-capsule",
+        "playful",
+        "modern",
+        "upbeat",
+        "graphic",
+        "lifestyle brand",
+        "creator portfolio",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-capsule"
+    },
+    {
+      "id": "html-ppt-zhangzara-cartesian",
+      "title": "Html Ppt Zhangzara Cartesian",
+      "summary": "Cartesian — Quiet warm-neutral palette with classical Playfair serifs; tasteful and unhurried. Anything that should feel quiet, considered, and grown-up: investment theses, white papers, advisory work, longform research, gallery / cultural decks.",
+      "category": "deck",
+      "tags": [
+        "cartesian",
+        "zhangzara-cartesian",
+        "quiet",
+        "considered",
+        "classical",
+        "literary",
+        "investment thesis",
+        "white paper",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-cartesian"
+    },
+    {
+      "id": "html-ppt-zhangzara-cobalt-grid",
+      "title": "Html Ppt Zhangzara Cobalt Grid",
+      "summary": "Cobalt Grid — Electric cobalt italic serifs on a graph-paper canvas, anchored by stair-stepped pixel-glitch decorations and slim hairline rules. Anything that should feel like a quietly serious design / research bulletin, art publication, or curated trend report.",
+      "category": "deck",
+      "tags": [
+        "cobalt-grid",
+        "zhangzara-cobalt-grid",
+        "Cobalt Grid",
+        "editorial",
+        "design-research",
+        "considered",
+        "literary",
+        "design trend or research report",
+        "studio annual or seasonal bulletin",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-cobalt-grid"
+    },
+    {
+      "id": "html-ppt-zhangzara-coral",
+      "title": "Html Ppt Zhangzara Coral",
+      "summary": "Coral — Cream and coral on near-black, set in oversized Bebas Neue. Anything that should feel warm-graphic and editorial: fashion, beauty, fitness, F&B, lifestyle brands, agency credentials.",
+      "category": "deck",
+      "tags": [
+        "coral",
+        "zhangzara-coral",
+        "bold",
+        "warm",
+        "graphic",
+        "punchy",
+        "fashion / beauty pitch",
+        "fitness brand",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-coral"
+    },
+    {
+      "id": "html-ppt-zhangzara-creative-mode",
+      "title": "Html Ppt Zhangzara Creative Mode",
+      "summary": "Creative Mode — Cream paper canvas with confident multi-color (green, pink, orange, yellow) accents and Archivo Black display. Anything that should feel design-led and confident: creative agency pitches, design studio decks, ad shop credentials, brand creative reviews, art-direction reviews.",
+      "category": "deck",
+      "tags": [
+        "creative-mode",
+        "zhangzara-creative-mode",
+        "Creative Mode",
+        "creative",
+        "confident",
+        "graphic",
+        "expressive",
+        "creative agency pitch",
+        "design studio deck",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-creative-mode"
+    },
+    {
+      "id": "html-ppt-zhangzara-daisy-days",
+      "title": "Html Ppt Zhangzara Daisy Days",
+      "summary": "Daisy Days — Cheerful pastel deck with hand-drawn daisies, stars, and rainbows. Friendly, soft, and warm. Anything that should feel friendly, soft, and joyful: educational content, kids and family, wellness programs, community workshops, creator portfolios for craft / illustration.",
+      "category": "deck",
+      "tags": [
+        "daisy-days",
+        "zhangzara-daisy-days",
+        "Daisy Days",
+        "cheerful",
+        "playful",
+        "friendly",
+        "soft",
+        "education / classroom",
+        "kids product launch",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-daisy-days"
+    },
+    {
+      "id": "html-ppt-zhangzara-editorial-tri-tone",
+      "title": "Html Ppt Zhangzara Editorial Tri Tone",
+      "summary": "Editorial Tri-Tone — Three-color editorial system: dusty pink, mustard cream, and deep burgundy, set in Bricolage + Instrument Serif. Anything that should feel like a fashion-magazine spread: editorial pitches, fashion brand decks, lifestyle media, art direction reviews.",
+      "category": "deck",
+      "tags": [
+        "editorial-tri-tone",
+        "zhangzara-editorial-tri-tone",
+        "Editorial Tri-Tone",
+        "editorial",
+        "warm",
+        "literary",
+        "editorial / magazine pitch",
+        "fashion brand deck",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-editorial-tri-tone"
+    },
+    {
+      "id": "html-ppt-zhangzara-grove",
+      "title": "Html Ppt Zhangzara Grove",
+      "summary": "Grove — Forest-green canvas with cream type, classical Playfair serifs, and a single rust accent. Anything that should feel organic, considered, and grown-up: sustainability and wellness brands, outdoor / nature products, wineries and restaurants, literary or arts decks, advisory deliverables, bilingual EN/CN reports.",
+      "category": "deck",
+      "tags": [
+        "grove",
+        "zhangzara-grove",
+        "organic",
+        "considered",
+        "classical",
+        "warm",
+        "sustainability brand",
+        "wellness brand",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-grove"
+    },
+    {
+      "id": "html-ppt-zhangzara-long-table",
+      "title": "Html Ppt Zhangzara Long Table",
+      "summary": "Long Table — Warm cream and rust-red supper-club aesthetic with bold uppercase grotesk headlines, italic Fraunces, and pill-shaped outlined buttons. Anything that should feel like a warm, intimate, modern hospitality / community brand: supper clubs, dinner series, small restaurants, creative-studio events, membership p",
+      "category": "deck",
+      "tags": [
+        "long-table",
+        "zhangzara-long-table",
+        "Long Table",
+        "warm",
+        "intimate",
+        "playful",
+        "supper club or dinner series",
+        "event or community gathering",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-long-table"
+    },
+    {
+      "id": "html-ppt-zhangzara-mat",
+      "title": "Html Ppt Zhangzara Mat",
+      "summary": "Mat — Dark sage canvas with bone paper and burnt-orange accent; mid-century modern with wood undertones. Anything that should feel mid-century, tactile, and intentional: design studio credentials, architecture / interior brands, ceramics / craft / furniture, advisory decks.",
+      "category": "deck",
+      "tags": [
+        "mat",
+        "zhangzara-mat",
+        "warm-modern",
+        "considered",
+        "warm",
+        "design-led",
+        "design studio credentials",
+        "architecture / interior brand",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-mat"
+    },
+    {
+      "id": "html-ppt-zhangzara-monochrome",
+      "title": "Html Ppt Zhangzara Monochrome",
+      "summary": "Monochrome — Ivory ledger paper with all-black type; Lora serif headlines, Jost body, no color at all. Anything that should feel like a hand-typeset ledger: user research synthesis, white papers, longform reports, academic and policy briefs, advisory deliverables, bilingual EN/CN reports.",
+      "category": "deck",
+      "tags": [
+        "monochrome",
+        "zhangzara-monochrome",
+        "restrained",
+        "literary",
+        "considered",
+        "user research synthesis",
+        "white paper",
+        "html deck",
+        "html slides",
+        "zhangzara"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-monochrome"
+    },
+    {
+      "id": "html-ppt-zhangzara-neo-grid-bold",
+      "title": "Html Ppt Zhangzara Neo Grid Bold",
+      "summary": "Neo-Grid Bold — Editorial neo-brutalism with a single neon yellow accent on off-white paper. Anything that should feel confident and editorial-graphic: design-led pitches, brand work, founder talks, conference keynotes.",
+      "category": "deck",
+      "tags": [
+        "neo-grid-bold",
+        "zhangzara-neo-grid-bold",
+        "Neo-Grid Bold",
+        "confident",
+        "punchy",
+        "bold",
+        "minimal",
+        "product launch",
+        "design review",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-neo-grid-bold"
+    },
+    {
+      "id": "html-ppt-zhangzara-peoples-platform",
+      "title": "Html Ppt Zhangzara Peoples Platform",
+      "summary": "People's Platform (Block & Bold) — Activist poster energy: blue, orange, red on cream, with Alfa Slab + Caveat Brush. Anything that should feel honest, loud, and graphic: cultural commentary, manifestos, civic and community decks, design talks, campaign pitches.",
+      "category": "deck",
+      "tags": [
+        "peoples-platform",
+        "zhangzara-peoples-platform",
+        "People's Platform (Block & Bold)",
+        "activist",
+        "loud",
+        "punchy",
+        "direct",
+        "cultural commentary",
+        "manifesto",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-peoples-platform"
+    },
+    {
+      "id": "html-ppt-zhangzara-pin-and-paper",
+      "title": "Html Ppt Zhangzara Pin And Paper",
+      "summary": "Pin & Paper — Yellow paper with safety-pin illustrations, ink-blue handwritten Caveat, paper-grain texture. Anything that should feel hand-crafted, warm, and literary: qualitative research findings, founder reflections, longform brand stories, workshop debriefs.",
+      "category": "deck",
+      "tags": [
+        "pin-and-paper",
+        "zhangzara-pin-and-paper",
+        "Pin & Paper",
+        "crafted",
+        "handmade",
+        "literary",
+        "intimate",
+        "research findings with personality",
+        "qualitative report",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-pin-and-paper"
+    },
+    {
+      "id": "html-ppt-zhangzara-pink-script",
+      "title": "Html Ppt Zhangzara Pink Script",
+      "summary": "Pink Script — After Hours — Black canvas, hot pink accent, pearl-cream paper, Instrument Serif headlines: late-night editorial luxury. Anything that should feel nocturnal, intentional, and a little luxe: fashion brand decks, creator personal brands, after-hours / nightlife / spirits launches, luxury product reveals, ed",
+      "category": "deck",
+      "tags": [
+        "pink-script",
+        "zhangzara-pink-script",
+        "Pink Script — After Hours",
+        "nocturnal",
+        "moody",
+        "literary",
+        "sultry",
+        "fashion brand deck",
+        "creator personal brand",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-pink-script"
+    },
+    {
+      "id": "html-ppt-zhangzara-playful",
+      "title": "Html Ppt Zhangzara Playful",
+      "summary": "Playful — Sun-warm peach background with Syne display: a friendly indie launch deck. Anything that should feel warm, indie, and approachable: creator portfolios, indie product launches, lifestyle brands, small-business pitches, newsletter / community decks.",
+      "category": "deck",
+      "tags": [
+        "playful",
+        "zhangzara-playful",
+        "warm",
+        "approachable",
+        "upbeat",
+        "informal",
+        "creator portfolio",
+        "indie product launch",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-playful"
+    },
+    {
+      "id": "html-ppt-zhangzara-raw-grid",
+      "title": "Html Ppt Zhangzara Raw Grid",
+      "summary": "Raw Grid — Neo-brutalist deck with thick borders, offset shadows, and a pink/sage/ink palette. Anything that should feel direct and graphic-confident: founder pitches, accelerator demos, brand decks, indie launches, creator portfolios.",
+      "category": "deck",
+      "tags": [
+        "raw-grid",
+        "zhangzara-raw-grid",
+        "Raw Grid",
+        "raw",
+        "punchy",
+        "direct",
+        "modern",
+        "startup pitch",
+        "accelerator demo day",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-raw-grid"
+    },
+    {
+      "id": "html-ppt-zhangzara-retro-windows",
+      "title": "Html Ppt Zhangzara Retro Windows",
+      "summary": "Retro Windows — Windows 95 chrome: gray title bars, MS Sans Serif, pixel typography, full nostalgia. Anything that should feel knowingly nostalgic: retro gaming, Y2K-aesthetic brands, creator portfolios with a 90s vibe, tech-history talks, deliberately tongue-in-cheek decks.",
+      "category": "deck",
+      "tags": [
+        "retro-windows",
+        "zhangzara-retro-windows",
+        "Retro Windows",
+        "nostalgic",
+        "retro",
+        "winking",
+        "retro gaming pitch",
+        "Y2K brand",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-retro-windows"
+    },
+    {
+      "id": "html-ppt-zhangzara-retro-zine",
+      "title": "Html Ppt Zhangzara Retro Zine",
+      "summary": "Retro Zine — Beige paper with green accent and Bebas Neue + Caveat: a riso-printed zine in HTML form. Anything that should feel printed, lo-fi, and crafted: indie zines and publications, music / arts brands, creator portfolios, small-batch craft launches, community decks.",
+      "category": "deck",
+      "tags": [
+        "retro-zine",
+        "zhangzara-retro-zine",
+        "Retro Zine",
+        "crafted",
+        "lo-fi",
+        "scrappy",
+        "warm",
+        "indie zine / publication",
+        "music or arts brand",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-retro-zine"
+    },
+    {
+      "id": "html-ppt-zhangzara-sakura-chroma",
+      "title": "Html Ppt Zhangzara Sakura Chroma",
+      "summary": "Sakura Chroma — Vintage Japanese cassette-package aesthetic: cream paper, diagonal rainbow ribbons, condensed bold type, JIS-style spec checkboxes. Anything that should feel like a vintage Japanese cassette package or a TDK / Sony / Sakura Color product catalogue: indie hardware brand decks, music-label release schedul",
+      "category": "deck",
+      "tags": [
+        "sakura-chroma",
+        "zhangzara-sakura-chroma",
+        "Sakura Chroma",
+        "retro",
+        "playful",
+        "confident",
+        "product launch or catalogue",
+        "indie hardware or analog studio brand",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-sakura-chroma"
+    },
+    {
+      "id": "html-ppt-zhangzara-scatterbrain",
+      "title": "Html Ppt Zhangzara Scatterbrain",
+      "summary": "Scatterbrain — Post-it inspired: pastel sticky notes, Caveat handwriting, Shrikhand and Zilla Slab type stack. Anything that should feel like a designer's whiteboard: brainstorms, workshops, creative-agency credentials, design-thinking sessions, ideation pitches, art-direction reviews.",
+      "category": "deck",
+      "tags": [
+        "scatterbrain",
+        "zhangzara-scatterbrain",
+        "playful",
+        "creative",
+        "informal",
+        "warm",
+        "brainstorm / workshop",
+        "creative agency credentials",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-scatterbrain"
+    },
+    {
+      "id": "html-ppt-zhangzara-signal",
+      "title": "Html Ppt Zhangzara Signal",
+      "summary": "Signal — Deep navy canvas with bone paper and a single muted-gold accent; institutional with quiet weight. Anything that should feel weighty, considered, and credibly institutional: investor decks, board presentations, consulting deliverables, legal / policy briefs, advisory pitches.",
+      "category": "deck",
+      "tags": [
+        "signal",
+        "zhangzara-signal",
+        "institutional",
+        "trustworthy",
+        "sober",
+        "polished",
+        "investor deck",
+        "consulting deliverable",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-signal"
+    },
+    {
+      "id": "html-ppt-zhangzara-soft-editorial",
+      "title": "Html Ppt Zhangzara Soft Editorial",
+      "summary": "Soft Editorial — Cormorant Garamond serif on warm paper with sage, blush, and lemon accents. Anything that should feel literary, elegant, and unhurried: editorial features, longform brand stories, gallery / museum decks, advisory deliverables, wedding / lifestyle media, founder essays.",
+      "category": "deck",
+      "tags": [
+        "soft-editorial",
+        "zhangzara-soft-editorial",
+        "Soft Editorial",
+        "literary",
+        "elegant",
+        "considered",
+        "editorial feature",
+        "longform brand story",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-soft-editorial"
+    },
+    {
+      "id": "html-ppt-zhangzara-stencil-tablet",
+      "title": "Html Ppt Zhangzara Stencil Tablet",
+      "summary": "Stencil & Tablet — Bone paper with stencil-cut headlines and a six-color earth palette: archaeology meets brand. Anything that should feel archival, tactile, and weighty-graphic: museum and cultural-institution decks, art / architecture brands, longform research, heritage and craft brands, manifestos.",
+      "category": "deck",
+      "tags": [
+        "stencil-tablet",
+        "zhangzara-stencil-tablet",
+        "Stencil & Tablet",
+        "archival",
+        "earthy",
+        "weighty",
+        "considered",
+        "museum / cultural institution",
+        "art / architecture brand",
+        "html deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-stencil-tablet"
+    },
+    {
+      "id": "html-ppt-zhangzara-studio",
+      "title": "Html Ppt Zhangzara Studio",
+      "summary": "Studio — Black canvas with electric-yellow type; high-voltage design studio aesthetic. Anything that should feel electric and design-led: studio credentials, creative agency pitches, brand showcases, art-direction reviews, fashion / sneaker brand work.",
+      "category": "deck",
+      "tags": [
+        "studio",
+        "zhangzara-studio",
+        "electric",
+        "bold",
+        "graphic",
+        "loud",
+        "design studio credentials",
+        "creative agency pitch",
+        "html deck",
+        "html slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-studio"
+    },
+    {
+      "id": "html-ppt-zhangzara-vellum",
+      "title": "Html Ppt Zhangzara Vellum",
+      "summary": "Vellum — Deep navy canvas with warm-yellow italic Cormorant serifs and a single dusty teal accent. A quiet, scholarly aesthetic. Anything that should feel scholarly, literary, and quietly intelligent: research synthesis, white papers, academic and policy briefs, advisory deliverables, longform editorial pieces, founder",
+      "category": "deck",
+      "tags": [
+        "vellum",
+        "zhangzara-vellum",
+        "scholarly",
+        "literary",
+        "considered",
+        "research findings",
+        "white paper or longform report",
+        "html deck",
+        "html slides",
+        "zhangzara"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt-zhangzara-vellum"
+    },
+    {
+      "id": "html-ppt",
+      "title": "Html Ppt",
+      "summary": "HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, \"幻灯片\", \"演讲稿\", \"做一份 PPT\", \"做一份 slides\", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/",
+      "category": "deck",
+      "tags": [
+        "ppt",
+        "deck",
+        "slides",
+        "presentation",
+        "keynote",
+        "reveal",
+        "slideshow",
+        "幻灯片",
+        "演讲稿",
+        "分享稿"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/html-ppt"
+    },
+    {
+      "id": "hyperframes",
+      "title": "Hyperframes",
+      "summary": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to audio, generate text-to-speech narration, create audio-reactive animation (beat",
+      "category": "video",
+      "tags": [
+        "hyperframes",
+        "html video",
+        "video composition",
+        "interactive video",
+        "captions",
+        "tts video",
+        "kinetic typography",
+        "html in canvas",
+        "drawElementImage",
+        "html shader"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/hyperframes"
+    },
+    {
+      "id": "ib-pitch-book",
+      "title": "Ib Pitch Book",
+      "summary": "Investment-banking pitch book for strategic alternatives — trading comps, precedent transactions, valuation football field, DCF sensitivity, strategic-options matrix, process recommendation. Built by adapting `assets/template.html` so IB-specific chrome, disclosure bands, and source labels are preserved. Use for Board ",
+      "category": "deck",
+      "tags": [
+        "ib pitch book",
+        "investment banking pitch",
+        "strategic alternatives",
+        "sell-side pitch",
+        "board materials",
+        "football field valuation",
+        "trading comps",
+        "precedent transactions",
+        "投行 pitch",
+        "并购材料"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/ib-pitch-book"
+    },
+    {
+      "id": "image-poster",
+      "title": "Image Poster",
+      "summary": "Single-image generation skill for posters, key art, and editorial illustrations. Defaults to gpt-image-2 but is provider-agnostic — the same workflow drives Flux, Imagen, or Midjourney via the active upstream tooling. Output is one or more PNG/JPEG files saved to the project folder.",
+      "category": "image",
+      "tags": [
+        "poster",
+        "key art",
+        "illustration",
+        "image",
+        "cover art",
+        "海报",
+        "插画"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/image-poster"
+    },
+    {
+      "id": "invoice",
+      "title": "Invoice",
+      "summary": "A printable invoice page — sender + recipient block, line items table, tax breakdown, totals, and payment instructions. Use when the brief mentions \"invoice\", \"bill\", \"billing statement\", or \"发票\".",
+      "category": "prototype",
+      "tags": [
+        "invoice",
+        "bill",
+        "billing statement",
+        "发票",
+        "账单"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/invoice"
+    },
+    {
+      "id": "kami-deck",
+      "title": "Kami Deck",
+      "summary": ">",
+      "category": "deck",
+      "tags": [
+        "kami deck",
+        "紙 deck",
+        "纸 deck",
+        "paper slides",
+        "white paper deck",
+        "editorial deck",
+        "print-style slides",
+        "kami slides"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/kami-deck"
+    },
+    {
+      "id": "kami-landing",
+      "title": "Kami Landing",
+      "summary": ">",
+      "category": "prototype",
+      "tags": [
+        "kami",
+        "紙",
+        "纸",
+        "paper one-pager",
+        "白皮书",
+        "white paper",
+        "parchment landing",
+        "editorial document",
+        "print-grade page",
+        "kami landing"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/kami-landing"
+    },
+    {
+      "id": "kanban-board",
+      "title": "Kanban Board",
+      "summary": "Kanban / task board with columns (To do / In progress / In review / Done), draggable-looking cards, assignee avatars, swimlanes, and a top filter bar. Use when the brief mentions \"kanban\", \"task board\", \"sprint board\", \"trello\", \"看板\".",
+      "category": "prototype",
+      "tags": [
+        "kanban",
+        "task board",
+        "sprint board",
+        "trello",
+        "jira board",
+        "看板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/kanban-board"
+    },
+    {
+      "id": "last30days",
+      "title": "Last30days",
+      "summary": "Recent community and social trend research over the last 30 days. Use when the brief asks what people are saying now, recent sentiment, community reactions, social proof, launch reaction, trend scan, or last-30-days context.",
+      "category": "prototype",
+      "tags": [
+        "last 30 days",
+        "last30days",
+        "recent sentiment",
+        "community reaction",
+        "what people are saying",
+        "trend scan",
+        "social research",
+        "最近30天",
+        "社区反馈"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/last30days"
+    },
+    {
+      "id": "live-artifact",
+      "title": "Live Artifact",
+      "summary": "Create refreshable, auditable Open Design artifacts backed by connector or local data. Trigger when the user asks for live dashboards, refreshable reports, synced views, or reusable data-backed artifacts.",
+      "category": "prototype",
+      "tags": [
+        "live artifact",
+        "live dashboard",
+        "refreshable dashboard",
+        "live report",
+        "refreshable report",
+        "synced view",
+        "可刷新",
+        "实时看板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/live-artifact"
+    },
+    {
+      "id": "live-dashboard",
+      "title": "Live Dashboard",
+      "summary": "Notion-style team dashboard rendered as a Live Artifact. A single-page, self-contained HTML dashboard with KPIs, a 7-day sparkline, a real-time activity feed and a linked-database task table — wired to Notion via the Composio connector catalog. Refreshes on demand and when the artifact is opened. Falls back to seeded m",
+      "category": "prototype",
+      "tags": [
+        "team dashboard",
+        "notion dashboard",
+        "live dashboard",
+        "ops dashboard",
+        "team workspace dashboard",
+        "团队仪表盘",
+        "Notion 仪表盘",
+        "Live Artifact dashboard"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/live-dashboard"
+    },
+    {
+      "id": "magazine-poster",
+      "title": "Magazine Poster",
+      "summary": "An editorial-style poster — newsprint paper, dateline, oversized serif headline with a struck-through word and italic accent, a 2-column body block, and 6 numbered sections with annotated pull-quote captions. Reads like a Sunday-paper full-page essay or a thoughtful launch poster. Use when the brief asks for \"magazine ",
+      "category": "prototype",
+      "tags": [
+        "magazine poster",
+        "editorial poster",
+        "newsprint",
+        "newspaper layout",
+        "essay",
+        "manifesto",
+        "long-form poster",
+        "杂志海报",
+        "报纸版式"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/magazine-poster"
+    },
+    {
+      "id": "meeting-notes",
+      "title": "Meeting Notes",
+      "summary": "Meeting notes page — title bar with attendees, agenda checklist, decisions block, action items table with owners + dates, and a \"next meeting\" footer. Use when the brief mentions \"meeting notes\", \"minutes\", \"1:1 notes\", \"all-hands recap\", or \"会议纪要\".",
+      "category": "prototype",
+      "tags": [
+        "meeting notes",
+        "minutes",
+        "1:1 notes",
+        "all-hands recap",
+        "会议纪要"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/meeting-notes"
+    },
+    {
+      "id": "mobile-app",
+      "title": "Mobile App",
+      "summary": "A mobile-app screen rendered inside a pixel-accurate iPhone 15 Pro frame on the page. Built by copying the seed `assets/template.html` and pasting one screen archetype from `references/layouts.md`. Use when the brief asks for \"mobile app\", \"iOS app\", \"Android app\", \"phone screen\", or \"app UI\".",
+      "category": "prototype",
+      "tags": [
+        "mobile app",
+        "ios app",
+        "android app",
+        "phone screen",
+        "app ui",
+        "app mockup",
+        "移动端",
+        "手机 app"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/mobile-app"
+    },
+    {
+      "id": "mobile-onboarding",
+      "title": "Mobile Onboarding",
+      "summary": "A multi-screen mobile onboarding flow rendered as three phone frames side by side — splash, value-prop, sign-in. Status bar, swipe dots, primary CTA. Use when the brief mentions \"mobile onboarding\", \"iOS onboarding\", \"phone signup\", or \"移动端引导\".",
+      "category": "prototype",
+      "tags": [
+        "mobile onboarding",
+        "ios onboarding",
+        "android onboarding",
+        "phone signup",
+        "app onboarding",
+        "移动端引导"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/mobile-onboarding"
+    },
+    {
+      "id": "motion-frames",
+      "title": "Motion Frames",
+      "summary": "A single-frame motion-design composition with looping CSS animations — rotating type ring, animated globe, ticking timer, parallax labels. Renders as a hero video poster you can hand straight to HyperFrames or any keyframe-based exporter. Use when the brief asks for \"motion design\", \"animated hero\", \"loop\", \"video post",
+      "category": "prototype",
+      "tags": [
+        "motion design",
+        "motion graphic",
+        "animated hero",
+        "loop animation",
+        "video poster",
+        "title card",
+        "hyperframes",
+        "kinetic typography",
+        "动态设计",
+        "动效"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/motion-frames"
+    },
+    {
+      "id": "open-design-landing-deck",
+      "title": "Open Design Landing Deck",
+      "summary": ">",
+      "category": "deck",
+      "tags": [
+        "slide deck",
+        "演示文稿",
+        "pitch deck",
+        "keynote",
+        "editorial slides",
+        "atelier zero deck",
+        "open design deck",
+        "open design landing deck"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/open-design-landing-deck"
+    },
+    {
+      "id": "open-design-landing",
+      "title": "Open Design Landing",
+      "summary": ">",
+      "category": "prototype",
+      "tags": [
+        "landing page",
+        "落地页",
+        "editorial site",
+        "magazine layout",
+        "hero collage",
+        "atelier zero",
+        "open design landing"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/open-design-landing"
+    },
+    {
+      "id": "orbit-general",
+      "title": "Orbit General",
+      "summary": "Open Orbit briefing skill — selected by the Orbit pipeline when the user has two or more connectors connected. Pulls the past 24 hours of activity from every authenticated connector (GitHub, Linear, Notion, Slack, 飞书, Calendar, Gmail, Drive, Sentry, Vercel, …) and renders a single adaptive bento-grid dashboard at the t",
+      "category": "prototype",
+      "tags": [
+        "orbit",
+        "daily digest",
+        "morning briefing",
+        "每日简报",
+        "早安简报",
+        "跨工具汇总"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/orbit-general"
+    },
+    {
+      "id": "orbit-github",
+      "title": "Orbit Github",
+      "summary": "Open Orbit briefing skill — selected by the Orbit pipeline when GitHub is the user's only connected connector, or when the user explicitly scopes their daily digest to GitHub. Pulls the past 24 hours of PRs, review requests, issues, CI runs, and merges from the user's authenticated GitHub connection and renders them in",
+      "category": "prototype",
+      "tags": [
+        "github briefing",
+        "github digest",
+        "pr digest",
+        "github 简报",
+        "代码活动汇总"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/orbit-github"
+    },
+    {
+      "id": "orbit-gmail",
+      "title": "Orbit Gmail",
+      "summary": "Open Orbit briefing skill — selected by the Orbit pipeline when Gmail is the user's only connected connector, or when the user explicitly scopes their daily digest to Gmail. Pulls the past 24 hours of inbox activity (replies awaited, mentions, cc, auto- categorized bulk) from the user's authenticated Gmail connection a",
+      "category": "prototype",
+      "tags": [
+        "gmail briefing",
+        "inbox digest",
+        "email summary",
+        "gmail 简报",
+        "邮件摘要"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/orbit-gmail"
+    },
+    {
+      "id": "orbit-linear",
+      "title": "Orbit Linear",
+      "summary": "Open Orbit briefing skill — selected by the Orbit pipeline when Linear is the user's only connected connector, or when the user explicitly scopes their daily digest to Linear. Pulls the past 24 hours of issue movement, status changes, assignments, and cycle progress from the user's authenticated Linear connection and r",
+      "category": "prototype",
+      "tags": [
+        "linear briefing",
+        "linear digest",
+        "issue digest",
+        "linear 简报",
+        "issue 汇总"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/orbit-linear"
+    },
+    {
+      "id": "orbit-notion",
+      "title": "Orbit Notion",
+      "summary": "Open Orbit briefing skill — selected by the Orbit pipeline when Notion is the user's only connected connector, or when the user explicitly scopes their daily digest to Notion. Pulls the past 24 hours of document edits, comments, mentions, and database row changes from the user's authenticated Notion connection and rend",
+      "category": "prototype",
+      "tags": [
+        "notion briefing",
+        "notion digest",
+        "doc digest",
+        "notion 简报",
+        "文档摘要"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/orbit-notion"
+    },
+    {
+      "id": "pm-spec",
+      "title": "Pm Spec",
+      "summary": "Product spec / PRD as a single page — problem, success metrics, scope, user stories, design notes, rollout plan, open questions. Use when the brief mentions \"PRD\", \"spec\", \"product spec\", \"feature brief\", or \"需求文档\".",
+      "category": "prototype",
+      "tags": [
+        "prd",
+        "spec",
+        "product spec",
+        "feature brief",
+        "feature doc",
+        "需求文档"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/pm-spec"
+    },
+    {
+      "id": "pricing-page",
+      "title": "Pricing Page",
+      "summary": "A standalone pricing page — header, plan tiers, feature comparison table, and an FAQ. Use when the brief asks for \"pricing\", \"plans\", \"subscription tiers\", or a \"compare plans\" page.",
+      "category": "prototype",
+      "tags": [
+        "pricing",
+        "pricing page",
+        "plans",
+        "subscription",
+        "compare plans",
+        "定价",
+        "套餐"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/pricing-page"
+    },
+    {
+      "id": "replit-deck",
+      "title": "Replit Deck",
+      "summary": "Single-file horizontal-swipe HTML deck in the style of Replit Slides's landing-page template gallery. Eight distinct themes (helix, holm, vance, bevel, world-dark, world-mint, atlas, bluehouse) — each a complete visual system (palette + type + accent) captured from replit.com/slides. Pick one theme, do not mix. For pit",
+      "category": "deck",
+      "tags": [
+        "replit deck",
+        "replit slides",
+        "replit 风格 ppt",
+        "replit style deck",
+        "helix deck",
+        "holm memo",
+        "atlas chapter",
+        "bluehouse",
+        "bevel campaign"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/replit-deck"
+    },
+    {
+      "id": "saas-landing",
+      "title": "Saas Landing",
+      "summary": "Single-page SaaS landing with hero, features, social proof, pricing, and CTA. Respects the active DESIGN.md color/typography/layout tokens. Trigger keywords: \"saas landing\", \"marketing page\", \"product landing\".",
+      "category": "prototype",
+      "tags": [
+        "saas landing",
+        "marketing page",
+        "product landing"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/saas-landing"
+    },
+    {
+      "id": "simple-deck",
+      "title": "Simple Deck",
+      "summary": "Single-file horizontal-swipe HTML deck. Built by copying the seed `assets/template.html` (which carries the proven 5-rule iframe nav script) and pasting slide layouts from `references/layouts.md`. Pitch decks, product overviews, study material — when you don't need the magazine aesthetic of `magazine-web-ppt`.",
+      "category": "deck",
+      "tags": [
+        "deck",
+        "slides",
+        "ppt",
+        "presentation",
+        "幻灯",
+        "ppt 模板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/simple-deck"
+    },
+    {
+      "id": "social-carousel",
+      "title": "Social Carousel",
+      "summary": "A three-card social-media carousel laid out as 1080×1080 squares — three cinematic, on-brand panels with display headlines that connect across the series (\"onwards.\" → \"to the next one.\" → \"looking ahead.\"). Each card has a brand mark, a number / total, a caption, and a \"loop\" affordance. Use when the brief asks for a ",
+      "category": "prototype",
+      "tags": [
+        "social carousel",
+        "carousel post",
+        "instagram carousel",
+        "linkedin carousel",
+        "x thread cards",
+        "social series",
+        "三连发",
+        "轮播图"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/social-carousel"
+    },
+    {
+      "id": "social-media-dashboard",
+      "title": "Social Media Dashboard",
+      "summary": "Creator-facing social media analytics dashboard in a single HTML file. A platform switcher (X / LinkedIn / YouTube / Instagram), a row of KPI cards (followers, engagement rate, likes, reposts), a follower-growth chart, a \"top post this week\" preview, and a trending topics / top comments side panel. Use when the brief m",
+      "category": "prototype",
+      "tags": [
+        "social media dashboard",
+        "social analytics",
+        "creator dashboard",
+        "creator analytics",
+        "social media analytics",
+        "社媒后台",
+        "创作者后台",
+        "社交媒体仪表盘"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/social-media-dashboard"
+    },
+    {
+      "id": "social-media-matrix-tracker-template",
+      "title": "Social Media Matrix Tracker Template",
+      "summary": "社媒矩阵数据追踪面板模板（Social Media Matrix Tracker）。 Use when users ask for a cinematic, data-dense social media analytics dashboard with multi-platform metrics, interactive charts, hover insights, range compare, and dark/light theme switching in a single HTML artifact.",
+      "category": "template",
+      "tags": [
+        "social media matrix tracker",
+        "social media dashboard template",
+        "creator analytics template",
+        "live social dashboard",
+        "social analytics",
+        "content performance",
+        "TikTok analytics dashboard",
+        "Instagram analytics dashboard",
+        "YouTube analytics dashboard",
+        "multi-platform creator dashboard"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/social-media-matrix-tracker-template"
+    },
+    {
+      "id": "sprite-animation",
+      "title": "Sprite Animation",
+      "summary": "A pixel / sprite-style animated explainer slide — full-bleed cream stage, bold display year, animated pixel-art mascot (e.g. Hanafuda card, mushroom, or 8-bit console), kinetic Japanese display type, ticking timeline ribbon. Reads like a single frame of an educational motion video — looping CSS keyframes, no JS, ready ",
+      "category": "prototype",
+      "tags": [
+        "sprite animation",
+        "pixel art animation",
+        "8-bit explainer",
+        "retro animation",
+        "kinetic typography",
+        "history explainer",
+        "nintendo style",
+        "精灵图",
+        "像素动画",
+        "复古动画"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/sprite-animation"
+    },
+    {
+      "id": "team-okrs",
+      "title": "Team Okrs",
+      "summary": "OKR tracker page — quarter banner, three objectives with their key results as progress bars, owner avatars, status pills, and a \"this quarter at a glance\" sidebar. Use when the brief mentions \"OKRs\", \"key results\", \"objectives\", or \"目标\".",
+      "category": "prototype",
+      "tags": [
+        "okr",
+        "okrs",
+        "key results",
+        "objectives",
+        "目标"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/team-okrs"
+    },
+    {
+      "id": "trading-analysis-dashboard-template",
+      "title": "Trading Analysis Dashboard Template",
+      "summary": "Professional trading analysis dashboard template (single-file HTML) with light/dark theme switch, dense market panels, chart interactions, demo/live playback, and command palette behavior. Use when users ask for a Wall-Street-style analytics terminal, trading cockpit, or high-tech financial dashboard template with real",
+      "category": "template",
+      "tags": [
+        "trading analysis dashboard template",
+        "wall street dashboard template",
+        "financial terminal template",
+        "trading cockpit template",
+        "交易分析面板模板",
+        "华尔街风格看板",
+        "高科技金融 dashboard 模板"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/trading-analysis-dashboard-template"
+    },
+    {
+      "id": "tweaks",
+      "title": "Tweaks",
+      "summary": "Wrap any HTML artifact with a side panel of live, parameterized controls — accent color, type scale, density, motion, theme — that rewrite CSS custom properties in real time and persist to localStorage. Lets the user explore variants of a design without re-prompting the agent. Use when the brief asks for \"variants\", \"s",
+      "category": "prototype",
+      "tags": [
+        "tweaks",
+        "variants",
+        "tweak panel",
+        "live controls",
+        "adjust on the fly",
+        "实时调参",
+        "可调参数面板",
+        "side panel",
+        "knobs"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/tweaks"
+    },
+    {
+      "id": "video-shortform",
+      "title": "Video Shortform",
+      "summary": "Short-form video generation skill — 3-10 second clips for product reveals, motion teasers, ambient loops. Defaults to Seedance 2 but works the same with Kling 3 / 4, Veo 3 or Sora 2. Output is one MP4 saved to the project folder. When the workspace also ships an interactive-video / hyperframes skill, prefer composing s",
+      "category": "video",
+      "tags": [
+        "video",
+        "clip",
+        "shortform",
+        "reel",
+        "短视频",
+        "动效"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/video-shortform"
+    },
+    {
+      "id": "waitlist-page",
+      "title": "Waitlist Page",
+      "summary": "Minimal pre-launch landing with email capture, brand logo, and optional decorative layer. Reads DESIGN.md for colors, typography, and layout rules. Best for: product launches, beta signups, early access programs, indie projects.",
+      "category": "prototype",
+      "tags": [
+        "waitlist page",
+        "coming soon page",
+        "pre-launch landing page",
+        "email capture page",
+        "launch page"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/waitlist-page"
+    },
+    {
+      "id": "web-prototype-taste-brutalist",
+      "title": "Web Prototype Taste Brutalist",
+      "summary": "Swiss industrial-print web prototype. Newsprint canvas, monolithic black grotesque, viewport-bleeding numerals, hairline grid dividers, hazard-red accent, ASCII syntax decoration. Distilled from Leonxlnx/taste-skill `brutalist-skill` (Swiss Industrial Print mode).",
+      "category": "prototype",
+      "tags": [],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/web-prototype-taste-brutalist"
+    },
+    {
+      "id": "web-prototype-taste-editorial",
+      "title": "Web Prototype Taste Editorial",
+      "summary": "Editorial-minimalist web prototype. Warm monochrome canvas, serif display + grotesque body, 1px hairline borders, muted pastel chips, generous macro-whitespace, ambient micro-motion. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+      "category": "prototype",
+      "tags": [],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/web-prototype-taste-editorial"
+    },
+    {
+      "id": "web-prototype-taste-soft",
+      "title": "Web Prototype Taste Soft",
+      "summary": "Apple-tier soft web prototype. Silver/cream canvas, double-bezel cards, button-in-button CTAs, generous squircle radii, spring motion, ambient mesh. Distilled from Leonxlnx/taste-skill `soft-skill` + sections 4–8 of `taste-skill`.",
+      "category": "prototype",
+      "tags": [],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/web-prototype-taste-soft"
+    },
+    {
+      "id": "web-prototype",
+      "title": "Web Prototype",
+      "summary": "General-purpose desktop web prototype. Single self-contained HTML file built by copying the seed `assets/template.html` and pasting section layouts from `references/layouts.md`. Default for any landing / marketing / docs / SaaS page when no more specific skill matches.",
+      "category": "prototype",
+      "tags": [
+        "prototype",
+        "mockup",
+        "landing",
+        "single page",
+        "marketing page",
+        "homepage"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/web-prototype"
+    },
+    {
+      "id": "weekly-update",
+      "title": "Weekly Update",
+      "summary": "Single-file horizontal-swipe slide deck for a weekly team update — shipped, in flight, blocked, metrics, asks. 6–8 slides. Use when the brief mentions \"weekly update\", \"team update slides\", \"weekly status\", \"周报演示\".",
+      "category": "deck",
+      "tags": [
+        "weekly update",
+        "team update slides",
+        "weekly status",
+        "weekly review",
+        "周报演示"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/weekly-update"
+    },
+    {
+      "id": "wireframe-annotated",
+      "title": "Wireframe Annotated",
+      "summary": "An annotated / redline lo-fi wireframe — a desktop landing/marketing page drawn as flat greyboxes inside a browser chrome frame, overlaid with numbered annotation pins (①②③④⑤) in a single accent color, paired with a right-hand SPEC PANEL that lists each numbered pin with a short engineering / UX note. This is the \"wire",
+      "category": "prototype",
+      "tags": [
+        "annotated wireframe",
+        "redline",
+        "wireframe spec",
+        "lo-fi landing",
+        "wireframe",
+        "low fidelity",
+        "标注线框图",
+        "redline 标注"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/wireframe-annotated"
+    },
+    {
+      "id": "wireframe-greybox",
+      "title": "Wireframe Greybox",
+      "summary": "A crisp greybox / blueprint lo-fi wireframe — neutral grey blocks on a pale page, image placeholders drawn as a rectangle with a diagonal X, text shown as solid \"lorem bars\" of varying widths, sharp 1.5–2px borders, and a single monospace redline accent for annotations. Reads like a structural blueprint before any visu",
+      "category": "prototype",
+      "tags": [
+        "greybox",
+        "grey box wireframe",
+        "blueprint wireframe",
+        "lo-fi dashboard",
+        "low fidelity",
+        "wireframe",
+        "线框图",
+        "灰盒"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/wireframe-greybox"
+    },
+    {
+      "id": "wireframe-mobile-flow",
+      "title": "Wireframe Mobile Flow",
+      "summary": "A lo-fi multi-screen MOBILE flow wireframe — three or four phone frames laid out in a row on a board, showing a connected user flow (Onboarding → Home feed → Item detail → Confirm). Grey-box content inside each device, dashed connector arrows + numbered step labels between screens, and a couple of annotation callouts. ",
+      "category": "prototype",
+      "tags": [
+        "mobile wireframe",
+        "app flow",
+        "user flow",
+        "lo-fi mobile",
+        "wireframe",
+        "low fidelity",
+        "移动端线框",
+        "App 流程图"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/wireframe-mobile-flow"
+    },
+    {
+      "id": "wireframe-sketch",
+      "title": "Wireframe Sketch",
+      "summary": "A hand-drawn wireframe exploration — graph-paper background, marker / pencil tone, multiple tab labels for variants, sticky-note annotations, scribbled chart placeholders, hatched fills. Reads like a designer's whiteboard before any pixels are committed. Use when the brief asks for \"wireframe\", \"sketch wireframe\", \"han",
+      "category": "prototype",
+      "tags": [
+        "wireframe",
+        "sketch wireframe",
+        "lo-fi mockup",
+        "hand drawn",
+        "whiteboard sketch",
+        "low fidelity",
+        "手绘原型",
+        "草图",
+        "线框图"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/wireframe-sketch"
+    },
+    {
+      "id": "x-research",
+      "title": "X Research",
+      "summary": "X/Twitter public sentiment research for recent market, company, product, or community discourse. Use when the brief asks what people are saying on X, Twitter sentiment, CT sentiment, public opinion, expert posts, or social reaction around a stock, sector, company, product, or market event.",
+      "category": "prototype",
+      "tags": [
+        "x research",
+        "twitter sentiment",
+        "x/twitter",
+        "what people are saying on x",
+        "what twitter says",
+        "ct sentiment",
+        "public sentiment",
+        "social sentiment",
+        "推特情绪",
+        "X 上怎么说"
+      ],
+      "source": "https://github.com/nexu-io/open-design/tree/main/design-templates/x-research"
+    }
+  ]
+}

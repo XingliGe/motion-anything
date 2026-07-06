@@ -1,0 +1,4 @@
+/* button-press.css — motion-anything recipe · App UI micro-interaction */
+.ui-btn{border:0;background:#8b7cf6;color:#fff;padding:15px 30px;border-radius:15px;font:600 16px ui-sans-serif,system-ui;cursor:pointer;transition:transform .16s cubic-bezier(.34,1.56,.64,1)}
+.ui-btn.pressed{transform:scale(.9)}
+@media(prefers-reduced-motion:reduce){.ui-btn{transition:none}.ui-btn.pressed{transform:none}}

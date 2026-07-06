@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>remote lottie preview</title>
+  <style>
+    :root { color-scheme: light; }
+    html, body { margin:0; height:100%; }
+    body { display:grid; place-items:center; background:#f4f5f7; }
+    #l { width:86%; height:86%; max-width:220px; max-height:220px; }
+  </style>
+</head>
+<body>
+  <!-- Renders a Lottie JSON loaded AT RUNTIME from its source URL (?src=…).
+       The file is never stored/redistributed by us — it loads straight from the
+       original source. This is "use" (allowed + attributed), not "redistribution". -->
+  <div id="l"></div>
+  <script src="lottie.min.js"></script>
+  <script>
+    (function(){
+      var src = new URLSearchParams(location.search).get('src');
+      if(!src) return;
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        lottie.loadAnimation({ container: document.getElementById('l'), renderer: 'svg',
+          loop: true, autoplay: !reduce, path: src });
+      } catch(e){}
+    })();
+  </script>
+</body>
+</html>

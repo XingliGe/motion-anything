@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ripple · motion-anything recipe</title>
+  <style>
+    :root{ --accent:#8b7cf6; color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.ui-rip{position:relative;overflow:hidden;border:0;background:#1c1b19;color:#fff;padding:16px 34px;border-radius:15px;font:600 16px ui-sans-serif,system-ui;cursor:pointer}
+.ui-rip .rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ui-rip .6s ease-out forwards;pointer-events:none}
+@keyframes ui-rip{to{transform:scale(2.4);opacity:0}}
+@media(prefers-reduced-motion:reduce){.ui-rip .rp{display:none}}
+  </style>
+</head>
+<body>
+  <button class="ui-rip">Click</button>
+  <script>var b=document.querySelector('.ui-rip');
+function rip(x,y){var s=document.createElement('span');s.className='rp';var d=Math.max(b.clientWidth,b.clientHeight);s.style.width=s.style.height=d+'px';s.style.left=(x-d/2)+'px';s.style.top=(y-d/2)+'px';b.appendChild(s);setTimeout(function(){s.remove();},600);}
+b.addEventListener('click',function(e){var r=b.getBoundingClientRect();rip(e.clientX-r.left,e.clientY-r.top);});
+setInterval(function(){rip(b.clientWidth/2,b.clientHeight/2);},1500);</script>
+</body>
+</html>

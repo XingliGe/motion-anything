@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>button-press · motion-anything recipe</title>
+  <style>
+    :root{ --accent:#8b7cf6; color-scheme:light; }
+    html,body{ margin:0; height:100%; }
+    body{ display:grid; place-items:center; background:#f4f5f7; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.ui-btn{border:0;background:#8b7cf6;color:#fff;padding:15px 30px;border-radius:15px;font:600 16px ui-sans-serif,system-ui;cursor:pointer;transition:transform .16s cubic-bezier(.34,1.56,.64,1)}
+.ui-btn.pressed{transform:scale(.9)}
+@media(prefers-reduced-motion:reduce){.ui-btn{transition:none}.ui-btn.pressed{transform:none}}
+  </style>
+</head>
+<body>
+  <button class="ui-btn">Tap me</button>
+  <script>var b=document.querySelector('.ui-btn');
+function press(on){b.classList.toggle('pressed',on);}
+b.addEventListener('pointerdown',function(){press(true);});
+b.addEventListener('pointerup',function(){press(false);});
+b.addEventListener('pointerleave',function(){press(false);});
+setInterval(function(){press(true);setTimeout(function(){press(false);},150);},1500);</script>
+</body>
+</html>

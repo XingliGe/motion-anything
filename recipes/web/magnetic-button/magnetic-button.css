@@ -1,0 +1,24 @@
+/* magnetic-button.css — motion-anything recipe · category: hover-press
+ * Transform only (GPU-safe). Static under reduced-motion / touch. */
+
+.magnetic {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: #8b7cf6;
+  color: #fff;
+  font: 600 15px/1 ui-sans-serif, system-ui, sans-serif;
+  padding: 14px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  /* fast band; snappy spring-like settle back to rest */
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.magnetic:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic { transition: none; }
+}

@@ -1,0 +1,4 @@
+/* magnet-lines.css — ambient · a grid of lines that rotate toward the pointer. transform only. */
+.mag-lines{ display:grid; gap:10px; }
+.mag-lines .ml{ width:6px; height:26px; border-radius:3px; background:linear-gradient(#8b7cf6,#3a2f63); margin:auto; transition: transform .12s ease-out; }
+@media (prefers-reduced-motion: reduce){ .mag-lines .ml{ transition:none; transform:none !important } }

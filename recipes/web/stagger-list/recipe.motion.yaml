@@ -1,0 +1,58 @@
+spec_version: 1
+id: stagger-list
+name: Stagger List
+description: List items rise + fade in one after another on load — for short, above-the-fold lists.
+
+# legacy aliases (kept for CLI / back-compat)
+surfaces: [web]
+category: entrance
+tech: [css, js]
+
+# 五维分类（建库标准）
+canvas:  [web, app]
+target:  [list]
+intent:  entrance
+runtime: [css, js]
+export:  [skill, motion-json, html]
+
+dependencies: []
+tags: [entrance, list, stagger, sequence, menu, feed]
+
+intent_keywords:
+  - stagger list
+  - items appear one by one
+  - sequence in
+  - 列表逐项入场
+  - 依次出现
+best_for:
+  - Short above-the-fold lists, menus, or feature rows on first paint
+  - Nav items or a dropdown opening
+avoid_when:
+  - Long or off-screen lists — use scroll-reveal so items animate as you reach them
+  - Anything the user must scan instantly (don't gate reading on animation)
+restraint:
+  max_per_view: 2
+  notes: Keep the whole sequence under ~600ms total; step 60–90ms. Short lists only.
+
+motion:
+  duration_ms: 440
+  easing: ease-out
+  reduced_motion: none
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [stagger-list.css, stagger-list.js]
+    usage: |
+      Wrap items in a container with data-stagger (optional data-stagger-step="70"). Its direct
+      children rise + fade in, staggered by document order, on load.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

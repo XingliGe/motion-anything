@@ -1,0 +1,71 @@
+/* like-burst.css — motion-anything recipe · category: feedback-delight
+ * Timing/easing pulled from MOTION-SPEC.md. Transforms + opacity only (GPU-safe).
+ * Always ships a prefers-reduced-motion fallback. */
+
+.like-btn {
+  --lb-size: 56px;
+  --lb-on: #ff4d6d;
+  --lb-off: #c9ccd3;
+  width: var(--lb-size);
+  height: var(--lb-size);
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--lb-off);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  /* fast band (140–220ms), ease-out default for user-responsive UI */
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.like-btn:hover { transform: scale(1.06); }
+.like-btn:active { transform: scale(0.92); }
+.like-btn.is-liked { color: var(--lb-on); }
+
+/* Icon "pop" on toggle — a punchy scale that settles. */
+@keyframes lb-pop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(0.8); }
+  60%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.like-btn.lb-pop { animation: lb-pop 420ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Particle layer is appended to <body>, positioned at the burst origin. */
+.lb-particles {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+.lb-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px;
+  border-radius: 50%;
+  /* deliberate band (~600ms) for a celebratory moment */
+  animation: lb-fly 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes lb-fly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
+}
+
+/* Accessibility: honor reduced-motion. Keep only a minimal color/scale cue. */
+@media (prefers-reduced-motion: reduce) {
+  .like-btn,
+  .like-btn:hover,
+  .like-btn:active { transition: color 120ms ease; transform: none; }
+  .like-btn.lb-pop { animation: none; }
+  .lb-particles { display: none; }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>scroll-reveal · motion-anything recipe</title>
+  <link rel="stylesheet" href="scroll-reveal.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 100% at 50% 0%, #fff, #f4f5f7); color: #1a1d24; }
+    .hero { height: 60vh; display: grid; place-items: center; text-align: center; }
+    .hero .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8b909a; }
+    .hero h1 { font-size: 28px; margin: 10px 0 0; }
+    .hint { color: #9aa0aa; font-size: 13px; margin-top: 8px; }
+    .row { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+    .block { background: #fff; border: 1px solid #e7e4dd; border-radius: 16px; padding: 28px;
+      margin: 22px 0; box-shadow: 0 8px 24px rgba(40,34,20,.04); }
+    .block h2 { margin: 0 0 8px; font-size: 19px; }
+    .block p { margin: 0; color: #6b7280; line-height: 1.6; }
+    .tail { height: 30vh; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div>
+      <div class="badge">motion-anything · scroll-reveal</div>
+      <h1>Scroll down ↓</h1>
+      <div class="hint">Each block rises in as it enters the viewport.</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="block" data-reveal><h2>Calm pace</h2><p>Motion that gives a page rhythm without shouting. Transforms and opacity only — smooth at 60fps.</p></div>
+    <div class="block" data-reveal data-reveal-delay="60"><h2>Restrained</h2><p>A few elements at a time, staggered. Never delays content the reader needs immediately.</p></div>
+    <div class="block" data-reveal data-reveal-delay="120"><h2>Accessible</h2><p>Honors <code>prefers-reduced-motion</code>: everything simply appears, no travel.</p></div>
+  </div>
+
+  <div class="tail"></div>
+  <script src="scroll-reveal.js"></script>
+</body>
+</html>

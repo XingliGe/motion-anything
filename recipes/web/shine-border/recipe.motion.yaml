@@ -1,0 +1,58 @@
+spec_version: 1
+id: shine-border
+name: Shine Border
+description: A soft band of light travels continuously around an element's border — quiet, premium ambient motion.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, button, section]
+intent: ambient
+runtime: [css]
+export: [skill, motion-json, html]
+category: ambient
+tech: [css]
+dependencies: []
+tags: [border, shine, gradient, ambient, premium, glow]
+
+intent_keywords:
+  - shine border
+  - animated border
+  - glowing outline
+  - premium border
+  - 扫光描边
+  - 流光边框
+  - 高级感边框
+best_for:
+  - A single hero card / CTA you want to feel alive while it sits on screen
+  - Highlighting a "featured" or "recommended" tier without shouting
+avoid_when:
+  - Many elements at once (competing lights = noise)
+  - Content that must feel calm / serious
+  - Anything already animating strongly nearby
+restraint:
+  max_per_view: 1
+  notes: >
+    One shining element per view. Keep it slow and low-contrast — a hint of life, not a marquee.
+    Fully static under reduced-motion.
+
+motion:
+  duration_ms: 4000
+  easing: linear
+  reduced_motion: static      # border stops; a plain static border remains
+  gpu_safe: true              # animates a masked conic-gradient rotation; compositor-friendly
+
+entry: preview.html
+implementations:
+  - tech: css
+    files: [shine-border.css]
+    usage: |
+      Wrap content in an element with class "shine". A masked rotating conic-gradient paints a
+      moving light around a 1–2px border. Pure CSS; no JS.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://magicui.design/docs/components/shine-border"   # technique popularized by Magic UI
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

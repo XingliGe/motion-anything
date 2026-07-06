@@ -1,0 +1,25 @@
+spec_version: 1
+id: galaxy
+name: Galaxy
+description: A distinctive GPU shader background — faithful fragment shader in dependency-free WebGL.
+surfaces: [web, interaction]
+canvas: [web]
+target: [background, section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [shader, webgl, background, hero, ambient, galaxy]
+intent_keywords: [galaxy, shader background, webgl background, 着色器背景, 动态背景]
+best_for: ["A full-bleed hero/section background"]
+avoid_when: ["Behind dense text without a scrim", "Multiple GPU backgrounds at once"]
+restraint: { max_per_view: 1, notes: "One GPU background per view; scrim behind text. Static frame under reduced-motion." }
+motion: { duration_ms: 0, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [../_fx/shaderbg.js, galaxy.js], usage: "Copy _fx/shaderbg.js + galaxy.js; add a full-bleed <div class=\"galaxy\"></div>." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

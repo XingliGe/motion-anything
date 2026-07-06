@@ -1,0 +1,31 @@
+.content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 100;
+  border-radius: 8px;
+  background: transparent;
+  overflow: visible;
+}
+
+.content__img {
+  width: 190px;
+  aspect-ratio: 1.1;
+  border-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  will-change: transform, filter;
+}
+
+.content__img-inner {
+  background-position: 50% 50%;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-size: cover;
+  position: absolute;
+  top: calc(-1 * 20px / 2);
+  left: calc(-1 * 20px / 2);
+}

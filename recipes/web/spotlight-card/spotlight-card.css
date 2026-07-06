@@ -1,0 +1,39 @@
+/* spotlight-card.css — motion-anything recipe · category: hover-press
+ * A radial spotlight painted at the cursor (--mx/--my set by JS). Paint only — GPU-safe. */
+
+.spotlight {
+  position: relative;
+  --mx: 50%;
+  --my: 50%;
+  border-radius: 16px;
+  background: #14151c;
+  color: #e7e8ee;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 240ms ease-out;
+}
+/* the moving glow */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+  background: radial-gradient(
+    260px circle at var(--mx) var(--my),
+    rgba(139, 124, 246, 0.18),
+    transparent 60%
+  );
+}
+.spotlight:hover { border-color: rgba(139, 124, 246, 0.45); }
+.spotlight:hover::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight::before { display: none; }          /* no moving light */
+  .spotlight { transition: none; }
+}
+@media (hover: none) {
+  .spotlight::before { display: none; }           /* no cursor to follow */
+}

@@ -1,0 +1,25 @@
+spec_version: 1
+id: star-border
+name: Star Border
+description: A soft light rotates around a pill/button border — a gentle animated outline for one CTA.
+surfaces: [web, interaction]
+canvas: [web]
+target: [button, card]
+intent: ambient
+runtime: [css]
+export: [skill, motion-json, html]
+category: ambient
+tech: [css]
+dependencies: []
+tags: [border, star, gradient, ambient, cta, glow]
+intent_keywords: [star border, animated outline, gradient border button, 星光边框, 渐变描边]
+best_for: ["One primary CTA or a 'featured' pill you want to feel alive"]
+avoid_when: ["Many buttons at once", "Calm/serious surfaces", "When a quieter shine-border fits"]
+restraint: { max_per_view: 1, notes: "One per view. Slow and low-contrast. Static border under reduced-motion." }
+motion: { duration_ms: 4000, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css, files: [star-border.css], usage: "Add class 'star' to a button/pill. Tune --star-color / duration. Pure CSS." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/animations/star-border", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

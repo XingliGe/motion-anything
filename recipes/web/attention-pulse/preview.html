@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>attention-pulse · motion-anything recipe</title>
+  <link rel="stylesheet" href="attention-pulse.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; gap:30px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; }
+    .cta { border:0; background:#8b7cf6; color:#fff; padding:14px 26px; border-radius:14px; font-size:16px; font-weight:600; }
+    .bell { position:relative; width:44px; height:44px; border-radius:12px; background:#fff; border:1px solid #ececf1;
+      display:grid; place-items:center; font-size:20px; }
+    .dot { position:absolute; top:-3px; right:-3px; width:12px; height:12px; border-radius:50%; background:#e0683c; }
+  </style>
+</head>
+<body>
+  <div style="text-align:center">
+    <div class="badge">motion-anything · attention</div>
+  </div>
+  <button class="cta" data-pulse>Start free</button>
+  <div class="bell">🔔<span class="dot" data-pulse style="--pulse-color:#e0683c"></span></div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/* ripple.css — motion-anything recipe · App UI micro-interaction */
+.ui-rip{position:relative;overflow:hidden;border:0;background:#1c1b19;color:#fff;padding:16px 34px;border-radius:15px;font:600 16px ui-sans-serif,system-ui;cursor:pointer}
+.ui-rip .rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ui-rip .6s ease-out forwards;pointer-events:none}
+@keyframes ui-rip{to{transform:scale(2.4);opacity:0}}
+@media(prefers-reduced-motion:reduce){.ui-rip .rp{display:none}}

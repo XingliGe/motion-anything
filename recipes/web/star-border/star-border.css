@@ -1,0 +1,16 @@
+/* star-border.css — category: ambient · a light rotates around the border. Compositor-friendly; static under reduced-motion. */
+@property --star-a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.star {
+  --star-color: #8b7cf6; --star-w: 1.6px; --star-a: 0deg;
+  position: relative; border-radius: 999px; border: 0; cursor: pointer;
+  background: #14151c; color: #e7e8ee; font: 600 15px/1 ui-sans-serif, system-ui, sans-serif; padding: 13px 24px; isolation: isolate;
+}
+.star::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: var(--star-w);
+  background: conic-gradient(from var(--star-a), transparent 0 60%, var(--star-color) 78%, #fff 82%, var(--star-color) 86%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+  animation: star-spin 4s linear infinite;
+}
+@keyframes star-spin { to { --star-a: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .star::before { animation: none; background: none; border: var(--star-w) solid rgba(139,124,246,.45); } }

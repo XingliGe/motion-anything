@@ -1,0 +1,57 @@
+spec_version: 1
+id: ripple-press
+name: Ripple Press
+description: A ripple blooms from the exact point you tap or click — clear, honest press feedback.
+surfaces: [web, interaction, app]
+canvas: [web, app]
+target: [button]
+intent: feedback-delight
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: feedback-delight
+tech: [css, js]
+dependencies: []
+tags: [ripple, material, press, tap, feedback, button]
+
+intent_keywords:
+  - ripple
+  - material ripple
+  - tap feedback
+  - press feedback
+  - 点按涟漪
+  - 水波反馈
+best_for:
+  - Buttons and clickable tiles where a tap should feel acknowledged
+  - Touch-first / app-like UIs
+avoid_when:
+  - Destructive actions where you don't want to encourage repeated taps
+  - Elements that already have strong press states
+  - Text links (feels heavy)
+restraint:
+  max_per_view: 8
+  notes: >
+    Feedback, not decoration — one ripple per press, from the pointer point. Keep it fast (~600ms)
+    and low-opacity so it reads as acknowledgement. Under reduced-motion, no ripple (rely on :active).
+
+motion:
+  duration_ms: 600
+  easing: ease-out
+  reduced_motion: none        # no ripple; native :active state provides feedback
+  gpu_safe: true              # animates transform/opacity of a spawned span
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [ripple.css, ripple.js]
+    usage: |
+      Add class "ripple" to a button. On pointerdown, JS spawns a span at the press point that the
+      CSS scales + fades. Auto-cleans up. Element should be position:relative; overflow:hidden.
+
+license:
+  spdx: Apache-2.0
+  upstream: "https://m3.material.io/foundations/interaction/states/state-layers"
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

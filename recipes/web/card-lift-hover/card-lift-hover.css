@@ -1,0 +1,24 @@
+/* card-lift-hover.css — motion-anything recipe · category: hover-press
+ * Pure CSS. Transform + shadow only. Static under reduced-motion. */
+
+.lift-card {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(20, 18, 14, 0.06);
+  /* fast band, ease-out */
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.lift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(20, 18, 14, 0.13);
+}
+.lift-card:active {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lift-card,
+  .lift-card:hover,
+  .lift-card:active { transform: none; transition: box-shadow 120ms ease; }
+}

@@ -1,0 +1,55 @@
+spec_version: 1
+id: like-burst
+name: Like Burst
+description: A celebratory particle burst on tap, for likes / favorites / reactions.
+surfaces: [web, interaction]
+category: feedback-delight
+tech: [css, js]
+dependencies: []
+tags: [like, reaction, particles, celebration, micro-interaction, delight]
+
+# ── the three soul fields (what makes motion-anything different) ──────────
+intent_keywords:
+  - delightful like
+  - celebration burst
+  - reaction effect
+  - 点赞特效
+  - 惊喜感
+  - 好玩的反馈
+best_for:
+  - Like / favorite / upvote / reaction buttons
+  - Small, earned moments of positive feedback
+avoid_when:
+  - Destructive or neutral actions (delete, dismiss, close)
+  - Anywhere more than one celebratory burst could fire at once
+  - On page load / auto-play — this must be user-triggered
+restraint:
+  max_per_view: 1
+  notes: >
+    One celebratory moment per screen. Trigger on user intent only (tap), never on load.
+    Fires the particle burst on the "like" transition only, not on un-like.
+# ─────────────────────────────────────────────────────────────────────────
+
+motion:
+  duration_ms: 600
+  easing: ease-out            # cubic-bezier(0.16, 1, 0.3, 1)
+  reduced_motion: scale-only  # drop particles + travel, keep a small color/scale cue
+  gpu_safe: true              # transform + opacity only
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [like-burst.css, like-burst.js]
+    usage: |
+      Add the <button class="like-btn" data-like-burst aria-pressed="false">♥</button> markup,
+      link like-burst.css and like-burst.js. Auto-attaches to any [data-like-burst] element,
+      or call attachLikeBurst(el) manually.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

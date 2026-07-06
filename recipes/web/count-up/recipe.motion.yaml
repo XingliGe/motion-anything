@@ -1,0 +1,47 @@
+spec_version: 1
+id: count-up
+name: Count Up
+description: Animate a number counting up to its target when it scrolls into view.
+surfaces: [web]
+category: emphasis
+tech: [css, js]
+dependencies: []
+tags: [number, counter, stat, metric, emphasis]
+
+intent_keywords:
+  - count up
+  - animated number
+  - stat counter
+  - 数字滚动
+  - 强调数据
+best_for:
+  - Stat / metric blocks ("10,000+ users")
+  - Drawing the eye to a single impressive figure
+avoid_when:
+  - Precise values the user must read exactly while it animates
+  - Many counters firing at once (pick the one that matters)
+restraint:
+  max_per_view: 3
+  notes: Keep durations short (~base band). Animate once, on enter; don't loop.
+
+motion:
+  duration_ms: 900
+  easing: ease-out
+  reduced_motion: none      # show the final number instantly
+  gpu_safe: true
+
+entry: preview.html
+implementations:
+  - tech: css+js
+    files: [count-up.css, count-up.js]
+    usage: |
+      <span data-count="10000" data-count-suffix="+">0</span> — animates to 10,000+ on enter.
+
+license:
+  spdx: Apache-2.0
+  upstream: null
+  attribution_required: false
+author:
+  name: nexu.io
+  url: "https://github.com/nexu-io"
+version: 0.1.0

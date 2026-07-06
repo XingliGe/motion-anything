@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>motion-anything · possibility gallery</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1e222b;
+      --line: #2a2f3a;
+      --text: #e7e9ee;
+      --muted: #9aa0ac;
+      --accent: #ff4d6d;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 100% at 50% -10%, #1a1d26 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      max-width: 1080px; margin: 0 auto; padding: 56px 24px 24px;
+    }
+    .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    h1 { font-size: 34px; margin: 10px 0 8px; letter-spacing: -0.02em; }
+    h1 .spark { color: var(--accent); }
+    .lede { color: var(--muted); font-size: 16px; max-width: 620px; line-height: 1.5; margin: 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .chip {
+      border: 1px solid var(--line); background: var(--panel); color: var(--muted);
+      padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer;
+      transition: color 160ms var(--ease), border-color 160ms var(--ease), background 160ms var(--ease);
+    }
+    .chip:hover { color: var(--text); }
+    .chip.active { color: #fff; background: var(--panel-2); border-color: #3a4150; }
+
+    main { max-width: 1080px; margin: 0 auto; padding: 8px 24px 80px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .card:hover { transform: translateY(-3px); border-color: #3a4150; }
+    .frame { position: relative; aspect-ratio: 16 / 10; background: #fff; }
+    .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .frame .tag {
+      position: absolute; top: 10px; left: 10px; z-index: 2;
+      background: rgba(15,17,21,.78); color: #fff; backdrop-filter: blur(6px);
+      font-size: 11px; letter-spacing: .04em; padding: 4px 9px; border-radius: 999px;
+    }
+    .body { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .name { font-size: 17px; font-weight: 600; margin: 0; }
+    .surf { font-size: 11px; color: var(--muted); }
+    .desc { font-size: 13.5px; color: var(--muted); line-height: 1.5; margin: 0; }
+    .guides { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; margin: 2px 0 4px; }
+    .guides .g { display: flex; gap: 7px; }
+    .g .lbl { width: 64px; flex: none; color: #6f7681; }
+    .g.use .lbl { color: #5fd0a0; }
+    .g.avoid .lbl { color: #e08a8a; }
+    .actions { display: flex; gap: 8px; margin-top: 4px; }
+    button.act, a.act {
+      flex: 1; text-align: center; text-decoration: none;
+      border: 1px solid var(--line); background: var(--panel-2); color: var(--text);
+      padding: 9px 10px; border-radius: 10px; font-size: 13px; cursor: pointer;
+      transition: transform 140ms var(--ease), border-color 140ms var(--ease);
+    }
+    button.act:hover, a.act:hover { border-color: #495162; }
+    button.act:active { transform: scale(0.97); }
+    .act.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .cmd { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--muted); }
+    .toast {
+      position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+      background: #fff; color: #15171c; padding: 10px 16px; border-radius: 10px; font-size: 13px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35); opacity: 0; pointer-events: none;
+      transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    footer { max-width: 1080px; margin: 0 auto; padding: 0 24px 60px; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--text); }
+    .empty { color: var(--muted); padding: 40px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">motion-anything</div>
+    <h1>Possibility <span class="spark">✦</span> Gallery</h1>
+    <p class="lede">
+      See what AI can animate. Every tile is a live, curated recipe — reuse it in one click,
+      or export it as a portable skill for your own agent. Curated, not dumped: restraint is the point.
+    </p>
+    <div class="filters" id="filters"></div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>No recipes match this filter yet.</p>
+  </main>
+
+  <footer>
+    Part of the <a href="https://github.com/nexu-io">nexu.io</a> / Open Design family ·
+    Apache-2.0 · the standard lives in <a href="../MOTION-SPEC.md">MOTION-SPEC.md</a>
+  </footer>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script>
+    // v0: recipe list is inline. (Roadmap: generate this from recipes/**/recipe.motion.yaml.)
+    const RECIPES = [
+      {
+        id: 'like-burst',
+        name: 'Like Burst',
+        category: 'feedback-delight',
+        surfaces: ['web', 'interaction'],
+        desc: 'A celebratory particle burst on tap, for likes / favorites / reactions.',
+        bestFor: 'Like / favorite / reaction buttons',
+        avoidWhen: 'Destructive actions, or >1 burst on screen',
+        preview: '../recipes/web/like-burst/preview.html',
+        code: '../recipes/web/like-burst/',
+      },
+    ];
+
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const filtersEl = document.getElementById('filters');
+    const toast = document.getElementById('toast');
+
+    const categories = ['all', ...new Set(RECIPES.map((r) => r.category))];
+    let active = 'all';
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function copyCmd(id) {
+      const cmd = 'npx motion-anything add ' + id;
+      navigator.clipboard?.writeText(cmd).then(
+        () => showToast('Copied:  ' + cmd),
+        () => showToast(cmd)
+      );
+    }
+    window.copyCmd = copyCmd;
+
+    function render() {
+      const list = RECIPES.filter((r) => active === 'all' || r.category === active);
+      grid.innerHTML = list
+        .map(
+          (r) => `
+        <article class="card">
+          <div class="frame">
+            <span class="tag">${r.category}</span>
+            <iframe loading="lazy" src="${r.preview}" title="${r.name} preview"></iframe>
+          </div>
+          <div class="body">
+            <div class="title-row">
+              <h3 class="name">${r.name}</h3>
+              <span class="surf">${r.surfaces.join(' · ')}</span>
+            </div>
+            <p class="desc">${r.desc}</p>
+            <div class="guides">
+              <div class="g use"><span class="lbl">Use for</span><span>${r.bestFor}</span></div>
+              <div class="g avoid"><span class="lbl">Avoid</span><span>${r.avoidWhen}</span></div>
+            </div>
+            <div class="actions">
+              <button class="act primary" onclick="copyCmd('${r.id}')">Export as skill</button>
+              <a class="act" href="${r.code}" target="_blank" rel="noopener">View code</a>
+            </div>
+            <div class="cmd">npx motion-anything add ${r.id}</div>
+          </div>
+        </article>`
+        )
+        .join('');
+      empty.hidden = list.length > 0;
+    }
+
+    filtersEl.innerHTML = categories
+      .map(
+        (c) =>
+          `<button class="chip ${c === 'all' ? 'active' : ''}" data-cat="${c}">${c}</button>`
+      )
+      .join('');
+    filtersEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.chip');
+      if (!btn) return;
+      active = btn.dataset.cat;
+      filtersEl.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c === btn));
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

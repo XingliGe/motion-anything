@@ -1,0 +1,4 @@
+/* fade-content.css — scroll-reveal · fade + gentle rise on view (once). opacity/transform only. */
+.fade-content { opacity: 0; transform: translateY(16px) scale(.985); transition: opacity .6s ease-out, transform .6s ease-out; transition-delay: var(--fc-delay, 0ms); will-change: opacity, transform; }
+.fade-content.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce){ .fade-content{ opacity:1; transform:none; transition:none } }

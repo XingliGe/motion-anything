@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fade-in-up · motion-anything recipe</title>
+  <link rel="stylesheet" href="fade-in-up.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; text-align:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; }
+    h1 { font-size:34px; margin:12px 0 10px; letter-spacing:-.02em; }
+    p { color:#6b7280; margin:0 auto 22px; max-width:380px; }
+    .btn { border:0; background:#8b7cf6; color:#fff; padding:12px 20px; border-radius:12px; font-size:15px; font-weight:600; }
+    .replay { margin-top:30px; font-size:13px; color:#9aa0aa; background:none; border:0; cursor:pointer; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="badge" data-fade>motion-anything · entrance</div>
+    <h1 data-fade data-fade-delay="80">It just feels right</h1>
+    <p data-fade data-fade-delay="160">A clean rise + fade as the page comes in — staggered, restrained, accessible.</p>
+    <button class="btn" data-fade data-fade-delay="240">Get started</button>
+    <div><button class="replay" onclick="location.reload()">↻ replay</button></div>
+  </div>
+  <script src="fade-in-up.js"></script>
+</body>
+</html>

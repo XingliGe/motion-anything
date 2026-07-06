@@ -1,0 +1,25 @@
+spec_version: 1
+id: decrypted-text
+name: Decrypted Text
+description: Scrambled characters resolve into the real text on hover or view — a techy decode.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css, js]
+dependencies: []
+tags: [decrypt, scramble, decode, techy, hover]
+intent_keywords: [decrypted text, decode on hover, 解密文字, 悬停解码]
+best_for: ["A short techy label that resolves on hover/view"]
+avoid_when: ["Body copy; calm/luxury tones"]
+restraint: { max_per_view: 2, notes: "Short lines. The resolved text is the real content; instant under reduced-motion." }
+motion: { duration_ms: 700, easing: linear, reduced_motion: instant, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css+js, files: [decrypted-text.js], usage: "Add class 'decrypt' + data-text; resolves on hover (or call decryptEl). Reduced-motion shows final text." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/text-animations/decrypted-text", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

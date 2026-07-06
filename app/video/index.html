@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>motion-anything · 发布视频（画布合成器）</title>
+<link rel="icon" href="../brand/logo.svg">
+<style>
+  /* motion-anything light/brand theme (the editor chrome is light; the video canvas stays dark) */
+  :root { --accent:#6d54e6; --ink:#1c1d26; --muted:#6b7185; --panel:#ffffff; --panel2:#f3f4f9; --line:#e4e6ef; --bg:#eceef5; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; }
+  body { margin:0; font-family:Inter,system-ui,-apple-system,"PingFang SC",sans-serif; background:var(--bg); color:var(--ink); }
+  /* 3-region shell: top (title/gen) · main (canvas + side panel) · bottom (scenes/ref/timeline) */
+  .vshell { display:flex; flex-direction:column; min-height:100vh; }
+  .vmain { display:grid; grid-template-columns:1fr 312px; gap:14px; padding:0 16px; align-items:start; }
+  .stagecol { min-width:0; display:flex; flex-direction:column; gap:10px; position:sticky; top:14px; }
+  .sidecol { display:flex; flex-direction:column; gap:12px; position:sticky; top:14px; max-height:calc(100vh - 28px); overflow:auto; }
+  .vbottom { padding:14px 16px 40px; }
+  .wrap { padding:14px 0 0; }
+  .top { display:flex; align-items:center; gap:10px; padding:0 16px 12px; }
+  .badge { font-size:11px; color:var(--accent); background:rgba(109,84,230,.12); border:1px solid rgba(109,84,230,.35); border-radius:999px; padding:3px 10px; white-space:nowrap; }
+  h1 { font-size:18px; margin:0; font-weight:650; }
+  .sub { color:var(--muted); font-size:13px; margin:2px 0 0; }
+  .tools { display:flex; align-items:center; gap:8px; }
+  .tool { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:6px 11px; font-size:12.5px; cursor:pointer; }
+  .tool.sel { border-color:var(--accent); background:rgba(109,84,230,.12); color:var(--accent); }
+  .toolhint { font-size:12px; color:var(--muted); }
+  .stage { background:#0b0b12; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 6px 24px rgba(20,22,40,.10); }
+  canvas#stage { display:block; cursor:default; touch-action:none; }
+  canvas#stage.drawing { cursor:crosshair; }
+  body.picking canvas#stage { cursor:cell; }
+  #vCode { background:#0d0d16; border:1px solid var(--line); border-radius:12px; padding:14px; color:#c9cde0; font:12px/1.6 ui-monospace,Menlo,monospace; max-height:520px; overflow:auto; white-space:pre-wrap; }
+  .bar { display:flex; align-items:center; gap:12px; margin-top:14px; }
+  button.play { background:var(--accent); color:#fff; border:none; border-radius:10px; width:44px; height:40px; font-size:16px; cursor:pointer; }
+  button.play:active { transform:translateY(1px); }
+  input[type=range].scrub { flex:1; accent-color:var(--accent); min-width:0; }
+  .time { font-variant-numeric:tabular-nums; color:var(--muted); font-size:13px; width:96px; text-align:right; }
+  button.export { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:10px; height:40px; padding:0 14px; font-size:13px; cursor:pointer; white-space:nowrap; }
+  button.export:hover { border-color:var(--accent); }
+  button.export:disabled { opacity:.5; cursor:default; }
+  .exportbar { display:flex; align-items:center; gap:10px; margin-top:10px; }
+  .exportbar .track { flex:1; height:6px; background:var(--panel); border-radius:999px; overflow:hidden; }
+  .exportbar .fill { height:100%; width:0; background:var(--accent); transition:width .1s linear; }
+  .exporttxt { font-size:12px; color:var(--muted); width:170px; text-align:right; }
+
+  .genbar, .chatbar { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .chatbar { margin-top:14px; margin-bottom:0; }
+  .genbar input[type=text], .chatbar input[type=text] { flex:1; min-width:200px; background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:9px; padding:9px 12px; font-size:13px; }
+  .genbar input[type=text]:focus, .chatbar input[type=text]:focus { outline:none; border-color:var(--accent); }
+  .filmbar { display:flex; align-items:center; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .flabel { font-size:12px; color:var(--muted); }
+  .scenes { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .scene { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:6px 10px; font-size:12.5px; cursor:pointer; }
+  .scene.sel { border-color:var(--accent); background:rgba(109,84,230,.16); }
+  .scene span[data-delscene] { margin-left:6px; color:var(--muted); }
+  .scene span[data-delscene]:hover { color:#ff6b6b; }
+  .transel { background:var(--panel2); border:1px solid var(--line); color:var(--muted); border-radius:7px; font-size:11px; padding:3px 4px; }
+  .fbtn { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:6px 11px; font-size:12.5px; cursor:pointer; }
+  .fbtn:hover { border-color:var(--accent); }
+  .fbtn.prev { color:var(--accent); }
+  .fbtn.on { border-color:var(--accent); background:rgba(109,84,230,.18); color:#fff; }
+  .fhint { font-size:12px; color:var(--muted); }
+  .sdur { display:inline-flex; align-items:center; gap:5px; }
+  .sdur input { width:54px; background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 7px; font-size:12.5px; }
+  .sdur input:focus { outline:none; border-color:var(--accent); }
+  .bgstate { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .bgstate .bgname { font-size:12.5px; color:var(--accent); max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bgchk { display:inline-flex; align-items:center; gap:8px; padding:5px 9px; background:var(--panel2); border:1px solid var(--line); border-radius:8px; }
+  .bgchk label { display:inline-flex; align-items:center; gap:3px; font-size:12px; color:var(--ink); cursor:pointer; }
+  .bgchk input { accent-color:var(--accent); }
+  .bgop { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
+  .bgop input { width:84px; accent-color:var(--accent); }
+  .bgdel { background:none; border:none; color:var(--muted); cursor:pointer; font-size:14px; }
+  .bgdel:hover { color:#ff6b6b; }
+  /* W7: reusable motion styles */
+  .styrow { display:flex; gap:6px; align-items:center; margin-bottom:7px; flex-wrap:wrap; }
+  .styrow input[type=text] { flex:1; min-width:90px; background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 7px; font-size:12.5px; }
+  .styrow select { flex:1; min-width:90px; background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 7px; font-size:12.5px; }
+  .styrow button { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 9px; font-size:12px; cursor:pointer; white-space:nowrap; }
+  .styrow button:hover { border-color:var(--accent); }
+  .styrow button.del { color:var(--muted); }
+  .styrow button.del:hover { color:#ff6b6b; border-color:#ff6b6b; }
+  .styrow button.prim { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .styrow button.prim:hover { filter:brightness(1.05); }
+  .tplgrid { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:9px; }
+  .tplcat { width:100%; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:5px 0 1px; }
+  .tplchip { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 9px; font-size:12px; cursor:pointer; }
+  .tplchip:hover { border-color:var(--accent); }
+  .tplchip.on { border-color:var(--accent); background:rgba(109,84,230,.16); color:var(--accent); font-weight:600; }
+  /* action buttons — visually separated from the selectable chips above */
+  .tplactions { margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  .tplact-row { display:flex; gap:8px; margin-bottom:9px; }
+  .btn-apply { flex:1; background:var(--accent); color:#fff; border:1px solid var(--accent); border-radius:9px; padding:8px 12px; font-size:13px; font-weight:600; cursor:pointer; }
+  .btn-apply:hover { filter:brightness(1.06); }
+  .btn-clear { background:transparent; color:var(--muted); border:1px solid var(--line); border-radius:9px; padding:8px 14px; font-size:12.5px; cursor:pointer; }
+  .btn-clear:hover { color:var(--ink); border-color:var(--accent); }
+  /* the motion-library button — the standout, full-width with a gradient + glow */
+  .btn-lib { display:flex; align-items:center; gap:10px; width:100%; padding:11px 13px; border:0; border-radius:11px; cursor:pointer;
+    color:#fff; background:linear-gradient(135deg,#6d54e6,#9070f2); box-shadow:0 6px 18px rgba(109,84,230,.36); text-align:left; }
+  .btn-lib:hover { filter:brightness(1.06); box-shadow:0 9px 24px rgba(109,84,230,.48); transform:translateY(-1px); }
+  .btn-lib:active { transform:translateY(0); }
+  .btn-lib-ic { font-size:16px; line-height:1; }
+  .btn-lib-tx { display:flex; flex-direction:column; flex:1; font-size:13.5px; font-weight:700; }
+  .btn-lib-sub { font-size:11px; font-weight:500; opacity:.85; margin-top:1px; }
+  .btn-lib-arrow { font-size:18px; opacity:.8; }
+  .editor { display:grid; grid-template-columns:280px 1fr; gap:14px; margin-top:18px; }
+  .pane { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; }
+  .pane h2 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px; }
+  .addrow { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .addrow button { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:6px 9px; font-size:12px; cursor:pointer; }
+  .addrow button:hover { border-color:var(--accent); }
+  .llist { display:flex; flex-direction:column; gap:4px; }
+  .litem { display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:8px; background:var(--panel2); border:1px solid transparent; cursor:pointer; font-size:13px; }
+  .litem.sel { border-color:var(--accent); background:rgba(109,84,230,.12); }
+  .litem .grip { color:var(--muted); cursor:grab; font-size:11px; letter-spacing:-2px; user-select:none; }
+  .litem.dragging { opacity:.5; }
+  .litem.drop-before { box-shadow:inset 0 2px 0 var(--accent); }
+  .litem.drop-after { box-shadow:inset 0 -2px 0 var(--accent); }
+  .litem .nm { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .litem .ty { font-size:10px; color:var(--muted); }
+  .litem .del { color:var(--muted); border:none; background:none; cursor:pointer; font-size:14px; }
+  .litem .del:hover { color:#ff6b6b; }
+  .empty { color:var(--muted); font-size:12.5px; padding:8px 2px; }
+
+  .field { display:grid; grid-template-columns:64px 1fr; align-items:center; gap:8px; margin-bottom:8px; }
+  .field > label { font-size:12px; color:var(--muted); }
+  .field input[type=text], .field input[type=number], .field select { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:5px 7px; font-size:12.5px; width:100%; }
+  .field input[type=color] { width:36px; height:26px; padding:0; border:1px solid var(--line); border-radius:6px; background:none; }
+  .kfsec { margin-top:12px; border-top:1px solid var(--line); padding-top:10px; }
+  /* collapsible inspector sections */
+  .isec { border-top:1px solid var(--line); }
+  .isec:first-child { border-top:0; }
+  .ishead { display:flex; align-items:center; gap:6px; width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:10px 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:600; }
+  .ishead:hover { color:var(--ink); }
+  .ischev { font-size:10px; width:12px; color:var(--accent); }
+  .isbody { padding-bottom:8px; }
+  .isbody[hidden] { display:none; }
+  .kfhint { font-size:11.5px; color:var(--muted); margin:0 0 9px; }
+  .kfrow { display:grid; grid-template-columns:58px 1fr 30px 46px 26px; align-items:center; gap:6px; margin-bottom:7px; }
+  .kfrow > label { font-size:12px; color:var(--muted); }
+  .kfrow input[type=number] { background:var(--panel2); border:1px solid var(--line); color:var(--ink); border-radius:7px; padding:4px 6px; font-size:12.5px; width:100%; }
+  .kfrow .dot { background:var(--panel2); border:1px solid var(--line); color:var(--accent); border-radius:7px; height:26px; cursor:pointer; font-size:12px; }
+  .kfrow .dot:hover { border-color:var(--accent); }
+  .kfrow .cnt { font-size:11px; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums; }
+  .kfrow .clr { background:none; border:none; color:var(--muted); cursor:pointer; font-size:13px; }
+  .kfrow .clr:hover { color:#ff6b6b; }
+  .tlpane { margin-top:14px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:10px 12px; }
+  .tlhead { display:flex; gap:10px; align-items:baseline; margin-bottom:8px; flex-wrap:wrap; }
+  .tltitle { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .tlhint { font-size:11.5px; color:var(--muted); }
+  .tlwrap { position:relative; }
+  .tlruler { position:relative; height:18px; margin-left:120px; border-bottom:1px solid var(--line); }
+  .tltick { position:absolute; top:0; font-size:10px; color:var(--muted); transform:translateX(-50%); font-variant-numeric:tabular-nums; }
+  .tlrows { position:relative; }
+  .tlrow { display:grid; grid-template-columns:120px 1fr; align-items:center; height:30px; }
+  .tlrow.sel .tlname { color:var(--accent); font-weight:600; }
+  .tlname { font-size:12px; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; cursor:pointer; padding-right:8px; }
+  .tltrack { position:relative; height:100%; border-top:1px solid rgba(0,0,0,.06); cursor:pointer; }
+  .tlspan { position:absolute; top:50%; transform:translateY(-50%); height:8px; background:rgba(109,84,230,.22); border-radius:4px; }
+  .tldot { position:absolute; top:50%; width:9px; height:9px; border-radius:50%; background:var(--accent); border:1.5px solid #fff; transform:translate(-50%,-50%); cursor:ew-resize; box-shadow:0 1px 2px rgba(0,0,0,.4); }
+  .tlempty { font-size:12px; color:var(--muted); padding:10px 0 4px 120px; }
+  .tlph { position:absolute; top:0; bottom:0; width:2px; background:var(--accent); left:120px; pointer-events:none; opacity:.9; }
+  .note { color:var(--muted); font-size:12px; margin-top:14px; line-height:1.7; }
+  /* embedded inside the main app workbench: the workbench provides title + chat, so hide ours */
+  body.embed .top, body.embed .genbar, body.embed .chatbar, body.embed .note, body.embed .wrap { display:none; }
+  body.embed .vmain { padding-top:14px; }
+  .note code { color:var(--ink); background:var(--panel); padding:1px 5px; border-radius:5px; }
+</style>
+</head>
+<body>
+<div class="vshell">
+  <div class="wrap">
+    <div class="top">
+      <span class="badge" data-vi="badge">视频引擎 · 画布合成器</span>
+      <div>
+        <h1 data-vi="title">发布视频 — 画布合成器</h1>
+        <p class="sub" data-vi="sub">加图层 · 画布拖动自动打关键帧 · 浏览器内导出 mp4（无水印）。</p>
+      </div>
+    </div>
+    <div class="genbar">
+      <input type="text" id="genPrompt" data-vi-ph="gen.ph" placeholder="一句话：做个关于「新产品 X」的 launch 视频…">
+      <input type="file" id="genDoc" accept=".txt,.md,.markdown,text/plain" hidden>
+      <button class="fbtn" id="genDocBtn" data-vi="gen.doc">⤓ 产品文档</button>
+      <button class="fbtn prev" id="genBtn" data-vi="gen.run">✦ 生成一版</button>
+      <span class="fhint" id="genInfo" data-vi="gen.info">写一句话 + 给一份产品文档 → 生成一版可编辑的 launch 视频（在你机器跑 claude）。</span>
+    </div>
+  </div>
+
+  <!-- MAIN: canvas (left) + element panel (right), both visible at once -->
+  <div class="vmain">
+    <div class="stagecol">
+      <div class="tools">
+        <button class="tool sel" id="toolSelect" data-tool="select" data-vi="tool.select">↖ 选择</button>
+        <button class="tool" id="toolPath" data-tool="path" data-vi="tool.path">✎ 轨迹</button>
+        <span class="toolhint" id="toolhint" data-vi="tool.hintSelect">在画布上点选 / 拖动元素。</span>
+      </div>
+      <div class="stage"><canvas id="stage"></canvas></div>
+      <pre id="vCode" hidden></pre>
+      <div class="bar">
+        <button class="play" id="play" aria-label="play">▶</button>
+        <input type="range" class="scrub" id="scrub" min="0" max="1000" value="0">
+        <span class="time" id="time">0.00 / 0.00s</span>
+        <button class="export" id="export" data-vi="play.export">⤓ 导出 mp4</button>
+      </div>
+      <div class="exportbar" id="exportbar" hidden>
+        <div class="track"><div class="fill" id="exportfill"></div></div>
+        <span class="exporttxt" id="exporttxt" data-vi="export.ready">准备导出…</span>
+      </div>
+    </div>
+
+    <aside class="sidecol">
+      <div class="pane">
+        <h2 data-vi="layers">图层</h2>
+        <div class="addrow">
+          <button data-add="text" data-vi="add.text">＋ 文字</button>
+          <button data-add="rect" data-vi="add.rect">＋ 色块</button>
+          <button data-add="ellipse" data-vi="add.ellipse">＋ 圆</button>
+          <button data-add="image" data-vi="add.image">＋ 图片</button>
+          <button data-add="video" data-vi="add.video">＋ 视频</button>
+        </div>
+        <input type="file" id="imgfile" accept="image/*,.jpg,.jpeg,.png,.svg,.webp,.gif,.avif,image/svg+xml" hidden>
+        <input type="file" id="vidfile" accept="video/*,.mp4,.webm,.mov" hidden>
+        <div class="llist" id="llist"></div>
+      </div>
+      <div class="pane" id="inspector">
+        <h2 data-vi="props">属性</h2>
+        <div class="empty" id="inspEmpty" data-vi="inspEmpty">点画布上的元素、或上面的图层来选中它。</div>
+        <div id="inspBody" hidden></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- BOTTOM: scenes · reference · timeline -->
+  <div class="vbottom">
+    <div class="filmbar">
+      <span class="flabel" data-vi="film.scenes">镜头</span>
+      <div class="scenes" id="scenes"></div>
+      <button class="fbtn" id="addScene" data-vi="film.add">＋ 加镜头</button>
+      <button class="fbtn prev" id="previewFilm" data-vi="film.preview">▶ 预览整片</button>
+      <span class="sdur"><span class="flabel" data-vi="film.sceneDur">本镜头时长</span><input type="number" id="sceneDur" min="0.2" step="0.1" value="3"><span class="flabel">s</span></span>
+      <span class="fhint" id="filmhint"></span>
+    </div>
+
+    <div class="filmbar bgbar">
+      <span class="flabel" data-vi="bg.title">整片视频背景</span>
+      <input type="file" id="bgfile" accept="video/*" hidden>
+      <button class="fbtn" id="bgpick" data-vi="bg.upload">⤓ 上传视频背景</button>
+      <div class="bgstate" id="bgState"></div>
+      <span class="fhint" id="bgHint" data-vi="bg.hint">上传一个视频当整片背景，再勾选它出现在哪几个镜头里。</span>
+    </div>
+
+    <div class="filmbar refbar">
+      <span class="flabel" data-vi="ref.title">参考复刻</span>
+      <input type="file" id="reffile" accept="video/*,image/gif" hidden>
+      <button class="fbtn" id="refpick" data-vi="ref.upload">⤓ 上传视频 / GIF</button>
+      <button class="fbtn" id="refbg" hidden data-vi="ref.bg">导入首帧为背景</button>
+      <button class="fbtn prev" id="refai" hidden data-vi="ref.ai">✦ 用 AI 复刻动效</button>
+      <span class="fhint" id="refinfo" data-vi="ref.info">上传一段参考，AI 帮你复刻成可编辑草稿（AI 复刻在你自己机器上跑 claude）。</span>
+    </div>
+
+    <div class="tlpane">
+      <div class="tlhead"><span class="tltitle" data-vi="tl.title">时间轴</span><span class="tlhint" data-vi="tl.hint">每个图层一行；点圆点跳到那一刻、拖圆点改它的时间；点轨道空白处定位时间。</span></div>
+      <div class="tlwrap" id="tlwrap">
+        <div class="tlruler" id="tlruler"></div>
+        <div class="tlrows" id="tlrows"></div>
+        <div class="tlph" id="tlph"></div>
+      </div>
+    </div>
+
+    <div class="chatbar">
+      <span class="flabel" data-vi="chat.label">对话编辑</span>
+      <input type="text" id="vchat" data-vi-ph="chat.ph" placeholder="对这个视频说改动，例如：标题改成「全新发布」、整体节奏快一点、加一个收尾镜头…">
+      <button class="fbtn prev" id="vchatSend" data-vi="chat.send">发送</button>
+      <span class="fhint" id="vchatInfo"></span>
+    </div>
+
+    <p class="note" data-vi-html="note">
+      <b>怎么玩</b>：① ▶ 播放 / 拖时间条预览；② 右上「＋」加图层，点图层或点画布元素选中；
+      ③ 选中后在画布上<b>拖动它</b>会在当前时间点<b>自动打关键帧</b>；④ 右侧属性可手填、◆ 打点、× 清；⑤「导出 mp4」。
+    </p>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script>
+  /* ---------- i18n (follows the main app's language via localStorage 'ma:lang') ---------- */
+  var VI18N = {
+    en: {
+      'badge':'Video engine · canvas compositor','title':'Launch video — canvas compositor','sub':'Add layers · drag on canvas to auto-keyframe · export mp4 in-browser (no watermark).',
+      'gen.ph':'One line: a launch video about “Product X”…','gen.doc':'⤓ Product doc','gen.run':'✦ Generate','gen.info':'Write a line + add a product doc → generate an editable launch video (runs claude on your machine).',
+      'tool.select':'↖ Select','tool.path':'✎ Path','tool.hintSelect':'Click / drag elements on the canvas.','tool.hintPath':'Drag a line/curve on the canvas — release, then on the right under “Motion path” pick “Use the drawing”.','tool.pathDone':'✅ Path drawn ({n} pts) — select an element, then under “Motion path” pick a shape.','tool.pickEl':'Click an element on the canvas to make it the target of this change.','tool.drawFirst':'Click “✎ Path” and draw one first.',
+      'play.export':'⤓ Export mp4','export.ready':'Preparing export…','export.encoding':'Encoding… {p}%','export.done':'✅ Exported launch.mp4 ({s}s)','export.fail':'Export failed: {e}','export.nocodec':'This browser can’t encode (WebCodecs needed).',
+      'layers':'Layers','add.text':'＋ Text','add.rect':'＋ Block','add.ellipse':'＋ Circle','add.image':'＋ Image','add.video':'＋ Video','newText':'New text',
+      'props':'Properties','inspEmpty':'Click an element on the canvas, or a layer above, to select it.',
+      'f.text':'Text','f.size':'Size','f.weight':'Weight','f.font':'Font','f.align':'Align','f.color':'Color','f.w':'Width','f.h':'Height','f.radius':'Radius','f.fill':'Fill','f.diameter':'Diameter',
+      'font.sans':'Sans','font.serif':'Serif','font.mono':'Mono','font.cjk':'CJK','align.center':'Center','align.left':'Left','align.right':'Right',
+      'preset.hint':'Quick entrance:','kf.hint':'Change a value or press ◆ at a moment to keyframe it.',
+      'p.fade':'Fade in','p.up':'Slide up','p.down':'Slide down','p.left':'Slide left','p.right':'Slide right','p.zoom':'Zoom in','p.pop':'Pop',
+      'a.x':'X','a.y':'Y','a.scale':'Scale','a.rotate':'Rotate','a.opacity':'Opacity','a.offset':'Progress',
+      'path.title':'Motion path','path.applied':' (applied)','path.lead':': use as drawn, or snap your drawing to a clean shape.',
+      'sh.raw':'As drawn','sh.line':'Line','sh.smooth':'Smooth','sh.circle':'Circle','sh.ellipse':'Ellipse','sh.rect':'Rectangle','sh.none':'Remove path',
+      'path.info.pending':'✅ A freshly drawn path is ready — pick any shape below to apply/snap it.','path.info.has':'You can re-snap your drawing to another shape.','path.info.none':'With no drawing, Circle/Ellipse/Rectangle use a default centered size.',
+      'speed':'Speed','start':'Start','end':'End','path.pauseHint':'Want a pause/varying speed? Select “Progress” and press ◆ at different moments.',
+      'ease.linear':'Linear','ease.in':'Slow in','ease.out':'Fast in','ease.inout':'Ease in-out','ease.spring':'Spring','kf.count':'{n}f',
+      'film.scenes':'Scenes','film.add':'＋ Add scene','film.preview':'▶ Preview film','film.stop':'■ Stop','film.sceneDur':'Scene length','scene':'Scene {n}','film.added':'Added scene {n}; “dissolve” transition to the previous one (change it in the dropdown).',
+      'tr.cut':'Cut','tr.dissolve':'Dissolve','tr.push':'Push','tr.fade':'Fade',
+      'ref.title':'Reference','ref.upload':'⤓ Upload video / GIF','ref.bg':'Import first frame as background','ref.ai':'✦ AI-replicate motion','ref.info':'Upload a reference; AI replicates it into an editable draft (runs claude on your machine).','ref.analyzing':'Analyzing reference…','ref.got':'Reference: {w}×{h} · {d}s · {n} frames','ref.bad':'Couldn’t read this file (try mp4/webm or gif).',
+      'tl.title':'Timeline','tl.hint':'One row per layer; click a dot to jump there, drag a dot to move it; click empty track to set time.','tl.empty':'No layers yet.',
+      'chat.label':'Chat edit','chat.ph':'Tell me what to change, e.g. change the title to “New release”, faster pacing, add a closing scene…','chat.send':'Send',
+      'note':'<b>How to use</b>: ① ▶ play / drag the scrubber; ② “＋” (top right) adds layers; click a layer or element to select; ③ drag a selected element on the canvas to auto-keyframe at the current time; ④ on the right, type values, ◆ to keyframe, × to clear; ⑤ “Export mp4”.'
+    },
+    zh: {
+      'badge':'视频引擎 · 画布合成器','title':'发布视频 — 画布合成器','sub':'加图层 · 画布拖动自动打关键帧 · 浏览器内导出 mp4（无水印）。',
+      'gen.ph':'一句话：做个关于「新产品 X」的 launch 视频…','gen.doc':'⤓ 产品文档','gen.run':'✦ 生成一版','gen.info':'写一句话 + 给一份产品文档 → 生成一版可编辑的 launch 视频（在你机器跑 claude）。',
+      'tool.select':'↖ 选择','tool.path':'✎ 轨迹','tool.hintSelect':'在画布上点选 / 拖动元素。','tool.hintPath':'在画布上按住拖一条线/曲线 —— 松手后到右边「运动」点「用刚画的轨迹」。','tool.pathDone':'✅ 轨迹画好了（{n} 点）—— 选中一个元素，到右边「运动」点一个形状。','tool.pickEl':'点视频里的一个元素，把它作为这次修改的对象。','tool.drawFirst':'先点「✎ 轨迹」画一条。',
+      'play.export':'⤓ 导出 mp4','export.ready':'准备导出…','export.encoding':'编码中… {p}%','export.done':'✅ 已导出 launch.mp4（{s}s）','export.fail':'导出失败：{e}','export.nocodec':'这个浏览器不支持 WebCodecs（请用较新的 Chrome/Edge）。',
+      'layers':'图层','add.text':'＋ 文字','add.rect':'＋ 色块','add.ellipse':'＋ 圆','add.image':'＋ 图片','add.video':'＋ 视频','newText':'新文字',
+      'props':'属性','inspEmpty':'点画布上的元素、或上面的图层来选中它。',
+      'f.text':'内容','f.size':'字号','f.weight':'粗细','f.font':'字体','f.align':'对齐','f.color':'颜色','f.w':'宽','f.h':'高','f.radius':'圆角','f.fill':'填充','f.diameter':'直径',
+      'font.sans':'默认无衬线','font.serif':'衬线','font.mono':'等宽','font.cjk':'中文黑体','align.center':'居中','align.left':'左','align.right':'右',
+      'preset.hint':'一键动效（入场）：','kf.hint':'在某个时间点改数值或按 ◆ 打点，元素就会在关键帧之间动。',
+      'p.fade':'淡入','p.up':'上滑入','p.down':'下滑入','p.left':'左滑入','p.right':'右滑入','p.zoom':'放大入场','p.pop':'弹一下',
+      'a.x':'X','a.y':'Y','a.scale':'缩放','a.rotate':'旋转','a.opacity':'透明','a.offset':'进度',
+      'path.title':'运动轨迹','path.applied':'（已套用）','path.lead':'：原样，或把你画的引申成规整形状。',
+      'sh.raw':'原样','sh.line':'直线','sh.smooth':'平滑曲线','sh.circle':'圆','sh.ellipse':'椭圆','sh.rect':'方形','sh.none':'取消轨迹',
+      'path.info.pending':'✅ 有一条刚画的轨迹，点下面任意形状把它套用/引申。','path.info.has':'可在你画的那条基础上换个规整形状。','path.info.none':'没画过轨迹时，圆/椭圆/方形会用画布中央的默认大小。',
+      'speed':'速度','start':'开始','end':'结束','path.pauseHint':'想让它中途停顿/变速？选中「进度」那条，在不同时刻按 ◆ 打点即可。',
+      'ease.linear':'匀速','ease.in':'慢入','ease.out':'快入慢出','ease.inout':'缓入缓出','ease.spring':'弹','kf.count':'{n}帧',
+      'film.scenes':'镜头','film.add':'＋ 加镜头','film.preview':'▶ 预览整片','film.stop':'■ 停止','film.sceneDur':'本镜头时长','scene':'镜头{n}','film.added':'已加镜头 {n}，与上一镜头间用「溶解」过渡（可在中间下拉里换）。',
+      'tr.cut':'硬切','tr.dissolve':'溶解','tr.push':'推','tr.fade':'淡黑',
+      'ref.title':'参考复刻','ref.upload':'⤓ 上传视频 / GIF','ref.bg':'导入首帧为背景','ref.ai':'✦ 用 AI 复刻动效','ref.info':'上传一段参考，AI 帮你复刻成可编辑草稿（AI 复刻在你自己机器上跑 claude）。','ref.analyzing':'分析参考中…','ref.got':'参考：{w}×{h} · {d}s · 采样 {n} 帧','ref.bad':'无法读取该文件（试试 mp4/webm 或 gif）。',
+      'tl.title':'时间轴','tl.hint':'每个图层一行；点圆点跳到那一刻、拖圆点改它的时间；点轨道空白处定位时间。','tl.empty':'还没有图层。',
+      'chat.label':'对话编辑','chat.ph':'对这个视频说改动，例如：标题改成「全新发布」、整体节奏快一点、加一个收尾镜头…','chat.send':'发送',
+      'note':'<b>怎么玩</b>：① ▶ 播放 / 拖时间条预览；② 右上「＋」加图层，点图层或点画布元素选中；③ 选中后在画布上<b>拖动它</b>会在当前时间点<b>自动打关键帧</b>；④ 右侧属性可手填、◆ 打点、× 清；⑤「导出 mp4」。'
+    }
+  };
+  var VLANG = (function(){ try{ var l=localStorage.getItem('ma:lang')||''; return /^zh/.test(l)?'zh':'en'; }catch(e){ return 'en'; } })();
+  function vt(k, vars){ var s=(VI18N[VLANG] && VI18N[VLANG][k]) || VI18N.en[k] || k; if(vars) Object.keys(vars).forEach(function(n){ s=s.replace('{'+n+'}', vars[n]); }); return s; }
+  Object.assign(VI18N.en, { 'layers.empty':'No layers yet — add one with “＋” above.', 'name.text':'Text',
+    'ref.aiRun':'AI replicating… (runs claude on your machine, ~10s)', 'ref.aiDone':'✅ Replicated into an editable draft — keep editing.', 'ref.aiFail':'AI replicate failed: {e} (needs claude logged in on your machine).',
+    'gen.running':'Generating… (runs claude on your machine, ~10s)', 'gen.done':'✅ Generated — edit on canvas / timeline / via chat.', 'gen.fail':'Generate failed: {e} (needs claude logged in).', 'gen.empty':'Write a line, or upload a product doc first.', 'gen.docLoaded':'Loaded doc: {name} ({n} chars)',
+    'chat.running':'Editing… (claude on your machine)', 'chat.done':'✅ Done: “{x}…”', 'chat.fail':'Edit failed: {e}', 'export.film':'Encoding film… {p}%', 'export.needChrome':'Export needs a newer Chrome', 'export.noWebcodecs':'This browser doesn’t support WebCodecs' });
+  Object.assign(VI18N.zh, { 'layers.empty':'还没有图层，点上面「＋」加一个。', 'name.text':'文字',
+    'ref.aiRun':'AI 复刻中…（在你机器上跑 claude，可能要十几秒）', 'ref.aiDone':'✅ 已复刻成可编辑草稿，继续改吧。', 'ref.aiFail':'AI 复刻失败：{e}（需在你机器跑、已登录 claude）。',
+    'gen.running':'生成中…（在你机器跑 claude，可能十几秒）', 'gen.done':'✅ 生成好一版，下面可以接着用画布/时间轴/对话编辑。', 'gen.fail':'生成失败：{e}（需在你机器跑、已登录 claude）。', 'gen.empty':'先写一句话、或上传一份产品文档。', 'gen.docLoaded':'已载入文档：{name}（{n} 字）',
+    'chat.running':'修改中…（claude 在你机器）', 'chat.done':'✅ 已按「{x}…」改好。', 'chat.fail':'改动失败：{e}', 'export.film':'编码整片… {p}%', 'export.needChrome':'导出需较新 Chrome', 'export.noWebcodecs':'此浏览器不支持 WebCodecs' });
+  /* W7 + shared video background strings */
+  Object.assign(VI18N.en, {
+    'bg.title':'Film background','bg.upload':'⤓ Upload video background','bg.hint':'Upload one video as the film background, then tick which scenes it shows in.',
+    'bg.in':'Appears in:','bg.opacity':'Opacity','bg.del':'Remove background','bg.added':'Background added — it now plays under every scene. Untick scenes to limit it.','bg.allScenes':'All scenes',
+    'p.rotate':'Rotate in','p.bounce':'Bounce in','p.pulse':'Pulse',
+    'sty.title':'Motion style (save & reuse)','sty.namePh':'Name this motion…','sty.save':'💾 Save','sty.apply':'Apply','sty.applyScene':'→ this scene','sty.applyMovie':'→ all scenes','sty.del':'Delete','sty.empty':'No saved styles yet — tune a layer, then save it.','sty.pickName':'Type a name first.','sty.saved':'Saved style “{n}”.','sty.applied':'Applied to {c} layer(s).','sty.pickStyle':'Pick a saved style first.',
+    'tpl.title':'Motion templates (any element)','tpl.apply':'Apply selected','tpl.clear':'Clear','tpl.lib':'Motion library','tpl.libSub':'200+ recipes — pick & apply','tpl.pick':'Pick one or more templates first.','tpl.applied':'Applied {n} template(s).','tpl.pickElFirst':'Select an element first, then pick a library recipe.','tpl.recipeApplied':'Applied library recipe “{name}”.','tpl.hint':'Works on text, images, video and shapes alike — pick one or several (they stack), then Apply. Or “Motion library” for 200+ recipes.',
+    'tpl.entrance':'Entrance','tpl.emphasis':'Emphasis','tpl.attention':'Attention','tpl.exit':'Exit',
+    'tpl.float':'Float','tpl.wobble':'Wobble','tpl.shake':'Shake','tpl.heartbeat':'Heartbeat','tpl.fadeout':'Fade out','tpl.zoomout':'Zoom out',
+    'layer.drag':'Drag to reorder (lower = on top)',
+    'sec.kf':'Keyframes','sec.motion':'Motion','sec.sty':'Motion styles',
+    'f.kinetic':'Text motion','kin.none':'None','kin.stagger':'Stagger (s)','kin.dur':'Per-unit (s)'
+  });
+  Object.assign(VI18N.zh, {
+    'bg.title':'整片视频背景','bg.upload':'⤓ 上传视频背景','bg.hint':'上传一个视频当整片背景，再勾选它出现在哪几个镜头里。',
+    'bg.in':'出现在：','bg.opacity':'透明','bg.del':'删除背景','bg.added':'背景已加 —— 现在每个镜头底下都在播。取消勾选某镜头即可只在部分镜头出现。','bg.allScenes':'全部镜头',
+    'p.rotate':'旋转入场','p.bounce':'弹跳入场','p.pulse':'脉冲',
+    'sty.title':'动效样式（存了复用）','sty.namePh':'给这套动效起个名…','sty.save':'💾 存为样式','sty.apply':'应用','sty.applyScene':'→ 本镜头','sty.applyMovie':'→ 所有镜头','sty.del':'删除','sty.empty':'还没存过样式 —— 调好一个图层，存下来即可复用。','sty.pickName':'先起个名字。','sty.saved':'已存样式「{n}」。','sty.applied':'已套用到 {c} 个图层。','sty.pickStyle':'先选一个已存的样式。',
+    'tpl.title':'动效模板（适用于所有元素）','tpl.apply':'应用所选','tpl.clear':'清空','tpl.lib':'动效库','tpl.libSub':'200+ 条配方，挑一条套上','tpl.pick':'先选一个或多个模板。','tpl.applied':'已套用 {n} 个模板。','tpl.pickElFirst':'先选中一个元素，再去动效库选配方。','tpl.recipeApplied':'已套用库配方「{name}」。','tpl.hint':'文字 / 图片 / 视频 / 形状都能用 —— 选一个或多个（可叠加）再点应用；或点「动效库」用 200+ 条配方。',
+    'tpl.entrance':'入场','tpl.emphasis':'强调','tpl.attention':'注意','tpl.exit':'退出',
+    'tpl.float':'漂浮','tpl.wobble':'晃动','tpl.shake':'抖动','tpl.heartbeat':'心跳','tpl.fadeout':'淡出','tpl.zoomout':'缩小退出',
+    'layer.drag':'拖动调层级（越靠下越在上层）',
+    'sec.kf':'关键帧','sec.motion':'动效','sec.sty':'动效样式',
+    'f.kinetic':'文字动效','kin.none':'无','kin.stagger':'错峰(秒)','kin.dur':'每字时长(秒)'
+  });
+  function applyVI18n(){
+    document.querySelectorAll('[data-vi]').forEach(function(el){ el.textContent=vt(el.getAttribute('data-vi')); });
+    document.querySelectorAll('[data-vi-ph]').forEach(function(el){ el.setAttribute('placeholder', vt(el.getAttribute('data-vi-ph'))); });
+    document.querySelectorAll('[data-vi-html]').forEach(function(el){ el.innerHTML=vt(el.getAttribute('data-vi-html')); });
+  }
+
+  /* ---------- initial composition (the demo, now fully editable) ---------- */
+  function buildDemo() {
+    return {
+      w: 1280, h: 720, fps: 30, bg: '#0b0b12', duration: 5,
+      layers: [
+        { id:'block', type:'rect', x:640, y:300, w:360, h:360, radius:36, fill:'#6d54e6', opacity:0, scale:0.6, rotate:-8,
+          tracks:{ opacity:[{t:0.2,v:0},{t:0.9,v:1,ease:'ease-out'}], scale:[{t:0.2,v:0.6},{t:1.0,v:1,ease:'ease-out'}],
+            rotate:[{t:0.2,v:-8},{t:1.0,v:0,ease:'ease-out'},{t:4.0,v:0},{t:5.0,v:6,ease:'ease-in-out'}] } },
+        { id:'dot', type:'ellipse', x:300, y:300, w:64, fill:'#39d98a',
+          tracks:{ x:[{t:0.6,v:300},{t:2.4,v:980,ease:'ease-in-out'},{t:4.2,v:300,ease:'ease-in-out'}] } },
+        { id:'title', type:'text', text:'Launch.', size:104, weight:800, color:'#ffffff', x:640, y:560, opacity:0,
+          tracks:{ opacity:[{t:0.5,v:0},{t:1.2,v:1,ease:'ease-out'}], y:[{t:0.5,v:600},{t:1.2,v:560,ease:'ease-out'}] } },
+        { id:'sub', type:'text', text:'made with motion-anything', size:30, weight:500, color:'#9aa0b5', x:640, y:632, opacity:0,
+          tracks:{ opacity:[{t:1.3,v:0},{t:2.0,v:1,ease:'ease-out'}] } }
+      ]
+    };
+  }
+
+  let comp = new MAVideo.VideoComp(buildDemo());   // the scene currently being edited
+  comp._editing = true;            // show selection outline in preview (never in export)
+  var movie = new MAVideo.Movie({ scenes: [comp], transitions: [] });   // the whole film (preview + export)
+  var canvas = document.getElementById('stage');
+  var scrub = document.getElementById('scrub'), timeEl = document.getElementById('time'), playBtn = document.getElementById('play');
+  var dur = comp.duration();
+  var filmMode = false;            // true while previewing the whole movie
+  var TRNAME = { cut:vt('tr.cut'), dissolve:vt('tr.dissolve'), push:vt('tr.push'), fade:vt('tr.fade') };
+  var ANIM = [
+    { key:'x', label:vt('a.x'), step:1 }, { key:'y', label:vt('a.y'), step:1 },
+    { key:'scale', label:vt('a.scale'), step:0.01 }, { key:'rotate', label:vt('a.rotate'), step:1 }, { key:'opacity', label:vt('a.opacity'), step:0.05 }
+  ];
+  var OFFSET_ROW = { key:'offset', label:vt('a.offset'), step:0.02 };   // 0..1 along the path (= speed/pacing)
+  function rowsFor(l){ return (l && l.path) ? [OFFSET_ROW, ANIM[2], ANIM[3], ANIM[4]] : ANIM; }  // path drives x/y → show 进度 instead
+  function baseDef(key){ if (key==='offset') return 0; return key==='scale'||key==='opacity'?1:(key==='x'?comp.w/2:(key==='y'?comp.h/2:0)); }
+  var EASES = [['linear',vt('ease.linear')],['ease-in',vt('ease.in')],['ease-out',vt('ease.out')],['ease-in-out',vt('ease.inout')],['spring',vt('ease.spring')]];
+  var FONTS = [['Inter, system-ui, -apple-system, sans-serif',vt('font.sans')],['Georgia, "Times New Roman", serif',vt('font.serif')],['"Courier New", monospace',vt('font.mono')],['"PingFang SC","Microsoft YaHei", sans-serif',vt('font.cjk')]];
+  var PRESETS = [['fade',vt('p.fade')],['up',vt('p.up')],['down',vt('p.down')],['left',vt('p.left')],['right',vt('p.right')],['zoom',vt('p.zoom')],['rotate',vt('p.rotate')],['pop',vt('p.pop')],['bounce',vt('p.bounce')],['pulse',vt('p.pulse')]];
+  function relabel(){   /* rebuild label arrays after a live language switch */
+    TRNAME = { cut:vt('tr.cut'), dissolve:vt('tr.dissolve'), push:vt('tr.push'), fade:vt('tr.fade') };
+    ANIM[0].label=vt('a.x'); ANIM[1].label=vt('a.y'); ANIM[2].label=vt('a.scale'); ANIM[3].label=vt('a.rotate'); ANIM[4].label=vt('a.opacity'); OFFSET_ROW.label=vt('a.offset');
+    EASES=[['linear',vt('ease.linear')],['ease-in',vt('ease.in')],['ease-out',vt('ease.out')],['ease-in-out',vt('ease.inout')],['spring',vt('ease.spring')]];
+    FONTS=[['Inter, system-ui, -apple-system, sans-serif',vt('font.sans')],['Georgia, "Times New Roman", serif',vt('font.serif')],['"Courier New", monospace',vt('font.mono')],['"PingFang SC","Microsoft YaHei", sans-serif',vt('font.cjk')]];
+    PRESETS=[['fade',vt('p.fade')],['up',vt('p.up')],['down',vt('p.down')],['left',vt('p.left')],['right',vt('p.right')],['zoom',vt('p.zoom')],['rotate',vt('p.rotate')],['pop',vt('p.pop')],['bounce',vt('p.bounce')],['pulse',vt('p.pulse')]];
+  }
+  /* one-click entrance effects: write keyframes (over 0..D) that resolve to the layer's current pose at the end */
+  function applyPreset(l, kind) {
+    var cx = l.x != null ? l.x : comp.w/2, cy = l.y != null ? l.y : comp.h/2, D = 0.6;
+    function set(key, frames){ l.tracks = l.tracks || {}; l.tracks[key] = frames; }
+    if (kind === 'fade') { set('opacity', [{t:0,v:0},{t:D,v:1,ease:'ease-out'}]); }
+    else if (kind === 'up' || kind === 'down') { set('opacity',[{t:0,v:0},{t:D,v:1,ease:'ease-out'}]); set('y',[{t:0,v:cy+(kind==='up'?48:-48)},{t:D,v:cy,ease:'ease-out'}]); }
+    else if (kind === 'left' || kind === 'right') { set('opacity',[{t:0,v:0},{t:D,v:1,ease:'ease-out'}]); set('x',[{t:0,v:cx+(kind==='left'?-48:48)},{t:D,v:cx,ease:'ease-out'}]); }
+    else if (kind === 'zoom') { set('opacity',[{t:0,v:0},{t:D,v:1,ease:'ease-out'}]); set('scale',[{t:0,v:0.8},{t:D,v:1,ease:'ease-out'}]); }
+    else if (kind === 'rotate') { set('opacity',[{t:0,v:0},{t:D,v:1,ease:'ease-out'}]); set('rotate',[{t:0,v:-12},{t:D,v:0,ease:'ease-out'}]); set('scale',[{t:0,v:0.9},{t:D,v:1,ease:'ease-out'}]); }
+    else if (kind === 'pop') { set('opacity',[{t:0,v:0},{t:0.2,v:1,ease:'ease-out'}]); set('scale',[{t:0,v:0.6},{t:0.4,v:1.12,ease:'ease-out'},{t:0.6,v:1,ease:'ease-out'}]); }
+    else if (kind === 'bounce') { set('opacity',[{t:0,v:0},{t:0.2,v:1,ease:'ease-out'}]); set('y',[{t:0,v:cy-60},{t:0.4,v:cy+12,ease:'ease-out'},{t:0.55,v:cy-6,ease:'ease-in-out'},{t:0.7,v:cy,ease:'ease-out'}]); }
+    else if (kind === 'pulse') { set('opacity',[{t:0,v:0},{t:0.2,v:1,ease:'ease-out'}]); set('scale',[{t:0,v:1},{t:0.3,v:1.12,ease:'ease-out'},{t:0.6,v:1,ease:'ease-in-out'}]); }
+  }
+
+  function fmt(t){ return t.toFixed(2) + ' / ' + dur.toFixed(2) + 's'; }
+  function refreshDur(){ dur = comp.duration(); }
+
+  /* ---------- W7: reusable motion styles (save a layer's tracks, apply across layers/scenes) ---------- */
+  var VSTYLES = (function(){ try { return JSON.parse(localStorage.getItem('ma:vstyles')||'[]'); } catch(e){ return []; } })();
+  function saveVStyles(){ try { localStorage.setItem('ma:vstyles', JSON.stringify(VSTYLES)); } catch(e){} }
+  function cloneTracks(tr){ return JSON.parse(JSON.stringify(tr||{})); }
+  /* a style stores only the animation tracks (not the layer's content) so it's portable across element types */
+  function saveVStyle(name, layer){
+    if (!name) return false;
+    var tracks = cloneTracks(layer.tracks);
+    var ex = VSTYLES.find(function(s){ return s.name === name; });
+    if (ex) ex.tracks = tracks; else VSTYLES.push({ name:name, tracks:tracks });
+    saveVStyles(); return true;
+  }
+  function applyVStyleTo(style, layer){ if (!style) return; layer.tracks = cloneTracks(style.tracks); layer.applied = true; }
+  function applyVStyleToLayers(style, layers){ var c=0; layers.forEach(function(l){ applyVStyleTo(style, l); c++; }); return c; }
+  function deleteVStyle(name){ VSTYLES = VSTYLES.filter(function(s){ return s.name !== name; }); saveVStyles(); }
+
+  /* W7 ③: built-in motion-template library — curated, intent-grouped, and TYPE-AGNOSTIC
+   * (tracks only, so the same template applies to text / image / video / shapes alike). */
+  var VTEMPLATES = [
+    { cat:'entrance', ids:['fade','up','down','left','right','zoom','rotate','pop','bounce'] },
+    { cat:'emphasis', ids:['pulse','float','wobble'] },
+    { cat:'attention', ids:['shake','heartbeat'] },
+    { cat:'exit',      ids:['fadeout','zoomout'] }
+  ];
+  function tplLabel(id){ return ['fade','up','down','left','right','zoom','rotate','pop','bounce','pulse'].indexOf(id)>=0 ? vt('p.'+id) : vt('tpl.'+id); }
+  /* build the tracks for template `id`, anchored to the layer's current pose + the scene duration */
+  function tplTracks(id, l){
+    var cx = l.x!=null?l.x:comp.w/2, cy = l.y!=null?l.y:comp.h/2, D = 0.6, d = comp.duration(), e0 = Math.max(0, d-0.6);
+    switch(id){
+      case 'fade':   return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}] };
+      case 'up':     return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], y:[{t:0,v:cy+48},{t:D,v:cy,ease:'ease-out'}] };
+      case 'down':   return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], y:[{t:0,v:cy-48},{t:D,v:cy,ease:'ease-out'}] };
+      case 'left':   return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], x:[{t:0,v:cx-60},{t:D,v:cx,ease:'ease-out'}] };
+      case 'right':  return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], x:[{t:0,v:cx+60},{t:D,v:cx,ease:'ease-out'}] };
+      case 'zoom':   return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], scale:[{t:0,v:0.8},{t:D,v:1,ease:'ease-out'}] };
+      case 'rotate': return { opacity:[{t:0,v:0},{t:D,v:1,ease:'ease-out'}], rotate:[{t:0,v:-12},{t:D,v:0,ease:'ease-out'}], scale:[{t:0,v:0.9},{t:D,v:1,ease:'ease-out'}] };
+      case 'pop':    return { opacity:[{t:0,v:0},{t:0.2,v:1,ease:'ease-out'}], scale:[{t:0,v:0.6},{t:0.4,v:1.12,ease:'ease-out'},{t:0.6,v:1,ease:'ease-out'}] };
+      case 'bounce': return { opacity:[{t:0,v:0},{t:0.2,v:1,ease:'ease-out'}], y:[{t:0,v:cy-60},{t:0.4,v:cy+12,ease:'ease-out'},{t:0.55,v:cy-6,ease:'ease-in-out'},{t:0.7,v:cy,ease:'ease-out'}] };
+      case 'pulse':  return { scale:[{t:0,v:1},{t:0.35,v:1.12,ease:'ease-out'},{t:0.7,v:1,ease:'ease-in-out'},{t:1.05,v:1.12,ease:'ease-out'},{t:1.4,v:1,ease:'ease-in-out'}] };
+      case 'float':  return { y:[{t:0,v:cy},{t:0.7,v:cy-16,ease:'ease-in-out'},{t:1.4,v:cy,ease:'ease-in-out'},{t:2.1,v:cy-16,ease:'ease-in-out'},{t:2.8,v:cy,ease:'ease-in-out'}] };
+      case 'wobble': return { rotate:[{t:0,v:0},{t:0.2,v:-6,ease:'ease-in-out'},{t:0.4,v:6,ease:'ease-in-out'},{t:0.6,v:-4,ease:'ease-in-out'},{t:0.8,v:0,ease:'ease-out'}] };
+      case 'shake':  return { x:[{t:0,v:cx},{t:0.1,v:cx-10},{t:0.2,v:cx+10},{t:0.3,v:cx-8},{t:0.4,v:cx+8},{t:0.5,v:cx,ease:'ease-out'}] };
+      case 'heartbeat': return { scale:[{t:0,v:1},{t:0.15,v:1.18,ease:'ease-out'},{t:0.3,v:1,ease:'ease-in'},{t:0.45,v:1.14,ease:'ease-out'},{t:0.6,v:1,ease:'ease-in'}] };
+      case 'fadeout':  return { opacity:[{t:e0,v:1},{t:d,v:0,ease:'ease-in'}] };
+      case 'zoomout':  return { opacity:[{t:e0,v:1},{t:d,v:0,ease:'ease-in'}], scale:[{t:e0,v:1},{t:d,v:0.8,ease:'ease-in'}] };
+    }
+    return null;
+  }
+  /* apply a template to any layer — merges tracks (so emphasis/exit don't wipe an entrance) */
+  function applyTemplate(id, l){ var tr = tplTracks(id, l); if(!tr) return; l.tracks = l.tracks || {}; Object.keys(tr).forEach(function(k){ l.tracks[k] = JSON.parse(JSON.stringify(tr[k])); }); l.applied = true; }
+
+  /* W7 ④: map a library recipe's intent category → the closest video template (video-native
+   * approximation, mirroring how the HTML line maps recipe cat → its parameter model). */
+  var CAT_TO_TPL = {
+    'entrance':'up', 'scroll-reveal':'up', 'text-kinetic':'up', 'page-transition':'fade', 'video-transition':'fade',
+    'emphasis':'pulse', 'loading':'pulse', 'ambient':'float',
+    'attention':'shake', 'feedback-delight':'pop', 'hover-press':'pop',
+    'exit':'fadeout'
+  };
+  /* apply a recipe (sent from the main app's library) to the currently selected element */
+  function applyRecipeToElement(recipe){
+    var l = selId && comp.layer(selId);
+    if (!l) { setTool('select'); document.getElementById('toolhint').textContent = vt('tpl.pickElFirst'); return; }
+    vSnap();
+    var tplId = CAT_TO_TPL[recipe.cat] || 'fade';
+    applyTemplate(tplId, l);
+    l.recipe = recipe.id; l.recipeName = recipe.name;   // keep provenance
+    comp.redraw(); renderInspectorValues(); renderInspectorCounts(); renderTimeline(); comp.seek(0);
+    document.getElementById('toolhint').textContent = vt('tpl.recipeApplied', { name: recipe.name || tplId });
+  }
+
+  function onFrame(t) {
+    if (!dragging) scrub.value = Math.round(t / dur * 1000);
+    timeEl.textContent = fmt(t);
+    playBtn.textContent = comp.isPlaying() ? '❚❚' : '▶';
+    renderInspectorValues();
+    if (typeof updatePlayhead === 'function') updatePlayhead();
+  }
+  comp.onframe = onFrame;
+
+  /* ---------- undo: snapshot the whole movie before each edit ---------- */
+  var VHIST = [];
+  function postVUndoState(){ try { if (parent && parent !== window) parent.postMessage({ type:'videoUndoState', can: VHIST.length > 0 }, '*'); } catch (e) {} }
+  function vSnap(){ try { VHIST.push(JSON.stringify(movie.toJSON())); if (VHIST.length > 40) VHIST.shift(); postVUndoState(); } catch (e) {} }
+  function vUndo(){ if (!VHIST.length) return; var j = VHIST.pop(); try { loadMovie(JSON.parse(j)); } catch (e) {} postVUndoState(); }
+  window.vUndo = vUndo;
+
+  /* ---------- transport ---------- */
+  var dragging = false;
+  scrub.addEventListener('input', function () { dragging = true;
+    if (filmMode) { movie.pause(); movie.seek(+scrub.value / 1000 * movie.duration()); playBtn.textContent = '▶'; }
+    else { comp.pause(); comp.seek(+scrub.value / 1000 * dur); }
+  });
+  scrub.addEventListener('change', function () { dragging = false; });
+  playBtn.addEventListener('click', function () {
+    if (filmMode) {   /* during whole-film preview the main button controls the movie */
+      if (movie.isPlaying()) movie.pause();
+      else { if (movie.time() >= movie.duration() - 1e-3) movie._t = 0; movie.play(); }
+      playBtn.textContent = movie.isPlaying() ? '❚❚' : '▶'; return;
+    }
+    if (comp.isPlaying()) comp.pause(); else comp.play();
+    playBtn.textContent = comp.isPlaying() ? '❚❚' : '▶';
+  });
+
+  /* ---------- tools ---------- */
+  var tool = 'select';
+  function setTool(t) {
+    tool = t;
+    document.getElementById('toolSelect').classList.toggle('sel', t === 'select');
+    document.getElementById('toolPath').classList.toggle('sel', t === 'path');
+    canvas.classList.toggle('drawing', t === 'path');
+    document.getElementById('toolhint').textContent = t === 'path' ? vt('tool.hintPath') : vt('tool.hintSelect');
+  }
+  document.getElementById('toolSelect').addEventListener('click', function () { setTool('select'); });
+  document.getElementById('toolPath').addEventListener('click', function () { setTool('path'); });
+
+  /* ---------- canvas: select + drag (auto-keyframe), or draw a path ---------- */
+  function toComp(e){ var r = canvas.getBoundingClientRect(); return { x:(e.clientX-r.left)/r.width*comp.w, y:(e.clientY-r.top)/r.height*comp.h }; }
+  var drag = null, drawing = null;
+  canvas.addEventListener('pointerdown', function (e) {
+    if (filmMode) { restoreEditing(false); return; }   /* first click while previewing → back to editing */
+    var p = toComp(e);
+    if (tool === 'path') { drawing = [{ x:Math.round(p.x), y:Math.round(p.y) }]; comp._pendingPath = drawing; try { canvas.setPointerCapture(e.pointerId); } catch(_){} return; }
+    var id = comp.hitTest(p.x, p.y, comp.time());
+    selectLayer(id);
+    if (id) { var b = comp.bounds(comp.layer(id), comp.time()); drag = { id:id, dx:p.x-b.cx, dy:p.y-b.cy }; try { canvas.setPointerCapture(e.pointerId); } catch(_){} }
+  });
+  canvas.addEventListener('pointermove', function (e) {
+    var p = toComp(e);
+    if (drawing) {
+      var last = drawing[drawing.length-1];
+      if (Math.hypot(p.x-last.x, p.y-last.y) > 8) drawing.push({ x:Math.round(p.x), y:Math.round(p.y) });  // downsample
+      comp.redraw(); return;
+    }
+    if (!drag) return;
+    if (!drag._snapped) { vSnap(); drag._snapped = true; }   // one undo entry per drag
+    var nx = Math.round(p.x - drag.dx), ny = Math.round(p.y - drag.dy);
+    comp.setKey(drag.id, 'x', comp.time(), nx);   // auto-keyframe at the playhead
+    comp.setKey(drag.id, 'y', comp.time(), ny);
+    comp.redraw(); renderInspectorValues(); renderInspectorCounts();
+  });
+  function endDraw(e){
+    if (drawing){ try{ canvas.releasePointerCapture(e.pointerId); }catch(_){}
+      if (drawing.length < 2) { comp._pendingPath = null; }
+      else { document.getElementById('toolhint').textContent = vt('tool.pathDone',{n:drawing.length}); }
+      drawing = null; setTool('select'); comp.redraw(); renderInspector();
+    }
+  }
+  function endDrag(e){ if (drag){ try{ canvas.releasePointerCapture(e.pointerId); }catch(_){} drag = null; renderTimeline(); } }
+  canvas.addEventListener('pointerup', function(e){ endDraw(e); endDrag(e); });
+  canvas.addEventListener('pointercancel', function(e){ endDraw(e); endDrag(e); });
+
+  /* ---------- layers ---------- */
+  var selId = null, dragLayerId = null, tplSelected = [];   // tplSelected: template chips picked for the current element
+  /* reorder z-order: move `fromId` to just before/after `toId` in comp.layers (later = drawn on top) */
+  function reorderLayer(fromId, toId, after) {
+    if (!fromId || fromId === toId) return;
+    var from = comp.layers.findIndex(function (l) { return l.id === fromId; });
+    if (from < 0) return;
+    vSnap();
+    var moved = comp.layers.splice(from, 1)[0];
+    var to = comp.layers.findIndex(function (l) { return l.id === toId; });
+    if (to < 0) { comp.layers.push(moved); }
+    else { comp.layers.splice(after ? to + 1 : to, 0, moved); }
+    comp.redraw(); renderLayerList(); renderTimeline();
+  }
+  document.querySelectorAll('[data-add]').forEach(function (b) {
+    b.addEventListener('click', function () { addLayer(b.getAttribute('data-add')); });
+  });
+  document.getElementById('imgfile').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var rd = new FileReader();
+    rd.onload = function () {
+      vSnap();
+      var id = comp.addLayer({ type:'image', src: rd.result, name: f.name, x: comp.w/2, y: comp.h/2, w: 480 });
+      var l = comp.layer(id);
+      comp.preload().then(function(){
+        // size from intrinsic aspect; SVGs without an intrinsic size fall back to 16:9
+        if (l._img) { var iw = l._img.naturalWidth || l._img.width || 0, ih = l._img.naturalHeight || l._img.height || 0; l.h = (iw && ih) ? Math.round(480 * ih / iw) : 270; }
+        comp.redraw(); selectLayer(id); renderLayerList();
+      });
+    };
+    rd.readAsDataURL(f); e.target.value = '';
+  });
+  document.getElementById('vidfile').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var url = URL.createObjectURL(f);
+    vSnap();
+    var id = comp.addLayer({ type:'video', src:url, name:f.name, x: comp.w/2, y: comp.h/2, w: 640, loop:true, opacity:1 });
+    var l = comp.layer(id);
+    comp.preload().then(function(){ if (l._vid){ var vr=(l._vid.videoWidth||16)/(l._vid.videoHeight||9); l.h = Math.round(640/vr); } comp.redraw(); renderLayerList(); selectLayer(id); });
+    e.target.value = '';
+  });
+
+  function addLayer(type) {
+    var t = comp.time(), id;
+    if (type === 'image') { document.getElementById('imgfile').click(); return; }
+    if (type === 'video') { document.getElementById('vidfile').click(); return; }
+    vSnap();
+    if (type === 'text') id = comp.addLayer({ type:'text', text:vt('newText'), size:72, weight:700, color:'#ffffff', x: comp.w/2, y: comp.h/2, opacity:1 });
+    else if (type === 'rect') id = comp.addLayer({ type:'rect', w:300, h:200, radius:16, fill:'#6d54e6', x: comp.w/2, y: comp.h/2, opacity:1 });
+    else if (type === 'ellipse') id = comp.addLayer({ type:'ellipse', w:200, fill:'#39d98a', x: comp.w/2, y: comp.h/2, opacity:1 });
+    refreshDur(); comp.redraw(); renderLayerList(); selectLayer(id);
+  }
+
+  function layerName(l) { return l.type === 'text' ? (l.text || vt('name.text')) : (l.id); }
+  function renderLayerList() {
+    var box = document.getElementById('llist');
+    if (!comp.layers.length) { box.innerHTML = '<div class="empty">' + vt('layers.empty') + '</div>'; return; }
+    // list is top→bottom in draw order: the LAST item draws on top (front). Drag to reorder z-order.
+    box.innerHTML = comp.layers.map(function (l) {
+      return '<div class="litem' + (l.id===selId?' sel':'') + '" data-id="' + l.id + '" draggable="true">' +
+        '<span class="grip" title="' + escapeAttr(vt('layer.drag')) + '">⋮⋮</span>' +
+        '<span class="ty">' + l.type + '</span><span class="nm">' + escapeHtml(layerName(l)) + '</span>' +
+        '<button class="del" data-del="' + l.id + '" title="删除">🗑</button></div>';
+    }).join('');
+    box.querySelectorAll('.litem').forEach(function (el) {
+      el.addEventListener('click', function (e) { if (e.target.closest('[data-del]')) return; selectLayer(el.getAttribute('data-id')); });
+      el.addEventListener('dragstart', function (e) { dragLayerId = el.getAttribute('data-id'); el.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', dragLayerId); } catch (_) {} });
+      el.addEventListener('dragend', function () { el.classList.remove('dragging'); box.querySelectorAll('.litem').forEach(function (n) { n.classList.remove('drop-before','drop-after'); }); });
+      el.addEventListener('dragover', function (e) { e.preventDefault(); try { e.dataTransfer.dropEffect = 'move'; } catch (_) {} var r = el.getBoundingClientRect(); var after = (e.clientY - r.top) > r.height / 2; el.classList.toggle('drop-after', after); el.classList.toggle('drop-before', !after); });
+      el.addEventListener('dragleave', function () { el.classList.remove('drop-before','drop-after'); });
+      el.addEventListener('drop', function (e) { e.preventDefault(); var r = el.getBoundingClientRect(); var after = (e.clientY - r.top) > r.height / 2; reorderLayer(dragLayerId, el.getAttribute('data-id'), after); });
+    });
+    box.querySelectorAll('[data-del]').forEach(function (b) {
+      b.addEventListener('click', function () { var id = b.getAttribute('data-del'); vSnap(); comp.removeLayer(id); if (selId===id) selId=null; comp.selectedId=selId; refreshDur(); comp.redraw(); renderLayerList(); renderInspector(); });
+    });
+  }
+
+  var pickMode = null;   // 'comment' | 'mark' — when set, the next layer click is reported to the host workbench
+  function selectLayer(id) { if (id !== selId) tplSelected = []; selId = id; comp.selectedId = id; comp.redraw(); renderLayerList(); renderInspector(); if (typeof renderTimeline === 'function') renderTimeline();
+    var l = id && comp.layer(id);
+    if (parent && parent !== window && l) {
+      var info = { id: l.id, name: (l.type==='text'?(l.text||vt('name.text')):l.id), type: l.type };
+      try { parent.postMessage({ type:'selected', layer: info }, '*'); } catch (e) {}
+      if (pickMode) { try { parent.postMessage({ type:'picked', tool: pickMode, layer: info }, '*'); } catch (e) {} pickMode = null; document.body.classList.remove('picking'); }
+    }
+  }
+
+  /* ---------- inspector ---------- */
+  /* collapsible inspector sections — state persists in localStorage so re-renders keep it */
+  var SEC_COLLAPSED = (function(){ try { return JSON.parse(localStorage.getItem('ma:vsec')||'{}'); } catch(e){ return {}; } })();
+  function secToggle(key){ SEC_COLLAPSED[key] = !SEC_COLLAPSED[key]; try { localStorage.setItem('ma:vsec', JSON.stringify(SEC_COLLAPSED)); } catch(e){} }
+  function secHtml(key, title, inner){
+    var c = !!SEC_COLLAPSED[key];
+    return '<div class="isec"><button type="button" class="ishead" data-sechead="' + key + '"><span class="ischev">' + (c?'▸':'▾') + '</span>' + title + '</button><div class="isbody"' + (c?' hidden':'') + '>' + inner + '</div></div>';
+  }
+  function dispName(l){ if(!l) return vt('props'); return l.type==='text' ? (l.text||vt('name.text')) : (l.name || (l.type.charAt(0).toUpperCase()+l.type.slice(1))); }
+
+  // Kinetic typography — per-char / per-word text reveal (engine draws it; here we pick preset + timing).
+  var KIN_ZH = { 'char-rise':'逐字上升','char-fade':'逐字淡入','char-pop':'逐字弹出','char-drop':'逐字落下','char-blur':'逐字去模糊','char-flip':'逐字翻转','char-spin':'逐字旋入','typewriter':'打字机','wave':'波浪(氛围)','word-rise':'逐词上升','word-fade':'逐词淡入','word-pop':'逐词弹出','word-blur':'逐词去模糊' };
+  function kinList(){ return (window.MAVideo && MAVideo.KINETIC) || []; }
+  function kinLabel(id){ return VLANG==='zh' ? (KIN_ZH[id]||id) : ((kinList().find(function(k){return k.id===id;})||{}).label||id); }
+  function kineticFields(l){
+    var cur = (l.kinetic && l.kinetic.type) || 'none';
+    var opts = '<option value="none"'+(cur==='none'?' selected':'')+'>'+vt('kin.none')+'</option>' +
+      kinList().map(function(k){ return '<option value="'+k.id+'"'+(cur===k.id?' selected':'')+'>'+kinLabel(k.id)+'</option>'; }).join('');
+    var out = field(vt('f.kinetic'), '<select id="f-kinetic">'+opts+'</select>');
+    if (cur !== 'none') {
+      var k = l.kinetic || {};
+      out += field(vt('kin.stagger'), '<input type="number" id="f-kin-stagger" step="0.01" min="0" value="'+(k.stagger!=null?k.stagger:(/^word/.test(cur)?0.09:0.035))+'">');
+      out += field(vt('kin.dur'), '<input type="number" id="f-kin-dur" step="0.05" min="0" value="'+(k.dur!=null?k.dur:(/^word/.test(cur)?0.6:0.45))+'">');
+    }
+    return out;
+  }
+  function wireKinetic(l){
+    var sel = document.getElementById('f-kinetic');
+    if (sel) sel.addEventListener('change', function(){
+      vSnap();
+      if (sel.value === 'none') { delete l.kinetic; }
+      else { l.kinetic = l.kinetic || {}; l.kinetic.type = sel.value; if (l.kinetic.start==null) l.kinetic.start = (l.tracks&&l.tracks.opacity&&l.tracks.opacity[0]?0:(l.start||0)); }
+      comp.redraw(); comp.seek(comp.time()); renderInspector();
+    });
+    var stg = document.getElementById('f-kin-stagger'); if (stg) stg.addEventListener('input', function(){ l.kinetic=l.kinetic||{}; l.kinetic.stagger=+stg.value; comp.redraw(); });
+    var kd = document.getElementById('f-kin-dur'); if (kd) kd.addEventListener('input', function(){ l.kinetic=l.kinetic||{}; l.kinetic.dur=+kd.value; comp.redraw(); });
+  }
+
+  function renderInspector() {
+    var empty = document.getElementById('inspEmpty'), body = document.getElementById('inspBody');
+    var l = selId && comp.layer(selId);
+    if (!l) { empty.hidden = false; body.hidden = true; var h2e = document.querySelector('#inspector h2'); if (h2e) h2e.textContent = vt('props'); return; }
+    empty.hidden = true; body.hidden = false;
+    var propsInner = '';
+    if (l.type === 'text') {
+      propsInner += field(vt('f.text'), '<input type="text" id="f-text" value="' + escapeAttr(l.text||'') + '">');
+      propsInner += field(vt('f.size'), '<input type="number" id="f-size" value="' + (l.size||72) + '" step="2">');
+      propsInner += field(vt('f.weight'), '<select id="f-weight">' + [400,500,700,800].map(function(w){return '<option value="'+w+'"'+(+(l.weight||700)===w?' selected':'')+'>'+w+'</option>';}).join('') + '</select>');
+      propsInner += field(vt('f.font'), '<select id="f-font">' + FONTS.map(function(ff){ return '<option value="'+ff[0].replace(/"/g,'&quot;')+'"'+((l.font||FONTS[0][0])===ff[0]?' selected':'')+'>'+ff[1]+'</option>'; }).join('') + '</select>');
+      propsInner += field(vt('f.align'), '<select id="f-align">' + [['center',vt('align.center')],['left',vt('align.left')],['right',vt('align.right')]].map(function(a){ return '<option value="'+a[0]+'"'+((l.align||'center')===a[0]?' selected':'')+'>'+a[1]+'</option>'; }).join('') + '</select>');
+      propsInner += field(vt('f.color'), '<input type="color" id="f-color" value="' + (l.color||'#ffffff') + '">');
+      propsInner += kineticFields(l);
+    } else if (l.type === 'rect') {
+      propsInner += field(vt('f.w'), '<input type="number" id="f-w" value="' + (l.w||300) + '" step="4">');
+      propsInner += field(vt('f.h'), '<input type="number" id="f-h" value="' + (l.h||200) + '" step="4">');
+      propsInner += field(vt('f.radius'), '<input type="number" id="f-radius" value="' + (l.radius||0) + '" step="2">');
+      propsInner += field(vt('f.fill'), '<input type="color" id="f-fill" value="' + (l.fill||'#6d54e6') + '">');
+    } else if (l.type === 'ellipse') {
+      propsInner += field(vt('f.diameter'), '<input type="number" id="f-w" value="' + (l.w||200) + '" step="4">');
+      propsInner += field(vt('f.fill'), '<input type="color" id="f-fill" value="' + (l.fill||'#39d98a') + '">');
+    } else if (l.type === 'image') {
+      propsInner += field(vt('f.w'), '<input type="number" id="f-w" value="' + (l.w||480) + '" step="8">');
+      propsInner += field(vt('f.h'), '<input type="number" id="f-h" value="' + (l.h||Math.round((l.w||480)*0.5625)) + '" step="8">');
+    } else if (l.type === 'video') {
+      propsInner += field(vt('f.w'), '<input type="number" id="f-w" value="' + (l.w||640) + '" step="8">');
+      propsInner += field(vt('f.h'), '<input type="number" id="f-h" value="' + (l.h||360) + '" step="8">');
+    }
+    var kfInner = '<p class="kfhint">' + vt('kf.hint') + '</p>' +
+      rowsFor(l).map(function (a) {
+        return '<div class="kfrow" data-prop="' + a.key + '">' +
+          '<label>' + a.label + '</label>' +
+          '<input type="number" id="kf-' + a.key + '" step="' + a.step + '">' +
+          '<button class="dot" data-dot="' + a.key + '" title="◆">◆</button>' +
+          '<span class="cnt" id="cnt-' + a.key + '"></span>' +
+          '<button class="clr" data-clr="' + a.key + '" title="×">×</button></div>';
+      }).join('');
+    var srcInfo = comp._pendingPath ? vt('path.info.pending') : (l.srcPath ? vt('path.info.has') : vt('path.info.none'));
+    var pathInner = '<p class="kfhint">' + (l.path ? vt('path.applied') + ' ' : '') + vt('path.lead').replace(/^[：:]\s*/, '') + '</p>' +
+      '<div class="addrow">' +
+      '<button data-shape="raw">' + vt('sh.raw') + '</button>' +
+      '<button data-shape="line">' + vt('sh.line') + '</button>' +
+      '<button data-shape="smooth">' + vt('sh.smooth') + '</button>' +
+      '<button data-shape="circle">' + vt('sh.circle') + '</button>' +
+      '<button data-shape="ellipse">' + vt('sh.ellipse') + '</button>' +
+      '<button data-shape="rect">' + vt('sh.rect') + '</button>' +
+      (l.path ? '<button data-shape="none">' + vt('sh.none') + '</button>' : '') +
+      '</div>' +
+      (l.path ? ('<div class="field"><label>' + vt('speed') + '</label><select id="pathEase">' +
+          EASES.map(function(e){ var cur=(l.tracks&&l.tracks.offset&&l.tracks.offset[l.tracks.offset.length-1]||{}).ease||'ease-in-out'; return '<option value="'+e[0]+'"'+(cur===e[0]?' selected':'')+'>'+e[1]+'</option>'; }).join('') + '</select></div>' +
+        '<div class="kfrow" style="grid-template-columns:58px 1fr 58px 1fr"><label>' + vt('start') + '</label><input type="number" id="pathFrom" step="0.1" value="' + ((l.tracks&&l.tracks.offset&&l.tracks.offset[0]?l.tracks.offset[0].t:0).toFixed(1)) + '"><label style="text-align:right">' + vt('end') + '</label><input type="number" id="pathTo" step="0.1" value="' + ((l.tracks&&l.tracks.offset&&l.tracks.offset.length?l.tracks.offset[l.tracks.offset.length-1].t:comp.duration()).toFixed(1)) + '"></div>' +
+        '<p class="kfhint">' + vt('path.pauseHint') + '</p>') : '') +
+      '<p class="kfhint" id="shapeHint">' + srcInfo + '</p>';
+    // W7 ③: built-in motion-template library — multi-select chips, applies to any element type
+    var tplInner = '<div class="tplgrid">' +
+      VTEMPLATES.map(function(g){ return '<div class="tplcat">' + vt('tpl.'+g.cat) + '</div>' + g.ids.map(function(id){ return '<button class="tplchip' + (tplSelected.indexOf(id)>=0?' on':'') + '" data-tpl="' + id + '">' + tplLabel(id) + '</button>'; }).join(''); }).join('') +
+      '</div>' +
+      '<div class="tplactions">' +
+        '<div class="tplact-row"><button id="tplApply" class="btn-apply">' + vt('tpl.apply') + '</button><button id="tplClear" class="btn-clear">' + vt('tpl.clear') + '</button></div>' +
+        (document.body.classList.contains('embed') ? '<button id="tplLib" class="btn-lib" title="' + escapeAttr(vt('tpl.lib')) + '"><span class="btn-lib-ic">✦</span><span class="btn-lib-tx">' + vt('tpl.lib') + '<span class="btn-lib-sub">' + vt('tpl.libSub') + '</span></span><span class="btn-lib-arrow">›</span></button>' : '') +
+      '</div>' +
+      '<p class="kfhint">' + vt('tpl.hint') + '</p>';
+    // W7: reusable motion styles
+    var styOpts = VSTYLES.length ? VSTYLES.map(function(s){ return '<option value="' + escapeAttr(s.name) + '">' + escapeHtml(s.name) + '</option>'; }).join('') : '';
+    var styInner = '<div class="styrow"><input type="text" id="styName" placeholder="' + escapeAttr(vt('sty.namePh')) + '"><button id="stySave">' + vt('sty.save') + '</button></div>' +
+      (VSTYLES.length
+        ? ('<div class="styrow"><select id="stySel">' + styOpts + '</select><button id="styApply">' + vt('sty.apply') + '</button></div>' +
+           '<div class="styrow"><button id="styScene">' + vt('sty.applyScene') + '</button><button id="styMovie">' + vt('sty.applyMovie') + '</button><button class="del" id="styDel">' + vt('sty.del') + '</button></div>')
+        : ('<p class="kfhint">' + vt('sty.empty') + '</p>'));
+    // collapsible sections (Layers pane stays non-collapsible; these do)
+    var html = secHtml('props', vt('props'), propsInner) +
+      secHtml('kf', vt('sec.kf'), kfInner) +
+      secHtml('path', vt('path.title'), pathInner) +
+      secHtml('tpl', vt('sec.motion'), tplInner) +
+      secHtml('sty', vt('sec.sty'), styInner);
+    var h2p = document.querySelector('#inspector h2'); if (h2p) h2p.textContent = dispName(l);
+    document.getElementById('inspBody').innerHTML = html;
+    wireInspector(l);
+    renderInspectorValues(); renderInspectorCounts();
+  }
+
+  function wireInspector(l) {
+    // collapsible section headers — toggle without re-rendering (keeps chips/inputs state)
+    document.querySelectorAll('[data-sechead]').forEach(function (h) {
+      h.addEventListener('click', function () {
+        var key = h.getAttribute('data-sechead'); secToggle(key);
+        var b = h.parentElement.querySelector('.isbody'), chev = h.querySelector('.ischev'), c = !!SEC_COLLAPSED[key];
+        if (b) b.hidden = c; if (chev) chev.textContent = c ? '▸' : '▾';
+      });
+    });
+    function onBase(id, key, num, cb){ var el = document.getElementById(id); if (!el) return;
+      el.addEventListener('input', function () { var v = num ? +el.value : el.value; l[key] = v; if (cb) cb(v); comp.redraw(); renderLayerList(); }); }
+    onBase('f-text','text',false); onBase('f-size','size',true); onBase('f-color','color',false);
+    onBase('f-w','w',true); onBase('f-h','h',true); onBase('f-radius','radius',true); onBase('f-fill','fill',false);
+    var ws = document.getElementById('f-weight'); if (ws) ws.addEventListener('change', function(){ l.weight = +ws.value; comp.redraw(); });
+    var ff = document.getElementById('f-font'); if (ff) ff.addEventListener('change', function(){ l.font = ff.value; comp.redraw(); });
+    var fa = document.getElementById('f-align'); if (fa) fa.addEventListener('change', function(){ l.align = fa.value; comp.redraw(); });
+    wireKinetic(l);
+    rowsFor(l).forEach(function (a) {
+      var inp = document.getElementById('kf-' + a.key); if (!inp) return;
+      inp.addEventListener('change', function () {
+        var v = +inp.value; if (a.key === 'offset') v = Math.max(0, Math.min(1, v));
+        var hasTrack = l.tracks && l.tracks[a.key] && l.tracks[a.key].length;
+        if (hasTrack) comp.setKey(l.id, a.key, comp.time(), v);   // edit while animated => keyframe at playhead
+        else l[a.key] = v;                                        // no track yet => set base value
+        comp.redraw(); renderInspectorCounts(); renderTimeline();
+      });
+    });
+    var pe = document.getElementById('pathEase');
+    if (pe) pe.addEventListener('change', function () {
+      if (l.tracks && l.tracks.offset) l.tracks.offset.forEach(function (k, i) { if (i > 0) k.ease = pe.value; });
+      comp.redraw();
+    });
+    function setOffEnd(which) { var el = document.getElementById(which === 'from' ? 'pathFrom' : 'pathTo'); if (!el || !l.tracks || !l.tracks.offset || !l.tracks.offset.length) return;
+      el.addEventListener('change', function () { var t = Math.max(0, +el.value); var arr = l.tracks.offset; if (which === 'from') arr[0].t = t; else arr[arr.length - 1].t = t; comp.sortKeys(l.id, 'offset'); refreshDur(); comp.redraw(); renderTimeline(); }); }
+    setOffEnd('from'); setOffEnd('to');
+    document.querySelectorAll('[data-dot]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var key = b.getAttribute('data-dot');
+        var cur = comp.valueAt(l, key, baseDef(key), comp.time());
+        vSnap();
+        comp.setKey(l.id, key, comp.time(), cur);
+        comp.redraw(); renderInspectorCounts(); renderTimeline();
+      });
+    });
+    document.querySelectorAll('[data-clr]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var key = b.getAttribute('data-clr');
+        var cur = comp.valueAt(l, key, baseDef(key), comp.time());
+        vSnap();
+        comp.clearTrack(l.id, key); l[key] = cur;   // freeze at current value
+        comp.redraw(); renderInspector(); renderTimeline();
+      });
+    });
+    document.querySelectorAll('[data-shape]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var kind = b.getAttribute('data-shape');
+        vSnap();
+        if (kind === 'none') { comp.detachPath(l.id); delete l.srcPath; comp.redraw(); renderInspector(); return; }
+        // source = the path the user just drew, else the one they drew earlier for this layer
+        var src = (comp._pendingPath && comp._pendingPath.length > 1) ? comp._pendingPath : (l.srcPath || null);
+        if (src) { l.srcPath = src.slice(); comp._pendingPath = null; }
+        var pts;
+        if (src) { pts = kind === 'raw' ? src.slice() : MAVideo.shapeFromPath(kind, src); }
+        else {                                  // nothing drawn → default centered shape
+          var r = Math.min(comp.w, comp.h) / 3, cx = comp.w / 2, cy = comp.h / 2;
+          if (kind === 'raw') { document.getElementById('toolhint').textContent = vt('tool.drawFirst'); return; }
+          if (kind === 'line') pts = MAVideo.makeShapePath('line', cx, cy, r);
+          else if (kind === 'ellipse') pts = MAVideo.shapeFromPath('ellipse', [{ x: cx - r, y: cy - r * 0.6 }, { x: cx + r, y: cy + r * 0.6 }]);
+          else if (kind === 'rect') pts = MAVideo.shapeFromPath('rect', [{ x: cx - r, y: cy - r }, { x: cx + r, y: cy + r }]);
+          else if (kind === 'smooth') pts = MAVideo.makeShapePath('circle', cx, cy, r);
+          else pts = MAVideo.makeShapePath('circle', cx, cy, r);
+        }
+        if (!pts || pts.length < 2) { document.getElementById('toolhint').textContent = vt('tool.drawFirst'); return; }
+        comp.attachPath(l.id, pts, 0, comp.duration());
+        refreshDur(); comp.redraw(); renderInspector(); renderInspectorCounts(); renderTimeline();
+      });
+    });
+    // W7: reusable motion styles
+    var styInfo = document.getElementById('shapeHint');
+    function setHint(msg){ document.getElementById('toolhint').textContent = msg; }
+    // W7 ③: multi-select template chips → apply (merged) to the selected element (any type).
+    // NB: does NOT re-render the whole inspector, so the chip selection stays put.
+    document.querySelectorAll('[data-tpl]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-tpl'), i = tplSelected.indexOf(id);
+        if (i >= 0) { tplSelected.splice(i, 1); b.classList.remove('on'); }
+        else { tplSelected.push(id); b.classList.add('on'); }
+      });
+    });
+    var tplA = document.getElementById('tplApply');
+    if (tplA) tplA.addEventListener('click', function () {
+      if (!tplSelected.length) { setHint(vt('tpl.pick')); return; }
+      vSnap();
+      tplSelected.forEach(function (id) { applyTemplate(id, l); });
+      comp.redraw(); renderInspectorValues(); renderInspectorCounts(); renderTimeline(); comp.seek(0);
+      setHint(vt('tpl.applied', { n: tplSelected.length }));
+    });
+    var tplC = document.getElementById('tplClear');
+    if (tplC) tplC.addEventListener('click', function () { tplSelected = []; document.querySelectorAll('[data-tpl]').forEach(function (b) { b.classList.remove('on'); }); });
+    // W7 ④: jump to the main app's motion library (226 recipes) and apply one to this element
+    var tplL = document.getElementById('tplLib');
+    if (tplL) tplL.addEventListener('click', function () { try { parent.postMessage({ type:'openMotionLibrary' }, '*'); } catch (e) {} });
+    var save = document.getElementById('stySave');
+    if (save) save.addEventListener('click', function () {
+      var nm = (document.getElementById('styName').value || '').trim();
+      if (!nm) { setHint(vt('sty.pickName')); return; }
+      saveVStyle(nm, l); renderInspector(); setHint(vt('sty.saved',{n:nm}));
+    });
+    function selStyle(){ var sel = document.getElementById('stySel'); return sel && VSTYLES.find(function(s){ return s.name === sel.value; }); }
+    var ap = document.getElementById('styApply');
+    if (ap) ap.addEventListener('click', function () { var st = selStyle(); if (!st) { setHint(vt('sty.pickStyle')); return; } vSnap(); applyVStyleTo(st, l); comp.redraw(); renderInspector(); renderInspectorCounts(); renderTimeline(); comp.seek(0); setHint(vt('sty.applied',{c:1})); });
+    var asc = document.getElementById('styScene');
+    if (asc) asc.addEventListener('click', function () { var st = selStyle(); if (!st) { setHint(vt('sty.pickStyle')); return; } vSnap(); var c = applyVStyleToLayers(st, comp.layers); comp.redraw(); renderInspector(); renderInspectorCounts(); renderTimeline(); comp.seek(0); setHint(vt('sty.applied',{c:c})); });
+    var amv = document.getElementById('styMovie');
+    if (amv) amv.addEventListener('click', function () { var st = selStyle(); if (!st) { setHint(vt('sty.pickStyle')); return; } vSnap(); var c = 0; movie.scenes.forEach(function (sc) { c += applyVStyleToLayers(st, sc.layers); }); comp.redraw(); renderInspector(); renderInspectorCounts(); renderTimeline(); comp.seek(0); setHint(vt('sty.applied',{c:c})); });
+    var del = document.getElementById('styDel');
+    if (del) del.addEventListener('click', function () { var st = selStyle(); if (!st) { setHint(vt('sty.pickStyle')); return; } deleteVStyle(st.name); renderInspector(); });
+  }
+
+  function renderInspectorValues() {
+    var l = selId && comp.layer(selId); if (!l) return;
+    rowsFor(l).forEach(function (a) {
+      var inp = document.getElementById('kf-' + a.key); if (!inp || document.activeElement === inp) return;
+      var v = comp.valueAt(l, a.key, baseDef(a.key), comp.time());
+      inp.value = a.step < 1 ? (+v).toFixed(2) : Math.round(v);
+    });
+  }
+  function renderInspectorCounts() {
+    var l = selId && comp.layer(selId); if (!l) return;
+    rowsFor(l).forEach(function (a) {
+      var el = document.getElementById('cnt-' + a.key); if (!el) return;
+      var n = (l.tracks && l.tracks[a.key] && l.tracks[a.key].length) || 0;
+      el.textContent = n ? vt('kf.count',{n:n}) : '';
+    });
+  }
+
+  function field(label, inner) { return '<div class="field"><label>' + label + '</label>' + inner + '</div>'; }
+  function escapeHtml(s) { return String(s).replace(/[&<>]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+  function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g,'&lt;'); }
+
+  /* ---------- scenes (V5: multi-scene + transitions) ---------- */
+  function renderScenes() {
+    var box = document.getElementById('scenes'), html = '';
+    movie.scenes.forEach(function (sc, i) {
+      if (i > 0) { var tr = movie.transitions[i - 1] || { type:'dissolve', dur:0.6 };
+        html += '<select class="transel" data-gap="' + (i-1) + '" title="镜头间过渡">' +
+          ['cut','dissolve','push','fade'].map(function(t){ return '<option value="'+t+'"'+(tr.type===t?' selected':'')+'>'+TRNAME[t]+'</option>'; }).join('') + '</select>'; }
+      html += '<button class="scene' + (i===movie._editIdx?' sel':'') + '" data-scene="' + i + '">' + vt('scene',{n:i+1}) +
+        (movie.scenes.length>1 ? ' <span data-delscene="'+i+'">×</span>' : '') + '</button>';
+    });
+    box.innerHTML = html;
+    box.querySelectorAll('[data-scene]').forEach(function (b) { b.addEventListener('click', function (e) { if (e.target.closest('[data-delscene]')) return; switchScene(+b.getAttribute('data-scene')); }); });
+    box.querySelectorAll('[data-delscene]').forEach(function (s) { s.addEventListener('click', function (e) { e.stopPropagation(); if (movie.scenes.length<=1) return; vSnap(); movie.removeScene(+s.getAttribute('data-delscene')); switchScene(movie._editIdx); }); });
+    box.querySelectorAll('.transel').forEach(function (sel) { sel.addEventListener('change', function () { movie.setTransition(+sel.getAttribute('data-gap'), sel.value, sel.value==='cut'?0:0.6); }); });
+    var sd = document.getElementById('sceneDur'); if (sd && document.activeElement !== sd) sd.value = (comp.duration()).toFixed(1);
+  }
+  /* attach the movie's shared layers (for the scene being edited) so the editing canvas previews them */
+  function applyEditShared() {
+    movie.scenes.forEach(function (sc) { sc._editShared = null; sc._editSharedFront = null; });   // only the editing scene carries them
+    if (!comp) return;
+    var i = movie._editIdx, s = movie.starts();
+    comp._editSceneStart = s[i] || 0;
+    comp._editShared = movie._sharedFor(i, 'back');
+    comp._editSharedFront = movie._sharedFor(i, 'front');
+  }
+  function switchScene(i) {
+    if (filmMode) restoreEditing(true);
+    comp.pause(); movie._editIdx = i; comp = movie.scenes[i]; comp._editing = true; comp.onframe = onFrame;
+    comp.mount(canvas); refreshDur(); selId = comp.selectedId || null; applyEditShared(); comp.seek(0); window.comp = comp;
+    renderScenes(); renderLayerList(); renderInspector(); renderTimeline(); timeEl.textContent = fmt(0); renderBgState();
+  }
+  function addScene() {
+    vSnap();
+    var i = movie.addScene({ w:movie.w, h:movie.h, fps:movie.fps, bg:'#0b0b12', duration:3, layers:[
+      { type:'text', text:vt('scene',{n:movie.scenes.length}), size:84, weight:800, color:'#ffffff', x:movie.w/2, y:movie.h/2, opacity:0,
+        tracks:{ opacity:[{t:0.2,v:0},{t:0.9,v:1,ease:'ease-out'}] } }
+    ] });
+    switchScene(i);
+    document.getElementById('filmhint').textContent = vt('film.added',{n:i+1});
+  }
+  function previewFilm() {
+    comp.pause(); filmMode = true; movie._editing = false;
+    movie.onframe = function (t) {
+      var md = Math.max(0.001, movie.duration());
+      if (!dragging) scrub.value = Math.round(t/md*1000);
+      timeEl.textContent = t.toFixed(2)+' / '+md.toFixed(2)+'s（整片）';
+      playBtn.textContent = movie.isPlaying() ? '❚❚' : '▶';   /* end of film → button shows ▶ so you can replay */
+    };
+    movie.mount(canvas); movie.preload().then(function () { movie._t = 0; movie.play(); });
+    document.getElementById('previewFilm').classList.add('on');   /* label stays「预览整片」, just highlight it */
+  }
+  function restoreEditing(silent) {
+    filmMode = false; movie.pause();
+    document.getElementById('previewFilm').classList.remove('on');
+    comp.mount(canvas); comp.onframe = onFrame; refreshDur(); comp.seek(comp.time());
+    playBtn.textContent = '▶';
+    if (!silent) timeEl.textContent = fmt(comp.time());
+  }
+  document.getElementById('sceneDur').addEventListener('change', function () { comp.setDuration(+this.value); refreshDur(); comp.seek(Math.min(comp.time(), comp.duration())); renderTimeline(); renderScenes(); });
+  document.getElementById('addScene').addEventListener('click', addScene);
+  document.getElementById('previewFilm').addEventListener('click', function () { previewFilm(); });   /* always (re)starts the whole-film preview from 0 */
+
+  /* ---------- whole-film video background (a shared layer across selected scenes) ---------- */
+  MAVideo.setMediaHook(function () { try { (filmMode ? movie : comp).redraw(); } catch (e) {} });
+  document.getElementById('bgpick').addEventListener('click', function () { document.getElementById('bgfile').click(); });
+  document.getElementById('bgfile').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var url = URL.createObjectURL(f);
+    vSnap();
+    var id = movie.addShared({ type:'video', src:url, name:f.name, x:movie.w/2, y:movie.h/2, w:movie.w, h:movie.h, z:'back', loop:true, opacity:1, scenes:null });
+    var sh = movie.sharedLayer(id);
+    // preload the shared layer's media via the movie, then refresh
+    movie.preload().then(function () {
+      // fit the background to the comp while keeping its aspect (cover)
+      if (sh._vid) { var vr = (sh._vid.videoWidth||16)/(sh._vid.videoHeight||9), cr = movie.w/movie.h; if (vr > cr) { sh.h = movie.h; sh.w = movie.h*vr; } else { sh.w = movie.w; sh.h = movie.w/vr; } }
+      applyEditShared(); comp.redraw(); renderBgState();
+    });
+    document.getElementById('bgHint').textContent = vt('bg.added');
+    e.target.value = '';
+  });
+  function renderBgState() {
+    var box = document.getElementById('bgState'); if (!box) return;
+    var sh = (movie.shared || []).filter(function (l) { return (l.z||'back') === 'back'; })[0];
+    if (!sh) { box.innerHTML = ''; return; }
+    var inSet = sh.scenes;   // null = all
+    var chks = movie.scenes.map(function (sc, i) {
+      var on = !inSet || inSet.indexOf(i) >= 0;
+      return '<label><input type="checkbox" data-bgscene="' + i + '"' + (on ? ' checked' : '') + '>' + vt('scene',{n:i+1}) + '</label>';
+    }).join('');
+    box.innerHTML = '<span class="bgname" title="' + escapeAttr(sh.name||'video') + '">🎞 ' + escapeHtml(sh.name||'video') + '</span>' +
+      '<span class="bgchk"><span class="flabel">' + vt('bg.in') + '</span>' + chks + '</span>' +
+      '<span class="bgop">' + vt('bg.opacity') + '<input type="range" min="0" max="1" step="0.05" value="' + (sh.opacity!=null?sh.opacity:1) + '" data-bgop></span>' +
+      '<button class="bgdel" data-bgdel title="' + vt('bg.del') + '">🗑</button>';
+    box.querySelectorAll('[data-bgscene]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var arr = [];
+        box.querySelectorAll('[data-bgscene]').forEach(function (cc) { if (cc.checked) arr.push(+cc.getAttribute('data-bgscene')); });
+        movie.setSharedScenes(sh.id, arr); applyEditShared(); comp.redraw();
+      });
+    });
+    var op = box.querySelector('[data-bgop]');
+    if (op) op.addEventListener('input', function () { sh.opacity = +op.value; comp.redraw(); });
+    var del = box.querySelector('[data-bgdel]');
+    if (del) del.addEventListener('click', function () { vSnap(); if (sh._vid) { try { sh._vid.pause(); } catch (e) {} } movie.removeShared(sh.id); applyEditShared(); comp.redraw(); renderBgState(); document.getElementById('bgHint').textContent = vt('bg.hint'); });
+  }
+
+  /* ---------- V6: reference replicate (upload video/gif → editable draft) ---------- */
+  var refData = null;
+  function seekVideo(v, t) { return new Promise(function (res) { v.onseeked = function(){ res(); }; try { v.currentTime = Math.min(t, v.duration || t); } catch(e){ res(); } setTimeout(res, 1500); }); }
+  async function analyzeRef(file) {
+    var url = URL.createObjectURL(file);
+    try {
+      if (file.type.indexOf('video') === 0) {
+        var v = document.createElement('video'); v.muted = true; v.src = url;
+        await new Promise(function (res){ v.onloadedmetadata = res; v.onerror = res; setTimeout(res, 4000); });
+        var dur = v.duration || 3, w = v.videoWidth || 1280, h = v.videoHeight || 720;
+        var N = Math.min(8, Math.max(3, Math.round(dur * 2))), frames = [];
+        var cc = document.createElement('canvas'); cc.width = Math.min(w, 480); cc.height = Math.round(cc.width * h / w); var cx = cc.getContext('2d');
+        for (var i = 0; i < N; i++) { await seekVideo(v, dur * (i / (N - 1 || 1))); cx.drawImage(v, 0, 0, cc.width, cc.height); frames.push(cc.toDataURL('image/jpeg', 0.6)); }
+        return { kind:'video', w:w, h:h, duration:dur, frames:frames, firstFrame:frames[0] };
+      } else {
+        var im = new Image(); im.src = url; await new Promise(function (res){ im.onload = res; im.onerror = res; });
+        var iw = im.naturalWidth || 480, ih = im.naturalHeight || 270;
+        var c2 = document.createElement('canvas'); c2.width = Math.min(iw, 480); c2.height = Math.round(c2.width * ih / iw); var x2 = c2.getContext('2d');
+        var fr = [];
+        for (var k = 0; k < 5; k++) { x2.drawImage(im, 0, 0, c2.width, c2.height); fr.push(c2.toDataURL('image/jpeg', 0.6)); await new Promise(function(r){ setTimeout(r, 180); }); }
+        return { kind:'gif', w:iw, h:ih, duration:2, frames:fr, firstFrame:fr[0] };
+      }
+    } catch (e) { return null; } finally { setTimeout(function(){ URL.revokeObjectURL(url); }, 5000); }
+  }
+  document.getElementById('refpick').addEventListener('click', function(){ document.getElementById('reffile').click(); });
+  document.getElementById('reffile').addEventListener('change', async function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    document.getElementById('refinfo').textContent = vt('ref.analyzing');
+    refData = await analyzeRef(f);
+    document.getElementById('refinfo').textContent = refData
+      ? vt('ref.got',{w:refData.w,h:refData.h,d:refData.duration.toFixed(1),n:refData.frames.length})
+      : vt('ref.bad');
+    document.getElementById('refbg').hidden = !refData;
+    document.getElementById('refai').hidden = !refData;
+    e.target.value = '';
+  });
+  document.getElementById('refbg').addEventListener('click', function () {
+    if (!refData) return;
+    var id = comp.addLayer({ type:'image', src:refData.firstFrame, x:comp.w/2, y:comp.h/2, w:comp.w });
+    comp.preload().then(function(){ comp.redraw(); renderLayerList(); selectLayer(id); });
+  });
+  document.getElementById('refai').addEventListener('click', async function () {
+    if (!refData) return;
+    var info = document.getElementById('refinfo'); info.textContent = vt('ref.aiRun');
+    try {
+      var r = await fetch('/api/video-replicate', { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ w:refData.w, h:refData.h, duration:refData.duration, frames:refData.frames }) });
+      var j = await r.json();
+      if (!r.ok || !j.comp) throw new Error(j.error || ('HTTP ' + r.status));
+      loadMovie(j.comp); info.textContent = vt('ref.aiDone');
+    } catch (e) { info.textContent = vt('ref.aiFail',{e:(e.message || e)}); }
+  });
+
+  /* load a Movie/comp JSON into the editor (used by AI replicate; reusable as "open project") */
+  function loadMovie(json) {
+    var data = json.scenes ? json : { w:json.w, h:json.h, fps:json.fps, scenes:[json], transitions:[] };
+    movie = new MAVideo.Movie(data); movie._editing = true; movie._editIdx = 0;
+    comp = movie.scenes[0]; comp._editing = true; comp.onframe = onFrame;
+    window.movie = movie; window.comp = comp;
+    movie.preload().then(function(){ comp.mount(canvas); refreshDur(); selId = null; applyEditShared(); comp.seek(0); renderScenes(); renderLayerList(); renderInspector(); renderTimeline(); renderBgState(); postVUndoState(); });
+  }
+  window.loadMovie = loadMovie;
+
+  /* ---------- W5: generate from product doc + chat-edit (claude on user machine) ---------- */
+  var GEN_DOC = '';
+  document.getElementById('genDocBtn').addEventListener('click', function(){ document.getElementById('genDoc').click(); });
+  document.getElementById('genDoc').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return; var rd = new FileReader();
+    rd.onload = function () { GEN_DOC = String(rd.result || '').slice(0, 20000); document.getElementById('genInfo').textContent = vt('gen.docLoaded',{name:f.name,n:GEN_DOC.length}); };
+    rd.readAsText(f); e.target.value = '';
+  });
+  document.getElementById('genBtn').addEventListener('click', async function () {
+    var p = document.getElementById('genPrompt').value.trim();
+    if (!p && !GEN_DOC) { document.getElementById('genInfo').textContent = vt('gen.empty'); return; }
+    var info = document.getElementById('genInfo'); info.textContent = vt('gen.running');
+    try {
+      var r = await fetch('/api/video-generate', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ brief: p, doc: GEN_DOC, w: comp.w, h: comp.h }) });
+      var j = await r.json(); if (!r.ok || !j.comp) throw new Error(j.error || ('HTTP ' + r.status));
+      loadMovie(j.comp); info.textContent = vt('gen.done');
+    } catch (e) { info.textContent = vt('gen.fail',{e:(e.message || e)}); }
+  });
+  async function sendVChat() {
+    var inp = document.getElementById('vchat'), instruction = inp.value.trim(); if (!instruction) return;
+    var info = document.getElementById('vchatInfo'); info.textContent = vt('chat.running'); inp.disabled = true;
+    try {
+      var r = await fetch('/api/video-edit', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ comp: movie.toJSON(), instruction: instruction }) });
+      var j = await r.json(); if (!r.ok || !j.comp) throw new Error(j.error || ('HTTP ' + r.status));
+      loadMovie(j.comp); info.textContent = vt('chat.done',{x:instruction.slice(0, 18)}); inp.value = '';
+    } catch (e) { info.textContent = vt('chat.fail',{e:(e.message || e)}); } finally { inp.disabled = false; }
+  }
+  document.getElementById('vchatSend').addEventListener('click', sendVChat);
+  document.getElementById('vchat').addEventListener('keydown', function (e) { if (e.key === 'Enter') sendVChat(); });
+
+  /* ---------- W2: element timeline (dopesheet) ---------- */
+  var tlDrag = null;
+  function renderTimeline() {
+    var rows = document.getElementById('tlrows'), ruler = document.getElementById('tlruler');
+    if (!rows || !ruler) return;
+    var d = comp.duration() || 1;
+    var step = d > 8 ? 2 : (d > 4 ? 1 : 0.5), rh = '';
+    for (var t = 0; t <= d + 1e-6; t += step) rh += '<span class="tltick" style="left:' + (t / d * 100) + '%">' + t.toFixed(step < 1 ? 1 : 0) + 's</span>';
+    ruler.innerHTML = rh;
+    if (!comp.layers.length) { rows.innerHTML = '<div class="tlempty">' + vt('tl.empty') + '</div>'; updatePlayhead(); return; }
+    rows.innerHTML = comp.layers.map(function (l) {
+      var name = l.type === 'text' ? (l.text || vt('name.text')) : l.id;
+      var dots = comp.allKeys(l.id).map(function (k) {
+        return '<span class="tldot" data-id="' + l.id + '" data-key="' + k.key + '" data-i="' + k.i + '" title="' + k.key + ' @' + k.t.toFixed(2) + 's" style="left:' + (k.t / d * 100) + '%"></span>';
+      }).join('');
+      var sp = '';
+      if (l.start != null || l.end != null) { var s = (l.start || 0) / d * 100, e = ((l.end != null ? l.end : d)) / d * 100; sp = '<span class="tlspan" style="left:' + s + '%;width:' + (e - s) + '%"></span>'; }
+      return '<div class="tlrow' + (l.id === selId ? ' sel' : '') + '" data-id="' + l.id + '"><div class="tlname" data-id="' + l.id + '">' + escapeHtml(name) + '</div><div class="tltrack" data-id="' + l.id + '">' + sp + dots + '</div></div>';
+    }).join('');
+    rows.querySelectorAll('.tlname').forEach(function (n) { n.addEventListener('click', function () { selectLayer(n.getAttribute('data-id')); }); });
+    rows.querySelectorAll('.tltrack').forEach(function (tk) {
+      tk.addEventListener('click', function (e) { if (e.target.classList.contains('tldot')) return; var r = tk.getBoundingClientRect(); selectLayer(tk.getAttribute('data-id')); comp.seek(Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (comp.duration() || 1)); });
+    });
+    rows.querySelectorAll('.tldot').forEach(function (dot) {
+      dot.addEventListener('pointerdown', function (e) {
+        e.stopPropagation();
+        var tk = dot.parentElement.getBoundingClientRect();
+        tlDrag = { id: dot.getAttribute('data-id'), key: dot.getAttribute('data-key'), i: +dot.getAttribute('data-i'), left: tk.left, width: tk.width, moved: false, dot: dot };
+        try { dot.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+    });
+    updatePlayhead();
+  }
+  function updatePlayhead() {
+    var wrap = document.getElementById('tlwrap'), ph = document.getElementById('tlph'); if (!wrap || !ph) return;
+    var W = wrap.clientWidth, d = comp.duration() || 1;
+    ph.style.left = (120 + (comp.time() / d) * (W - 120)) + 'px';
+  }
+  window.addEventListener('pointermove', function (e) {
+    if (!tlDrag) return;
+    var d = comp.duration() || 1, frac = Math.max(0, Math.min(1, (e.clientX - tlDrag.left) / tlDrag.width));
+    tlDrag.moved = true; comp.moveKey(tlDrag.id, tlDrag.key, tlDrag.i, frac * d);
+    tlDrag.dot.style.left = (frac * 100) + '%'; comp.redraw();
+  });
+  window.addEventListener('pointerup', function () {
+    if (!tlDrag) return;
+    var id = tlDrag.id, key = tlDrag.key, i = tlDrag.i, moved = tlDrag.moved; tlDrag = null;
+    if (moved) { comp.sortKeys(id, key); renderTimeline(); if (selId === id) { renderInspectorCounts(); renderInspectorValues(); } }
+    else { var l = comp.layer(id); if (l && l.tracks[key] && l.tracks[key][i]) { selectLayer(id); comp.seek(l.tracks[key][i].t); } }
+  });
+
+  /* ---------- embed bridge: when hosted in the main app workbench (?embed=1) ---------- */
+  if (/[?&]embed=1/.test(location.search)) document.body.classList.add('embed');
+  function setAspect(vp){
+    var dims = { Desktop:[1280,720], Tablet:[1024,768], Mobile:[720,1280] }[vp] || [1280,720];
+    movie.scenes.forEach(function(sc){ sc.w=dims[0]; sc.h=dims[1]; }); movie.w=dims[0]; movie.h=dims[1];
+    comp.mount(canvas); refreshDur(); comp.seek(comp.time()); renderTimeline();
+  }
+  function showCodeView(on){
+    var pre=document.getElementById('vCode'), stg=document.querySelector('.stage');
+    if(on){ pre.textContent=JSON.stringify(movie.toJSON(),null,2); pre.hidden=false; if(stg) stg.style.display='none'; }
+    else { pre.hidden=true; if(stg) stg.style.display=''; }
+  }
+  window.addEventListener('message', function (e) {
+    var m = e.data || {};
+    if (m.type === 'load' && m.comp) { try { loadMovie(m.comp); showCodeView(false); } catch (err) {} }
+    else if (m.type === 'getComp') { try { (e.source || parent).postMessage({ type: 'comp', reqId: m.reqId, comp: movie.toJSON() }, '*'); } catch (err) {} }
+    else if (m.type === 'lang') { VLANG = /^zh/.test(m.lang||'') ? 'zh' : 'en'; try{ relabel(); applyVI18n(); renderLayerList(); renderInspector(); renderScenes(); renderTimeline(); renderBgState(); }catch(err){} }
+    else if (m.type === 'applyRecipe' && m.recipe) { try { applyRecipeToElement(m.recipe); } catch (err) {} }
+    else if (m.type === 'cmd') {
+      if (m.cmd === 'undo') { vUndo(); }
+      else if (m.cmd === 'replay') { showCodeView(false); if (filmMode) previewFilm(); else { comp.seek(0); comp.play(); } }
+      else if (m.cmd === 'preview') { showCodeView(false); }
+      else if (m.cmd === 'code') { showCodeView(true); }
+      else if (m.cmd === 'device') { setAspect(m.vp); }
+      else if (m.cmd === 'tool') {
+        if (m.tool === 'comment' || m.tool === 'mark') { pickMode = m.tool; setTool('select'); document.body.classList.add('picking'); }
+        else { pickMode = null; document.body.classList.remove('picking'); setTool('select'); }
+      }
+    }
+  });
+  try { parent && parent !== window && parent.postMessage({ type: 'videoReady' }, '*'); } catch (e) {}
+
+  applyVI18n();
+  comp.preload().then(function () { comp.mount(canvas); applyEditShared(); comp.seek(0); timeEl.textContent = fmt(0); renderLayerList(); renderInspector(); renderScenes(); renderTimeline(); renderBgState(); postVUndoState(); });
+  window.comp = comp; window.movie = movie;
+</script>
+<script type="module">
+  import { exportAndDownload, canExport } from './export.js';
+  const btn = document.getElementById('export'), bar = document.getElementById('exportbar');
+  const fill = document.getElementById('exportfill'), txt = document.getElementById('exporttxt');
+  const T = window.vt || ((k)=>k);
+  if (!canExport()) { btn.disabled = true; btn.title = T('export.noWebcodecs'); btn.textContent = T('export.needChrome'); }
+  btn.addEventListener('click', async () => {
+    const film = window.movie || window.comp; window.comp && window.comp.pause(); window.movie && window.movie.pause();
+    btn.disabled = true; bar.hidden = false; fill.style.width = '0%'; txt.textContent = T('export.film',{p:0});
+    const t0 = performance.now();
+    try {
+      if (film.preload) await film.preload();
+      await exportAndDownload(film, { fps: 30 }, (p) => { fill.style.width = Math.round(p*100)+'%'; txt.textContent = T('export.film',{p:Math.round(p*100)}); }, 'launch.mp4');
+      txt.textContent = T('export.done',{s:((performance.now()-t0)/1000).toFixed(1)});
+    } catch (e) { txt.textContent = T('export.fail',{e:(e && e.message ? e.message : e)}); }
+    finally { btn.disabled = false; }
+  });
+</script>
+</body>
+</html>

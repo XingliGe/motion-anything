@@ -1,0 +1,7 @@
+/* count-up.css — motion-anything recipe · category: emphasis
+ * Tabular figures keep the width steady while the number animates. */
+
+[data-count] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}

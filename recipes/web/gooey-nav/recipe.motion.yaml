@@ -1,0 +1,25 @@
+spec_version: 1
+id: gooey-nav
+name: Gooey Nav
+description: A gooey pill slides under the active nav item with a liquid merge — a smooth segmented control.
+surfaces: [web, interaction]
+canvas: [web]
+target: [list,button]
+intent: hover-press
+runtime: [css,js]
+export: [skill, motion-json, html]
+category: hover-press
+tech: [css,js]
+dependencies: []
+tags: [gooey nav,liquid tabs,果冻导航,液态标签]
+intent_keywords: [gooey nav,liquid tabs,果冻导航,液态标签]
+best_for: ["Gooey Nav — one tasteful use"]
+avoid_when: ["Overuse; touch-only where relevant; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css,js, files: [gooey-nav.css,gooey-nav.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/components/gooey-nav, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

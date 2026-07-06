@@ -1,0 +1,25 @@
+spec_version: 1
+id: noise
+name: Noise
+description: A film-grain noise overlay — subtle animated texture over any background.
+surfaces: [web, interaction]
+canvas: [web]
+target: [background, section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [background, hero, ambient, noise]
+intent_keywords: [noise, animated background, 动态背景]
+best_for: ["A full-bleed hero/section background"]
+avoid_when: ["Behind dense text without a scrim", "Multiple animated backgrounds at once"]
+restraint: { max_per_view: 1, notes: "One animated background per view; scrim behind text. Static frame under reduced-motion." }
+motion: { duration_ms: 0, easing: linear, reduced_motion: static, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [noise.js], usage: "Copy the file(s); add a full-bleed <div class=\"noise\"></div>." }
+license: { spdx: Apache-2.0, upstream: null, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

@@ -1,0 +1,25 @@
+spec_version: 1
+id: blur-text
+name: Blur Text
+description: Words resolve from a soft blur, one after another — a calm, premium headline entrance.
+surfaces: [web, interaction]
+canvas: [web]
+target: [text]
+intent: text-kinetic
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: text-kinetic
+tech: [css, js]
+dependencies: []
+tags: [text, blur, focus, entrance, headline, premium]
+intent_keywords: [blur text, blur in headline, 模糊入场, 虚化聚焦文字]
+best_for: ["A hero headline that should arrive calmly"]
+avoid_when: ["Body copy; more than one per view"]
+restraint: { max_per_view: 1, notes: "One headline. Under reduced-motion it appears instantly, sharp." }
+motion: { duration_ms: 620, easing: ease-out, reduced_motion: instant, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css+js, files: [blur-text.css, blur-text.js], usage: "Add data-blur-text to a heading; JS splits into words, CSS blurs→focuses each with stagger." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/text-animations/blur-text", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

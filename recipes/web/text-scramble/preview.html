@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>text-scramble · motion-anything recipe</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; gap: 20px; text-align: center;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      background: radial-gradient(120% 120% at 50% 0%, #12131a, #06070c); color: #d7f7e6; }
+    .badge { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #39d98a; font-family: ui-sans-serif, system-ui, sans-serif; }
+    h1 { font-size: 44px; margin: 0; font-weight: 700; letter-spacing: .02em; min-height: 1.2em; }
+    button { margin-top: 6px; border: 1px solid #2b6; background: transparent; color: #39d98a; font: 600 13px ui-sans-serif, system-ui, sans-serif;
+      padding: 9px 16px; border-radius: 10px; cursor: pointer; }
+    .hint { font-size: 13px; color: #6f7c75; font-family: ui-sans-serif, system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="badge">motion-anything · text-kinetic</div>
+  <h1><span class="scramble" data-text="motion, anything"></span></h1>
+  <button id="again">↻ decode again</button>
+  <p class="hint">One short line resolves from noise · final text is the real content · instant under reduced-motion.</p>
+  <script src="text-scramble.js"></script>
+  <script>
+    var phrases = ['motion, anything', 'launch, faster', 'ship, tasteful'];
+    var i = 0, el = document.querySelector('.scramble');
+    document.getElementById('again').addEventListener('click', function () {
+      i = (i + 1) % phrases.length; window.scrambleTo(el, phrases[i]);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>kinetic-headline · motion-anything recipe</title>
+  <link rel="stylesheet" href="kinetic-headline.css" />
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; text-align:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(120% 120% at 50% 0%, #fff, #f4f5f7); color:#1a1d24; }
+    .badge { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8b909a; margin-bottom:14px; }
+    h1 { font-size:40px; margin:0 0 6px; letter-spacing:-.02em; font-weight:700; }
+    .row { display:grid; gap:16px; }
+    .lbl { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#b3b8c2; margin-top:10px; }
+    p { color:#6b7280; margin:0 auto; max-width:420px; font-size:15px; }
+    .replay { margin-top:30px; font-size:13px; color:#9aa0aa; background:none; border:0; cursor:pointer; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="badge">motion-anything · text · kinetic presets</div>
+    <div><div class="lbl">rise (words)</div><h1 data-kinetic data-kinetic-anim="rise">Words that move</h1></div>
+    <div><div class="lbl">pop (letters)</div><h1 data-kinetic="letters" data-kinetic-anim="pop">motion, anything</h1></div>
+    <div><div class="lbl">blur (letters)</div><h1 data-kinetic="letters" data-kinetic-anim="blur">into focus</h1></div>
+    <div><div class="lbl">flip (letters)</div><h1 data-kinetic="letters" data-kinetic-anim="flip">flip in</h1></div>
+    <div><div class="lbl">typewriter (letters)</div><h1 data-kinetic="letters" data-kinetic-anim="typewriter">typing…</h1></div>
+    <div><div class="lbl">wave (letters · ambient)</div><h1 data-kinetic="letters" data-kinetic-anim="wave">riding a wave</h1></div>
+    <div><button class="replay" onclick="location.reload()">↻ replay</button></div>
+  </div>
+  <script src="kinetic-headline.js"></script>
+</body>
+</html>

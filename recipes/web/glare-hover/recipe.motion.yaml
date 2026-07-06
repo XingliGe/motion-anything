@@ -1,0 +1,25 @@
+spec_version: 1
+id: glare-hover
+name: Glare Hover
+description: A soft glare sweeps across a card following the cursor on hover — a premium, tactile sheen.
+surfaces: [web, interaction]
+canvas: [web]
+target: [card, image, button]
+intent: hover-press
+runtime: [css, js]
+export: [skill, motion-json, html]
+category: hover-press
+tech: [css, js]
+dependencies: []
+tags: [glare, sheen, hover, card, premium, cursor]
+intent_keywords: [glare hover, sheen on hover, premium card hover, 高光扫过, 卡片光泽]
+best_for: ["A hero card, cover image, or a few feature tiles"]
+avoid_when: ["Dense grids", "Touch-only contexts (no cursor)", "Text-dense reading cards"]
+restraint: { max_per_view: 4, notes: "Keep the glare subtle. Disabled on touch and under reduced-motion." }
+motion: { duration_ms: 220, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: css+js, files: [glare-hover.css, glare-hover.js], usage: "Add class 'glare' to a card. JS writes --gx/--gy; CSS paints a glare there on hover." }
+license: { spdx: Apache-2.0, upstream: "https://reactbits.dev/animations/glare-hover", attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0

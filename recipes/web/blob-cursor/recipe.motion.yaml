@@ -1,0 +1,25 @@
+spec_version: 1
+id: blob-cursor
+name: Blob Cursor
+description: A soft gooey blob trails the cursor with a springy lag — a playful custom pointer.
+surfaces: [web, interaction]
+canvas: [web]
+target: [background,section]
+intent: ambient
+runtime: [js]
+export: [skill, motion-json, html]
+category: ambient
+tech: [js]
+dependencies: []
+tags: [blob cursor,gooey pointer,果冻光标,跟随色块]
+intent_keywords: [blob cursor,gooey pointer,果冻光标,跟随色块]
+best_for: ["Blob Cursor — one tasteful use"]
+avoid_when: ["Touch-only contexts; overuse; reduced-motion where it distracts"]
+restraint: { max_per_view: 2, notes: "Use sparingly. Off/plain under reduced-motion." }
+motion: { duration_ms: 300, easing: ease-out, reduced_motion: none, gpu_safe: true }
+entry: preview.html
+implementations:
+  - { tech: js, files: [blob-cursor.js], usage: "See preview.html; add the class." }
+license: { spdx: Apache-2.0, upstream: https://reactbits.dev/animations/blob-cursor, attribution_required: false }
+author: { name: nexu.io, url: "https://github.com/nexu-io" }
+version: 0.1.0
