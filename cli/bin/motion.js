@@ -166,7 +166,7 @@ function cmdServe(portArg) {
   };
 
   /* ---------- local-CLI engine: scan installed CLIs + generate via headless CLI ---------- */
-  const { execSync } = require('child_process');
+  const { execSync, execFileSync, spawnSync } = require('child_process');
   /* Engine definitions. Each entry says HOW to drive that agent headlessly (mirrors the runtime
    * defs in open-design's apps/daemon/src/runtimes/defs/):
    *   mode 'claude' = claude-style `-p --output-format stream-json` (Claude Code only)
@@ -177,7 +177,8 @@ function cmdServe(portArg) {
   const KNOWN_CLIS = [
     { id: 'claude', name: 'Claude Code', vendor: 'Anthropic', mode: 'claude' },
     { id: 'codex', name: 'Codex CLI', vendor: 'OpenAI', mode: 'events', family: 'codex',
-      args: ['exec', '--json', '--skip-git-repo-check', '--sandbox', 'workspace-write', '-c', 'sandbox_workspace_write.network_access=true'],
+      // The app uses Codex as a headless text generator; avoid user MCP/hook config that can block unrelated HTML edits.
+      args: ['exec', '--json', '--skip-git-repo-check', '--ignore-user-config', '--sandbox', 'workspace-write', '-c', 'sandbox_workspace_write.network_access=true'],
       cwdFlag: '-C' },
     { id: 'cursor-agent', name: 'Cursor Agent', vendor: 'Cursor', mode: 'events', family: 'cursor',
       args: ['--print', '--output-format', 'stream-json', '--force'], cwdFlag: '--workspace' },
@@ -196,14 +197,55 @@ function cmdServe(portArg) {
   function engineDef(cli) {
     return KNOWN_CLIS.find(function (c) { return c.id === cli; }) || null;
   }
+  function firstResolvedBin(out) {
+    var lines = String(out || '').split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!lines.length) return '';
+    if (process.platform === 'win32') {
+      var runnable = /\.(?:cmd|bat|exe|com)$/i;
+      for (var i = 0; i < lines.length; i++) { if (runnable.test(lines[i])) return lines[i]; }
+    }
+    return lines[0];
+  }
   function whichBin(bin) {
-    try { return execSync('command -v ' + bin, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); }
+    try {
+      if (process.platform === 'win32') {
+        return firstResolvedBin(execFileSync('where.exe', [bin], { stdio: ['ignore', 'pipe', 'ignore'] }));
+      }
+      return execSync('command -v ' + bin, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    }
     catch (e) { return ''; }
   }
   function resolveEngineBin(def) {
     var cands = def.bins || [def.id];
-    for (var i = 0; i < cands.length; i++) { if (whichBin(cands[i])) return cands[i]; }
+    for (var i = 0; i < cands.length; i++) {
+      var found = whichBin(cands[i]);
+      if (found) return found;
+    }
     return cands[0];
+  }
+  function resolveNamedBin(cli, fallback) {
+    var id = (cli && /^[a-z0-9-]+$/.test(cli)) ? cli : fallback;
+    var def = engineDef(id);
+    return def ? resolveEngineBin(def) : (whichBin(id) || id);
+  }
+  function quoteCmdArg(arg) {
+    return '"' + String(arg).replace(/"/g, '\\"') + '"';
+  }
+  function spawnCli(bin, args, opts) {
+    opts = Object.assign({}, opts || {});
+    if (process.platform === 'win32' && /\.(?:cmd|bat)$/i.test(bin)) {
+      opts.windowsVerbatimArguments = true;
+      var cmdLine = '"' + [bin].concat(args || []).map(quoteCmdArg).join(' ') + '"';
+      return spawn(process.env.ComSpec || 'cmd.exe', ['/d', '/s', '/c', cmdLine], opts);
+    }
+    return spawn(bin, args, opts);
+  }
+  function killCli(child, signal) {
+    if (!child) return;
+    if (process.platform === 'win32' && child.pid) {
+      try { spawnSync('taskkill', ['/pid', String(child.pid), '/T', '/F'], { stdio: 'ignore' }); return; } catch (e) {}
+    }
+    try { child.kill(signal || 'SIGKILL'); } catch (e) {}
   }
   function scanClis() {
     return KNOWN_CLIS.map(function (c) {
@@ -704,12 +746,12 @@ function cmdServe(portArg) {
   // Read-only research tools pre-approved for headless runs (so WebFetch/WebSearch work without a prompt).
   var AGENT_TOOLS = 'WebFetch,WebSearch,Read,Glob,Grep';
   function runClaudeJson(promptText, cli, cb, timeoutMs) {
-    var bin = (cli && /^[a-z0-9-]+$/.test(cli)) ? cli : 'claude';
+    var bin = resolveNamedBin(cli, 'claude');
     var TO = timeoutMs || 180000;
-    var child = spawn(bin, ['-p', '--allowedTools', AGENT_TOOLS], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] });
+    var child = spawnCli(bin, ['-p', '--allowedTools', AGENT_TOOLS], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] });
     try { child.stdin.write(promptText); child.stdin.end(); } catch (e) {}
     var out = '', err = '', timedOut = false;
-    var killer = setTimeout(function () { timedOut = true; child.kill('SIGKILL'); }, TO);
+    var killer = setTimeout(function () { timedOut = true; killCli(child); }, TO);
     child.stdout.on('data', function (d) { out += d; });
     child.stderr.on('data', function (d) { err += d; });
     child.on('error', function (e) { clearTimeout(killer); cb(e); });
@@ -753,15 +795,15 @@ function cmdServe(portArg) {
   }
   // on = { text(t), tool(name,summary), done(json, prose), error(err) }.  Returns the child (to kill on disconnect).
   function runClaudeStream(promptText, cli, timeoutMs, on) {
-    var bin = (cli && /^[a-z0-9-]+$/.test(cli)) ? cli : 'claude';
+    var bin = resolveNamedBin(cli, 'claude');
     var TO = timeoutMs || 600000, child;
     // pre-approve read-only research tools so headless -p can actually fetch release notes etc.
     // (no Bash/Write/Edit → the agent can research but can't run commands or modify files)
-    try { child = spawn(bin, ['-p', '--output-format', 'stream-json', '--verbose', '--allowedTools', AGENT_TOOLS], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
+    try { child = spawnCli(bin, ['-p', '--output-format', 'stream-json', '--verbose', '--allowedTools', AGENT_TOOLS], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
     catch (e) { on.error && on.error(e); return null; }
     try { child.stdin.write(promptText); child.stdin.end(); } catch (e) {}
     var buf = '', full = '', resultText = '', err = '', timedOut = false, ended = false;
-    var killer = setTimeout(function () { timedOut = true; try { child.kill('SIGKILL'); } catch (e) {} }, TO);
+    var killer = setTimeout(function () { timedOut = true; killCli(child); }, TO);
     child.stdout.on('data', function (d) {
       buf += d; var lines = buf.split('\n'); buf = lines.pop();
       lines.forEach(function (ln) {
@@ -843,15 +885,15 @@ function cmdServe(portArg) {
     var args = opts.args || ['agent', 'run', '--runtime', 'opencode'];
     var model = String(opts.model || cfg.model || AMR_DEFAULT_MODEL);
     var TO = timeoutMs || 600000, child;
-    try { child = spawn(bin, args, { cwd: REPO, env: amrEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
+    try { child = spawnCli(bin, args, { cwd: REPO, env: amrEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
     catch (e) { on.error && on.error(e); return null; }
     var nextId = 3, sessionId = null, promptId = null, setModelId = null;
     var buf = '', full = '', errTail = '', ended = false, timedOut = false;
-    var killer = setTimeout(function () { timedOut = true; try { child.kill('SIGKILL'); } catch (e) {} }, TO);
+    var killer = setTimeout(function () { timedOut = true; killCli(child); }, TO);
     function fin(err) {
       if (ended) return; ended = true; clearTimeout(killer);
       try { child.stdin.end(); } catch (e) {}                       // EOF lets vela tear down its private server
-      var term = setTimeout(function () { try { child.kill('SIGTERM'); } catch (e) {} }, 1500);
+      var term = setTimeout(function () { killCli(child, 'SIGTERM'); }, 1500);
       if (term.unref) term.unref();                                  // grace period, but don't hold the process open
       if (err) return on.error && on.error(err);
       if (opts.raw) return on.done && on.done(null, full);
@@ -945,11 +987,11 @@ function cmdServe(portArg) {
     if (def.cwdFlag) args.push(def.cwdFlag, REPO);
     var parse = EVENT_PARSERS[def.family] || parseStreamLine;
     var TO = timeoutMs || 600000, child;
-    try { child = spawn(bin, args, { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
+    try { child = spawnCli(bin, args, { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
     catch (e) { on.error && on.error(e); return null; }
     try { child.stdin.write(promptText); child.stdin.end(); } catch (e) {}
     var buf = '', full = '', resultText = '', err = '', streamErr = null, timedOut = false, ended = false;
-    var killer = setTimeout(function () { timedOut = true; try { child.kill('SIGKILL'); } catch (e) {} }, TO);
+    var killer = setTimeout(function () { timedOut = true; killCli(child); }, TO);
     child.stdout.on('data', function (d) {
       buf += d; var lines = buf.split('\n'); buf = lines.pop();
       lines.forEach(function (ln) {
@@ -993,12 +1035,12 @@ function cmdServe(portArg) {
       args.push(def.promptViaFile, tmpFile);
     }
     var TO = timeoutMs || 600000, child;
-    try { child = spawn(bin, args, { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
+    try { child = spawnCli(bin, args, { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] }); }
     catch (e) { on.error && on.error(e); return null; }
     if (!tmpFile) { try { child.stdin.write(promptText); } catch (e) {} }
     try { child.stdin.end(); } catch (e) {}
     var out = '', err = '', timedOut = false, ended = false;
-    var killer = setTimeout(function () { timedOut = true; try { child.kill('SIGKILL'); } catch (e) {} }, TO);
+    var killer = setTimeout(function () { timedOut = true; killCli(child); }, TO);
     child.stdout.on('data', function (d) { out += d; });
     child.stderr.on('data', function (d) { err += d; });
     function cleanup() { if (tmpFile) { try { fs.unlinkSync(tmpFile); } catch (e) {} } }
@@ -1112,11 +1154,11 @@ function cmdServe(portArg) {
     if (def && def.mode === 'events') return runEventStream(promptText, def, timeoutMs, onRaw, { raw: true });
     if (def && def.mode === 'plain') return runPlainAgent(promptText, def, timeoutMs, onRaw, { raw: true });
     if (def && def.mode === 'byok') return runByokStream(promptText, timeoutMs, onRaw, { raw: true });
-    var bin = (cli && /^[a-z0-9-]+$/.test(cli)) ? cli : 'claude';
-    var child = spawn(bin, ['-p'], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] });
+    var bin = resolveNamedBin(cli, 'claude');
+    var child = spawnCli(bin, ['-p'], { cwd: REPO, env: cleanEnv(), stdio: ['pipe', 'pipe', 'pipe'] });
     try { child.stdin.write(promptText); child.stdin.end(); } catch (e) {}
     var out = '', err = '';
-    var killer = setTimeout(function () { child.kill('SIGKILL'); }, timeoutMs || 240000);
+    var killer = setTimeout(function () { killCli(child); }, timeoutMs || 240000);
     child.stdout.on('data', function (d) { out += d; });
     child.stderr.on('data', function (d) { err += d; });
     child.on('error', function (e) { clearTimeout(killer); cb(e, '', ''); });
@@ -1594,10 +1636,10 @@ function cmdServe(portArg) {
               error: function () { sse(res, 'done', { comp: comp, note: note, templates: tlist }); res.end(); },   // verify failed → keep phase-1
               done: function (comp2, note2) { sse(res, 'done', { comp: comp2 || comp, note: note2 || note, refined: true, templates: tlist }); res.end(); }
             });
-            res.on('close', function () { try { vchild && vchild.kill('SIGKILL'); } catch (e) {} });
+            res.on('close', function () { killCli(vchild); });
           }
         });
-        res.on('close', function () { try { child && child.kill('SIGKILL'); } catch (e) {} });
+        res.on('close', function () { killCli(child); });
       });
     }
     if (req.method === 'POST' && req.url === '/api/video-edit-stream') {
@@ -1612,7 +1654,7 @@ function cmdServe(portArg) {
           error: function (err) { console.log('  ✗ ' + err.message); sse(res, 'error', { error: String(err.message || err) }); res.end(); },
           done: function (comp, note) { sse(res, 'done', { comp: comp, note: note }); res.end(); }
         });
-        res.on('close', function () { try { child && child.kill('SIGKILL'); } catch (e) {} });
+        res.on('close', function () { killCli(child); });
       });
     }
     if (req.method === 'POST' && req.url === '/api/video-generate') {
