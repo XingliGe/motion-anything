@@ -5,7 +5,7 @@
 > **描述感觉，AI 交付动画。** agentic motion layer（智能体动效层）：本地优先、对话原生的动效引擎。一句话生成动效网页和 launch 视频，然后**在跑着的页面上逐组件编辑动效** —— 4 种触发、13 个动法、弹簧缓动、完整关键帧编辑器。**8 个编码 agent 引擎 + BYOK** 随便换（Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud），**403 个策展动效配方**弹药充足，产物随处可去：JSON · CSS · React · Lottie · MP4 · GIF · 可移植 skill。零 npm 依赖，无水印，无按次渲染收费。
 
 <p align="center">
-  <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner with floating motion-editor cards and purple silk light ribbons; 403 motion recipes, 8 coding agents, 0 API key." width="100%" />
+  <img src="docs/assets/hero.jpg" alt="motion-anything —— Anything becomes motion, on your laptop。杂志宣言风深色头图：HTML 组件动效工作台与视频合成器双窗口，底部数字行 —— 403 动效配方、230 可移植 skill、2680 图标、59 设计系统。" width="100%" />
 </p>
 
 <p align="center">

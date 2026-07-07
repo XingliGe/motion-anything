@@ -5,7 +5,7 @@
 > **Describe the feeling — your AI ships the animation.** The agentic motion layer: a local-first, chat-native motion engine. Generate animated pages and launch videos from one sentence, then edit motion **on the running page, component by component** — 4 triggers, 13 motion verbs, spring easing, a full keyframe editor. Driven by **8 coding-agent engines + BYOK** (Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud), armed with **403 curated motion recipes**, and exported to anything: JSON · CSS · React · Lottie · MP4 · GIF · portable skills. Zero npm dependencies. No watermark. No per-render fees.
 
 <p align="center">
-  <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner with floating motion-editor cards and purple silk light ribbons; 403 motion recipes, 8 coding agents, 0 API key." width="100%" />
+  <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner: a component-motion workbench window and a launch-video compositor window, with a stats row — 403 motion recipes, 230 portable skills, 2,680 icons, 59 design systems." width="100%" />
 </p>
 
 <p align="center">
