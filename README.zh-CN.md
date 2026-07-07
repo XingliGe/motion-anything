@@ -2,7 +2,7 @@
 
 <p align="center"><sub><a href="https://github.com/nexu-io/open-design"><b>nexu.io · Open Design</b></a> 家族项目 —— 同一支团队对「动效」的回答。如果你喜欢 motion-anything，<a href="https://github.com/nexu-io/open-design">Open Design</a> 是这支团队规模化交付的 agent 时代设计工作室。</sub></p>
 
-> **描述感觉，AI 交付动画。** agentic motion layer（智能体动效层）：本地优先、对话原生的动效引擎。一句话生成动效网页和 launch 视频，然后**在跑着的页面上逐组件编辑动效** —— 4 种触发、13 个动法、弹簧缓动、完整关键帧编辑器。**8 个编码 agent 引擎 + BYOK** 随便换（Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud），**403 个策展动效配方**弹药充足，产物随处可去：JSON · CSS · React · Lottie · MP4 · GIF · 可移植 skill。零 npm 依赖，无水印，无按次渲染收费。
+> **描述感觉，AI 交付动画。** agentic motion layer（智能体动效层）：本地优先、对话原生的动效引擎。一句话生成动效网页和 launch 视频，然后**在跑着的页面上逐组件编辑动效** —— 4 种触发、13 个动法、弹簧缓动、完整关键帧编辑器。**8 个编码 agent 引擎 + BYOK** 随便换（Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud），**403 个策展动效配方**弹药充足，深度接入 **Open Design 生态**（59 套 `DESIGN.md` 品牌包 · 58 个 HyperFrames 视频模板 · 112 个 HTML 原型模板 · 2680 图标），产物随处可去：JSON · CSS · React · Lottie · MP4 · GIF · 可移植 skill。零 npm 依赖，无水印，无按次渲染收费。
 
 <p align="center">
   <img src="docs/assets/hero.jpg" alt="motion-anything —— Anything becomes motion, on your laptop。深底浅色窗口的杂志宣言风头图：HTML 组件动效工作台与视频合成器，底部数字行 —— 403 动效配方、230 可移植 skill、2680 图标、59 设计系统。" width="100%" />
@@ -14,6 +14,14 @@
   <a href="#动效库"><img alt="Recipes" src="https://img.shields.io/badge/%E5%8A%A8%E6%95%88%E9%85%8D%E6%96%B9-403-8b7cf6?style=flat-square" /></a>
   <a href="#万物可导出"><img alt="Export" src="https://img.shields.io/badge/%E5%AF%BC%E5%87%BA-JSON%20%C2%B7%20CSS%20%C2%B7%20React%20%C2%B7%20Lottie%20%C2%B7%20MP4%20%C2%B7%20GIF-9b59b6?style=flat-square" /></a>
   <a href="#快速开始"><img alt="Quickstart" src="https://img.shields.io/badge/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B-1%20%E6%9D%A1%E5%91%BD%E4%BB%A4-green?style=flat-square" /></a>
+</p>
+
+<p align="center">
+  <a href="#动效库"><img alt="设计系统" src="https://img.shields.io/badge/%E8%AE%BE%E8%AE%A1%E7%B3%BB%E7%BB%9F-59-1abc9c?style=flat-square" /></a>
+  <a href="#动效库"><img alt="视频模板" src="https://img.shields.io/badge/HyperFrames%20%E8%A7%86%E9%A2%91%E6%A8%A1%E6%9D%BF-58-e67e22?style=flat-square" /></a>
+  <a href="#动效库"><img alt="HTML模板" src="https://img.shields.io/badge/HTML%20%E5%8E%9F%E5%9E%8B%E6%A8%A1%E6%9D%BF-112-3498db?style=flat-square" /></a>
+  <a href="#动效库"><img alt="图标" src="https://img.shields.io/badge/%E5%9B%BE%E6%A0%87-2680-f39c12?style=flat-square" /></a>
+  <a href="#open-design-生态"><img alt="可移植skill" src="https://img.shields.io/badge/%E5%8F%AF%E7%A7%BB%E6%A4%8D%20skill-230-8b7cf6?style=flat-square" /></a>
 </p>
 
 <p align="center"><a href="README.md">English</a> · <b>简体中文</b></p>
@@ -167,6 +175,20 @@
 4. **工具锁定** —— 专有模型、按次收费、水印、只能交接的产物。*这里是 Apache-2.0、本地优先、引擎无关、万物可导出。*
 
 **vs. Figma Motion** —— 它的产物是交接物，我们的产物就是运行中的页面本身；它的时间轴没有交互触发，这里 hover 和 click 是一等公民；它的动效锁在它的应用里，这里导出 JSON / CSS / React / Lottie 或任何 agent 都能用的 skill。
+
+---
+
+## Open Design 生态
+
+motion-anything 不是孤岛 —— 它是 [Open Design](https://github.com/nexu-io/open-design) 家族的**动效层**，互通是真接线，不是贴 logo：
+
+- **每个配方都是 Open-Design 兼容的 `SKILL.md`** —— 230 个可移植 skill 任意导出，直接放进 Open Design 的 `skills/`（或任何读 skill 的 agent）。
+- **59 套 Open Design `DESIGN.md` 格式的品牌包** —— 生成开箱即品牌级；你团队在 OD 用的同一份品牌契约，在这里驱动动效。
+- **58 个 HyperFrames 视频模板 + 112 个 OD HTML 原型模板**内置进库 —— 需求会先和模板匹配，产出从成熟结构起步，不从空白开始。
+- **Open Design Cloud 是一等引擎** —— 驱动 OD 的同一套 ACP 运行时（`vela`）在这里同样可用，一次充值通用 GPT / Claude / Gemini / DeepSeek。
+- **共享工艺资产** —— agent 引擎图标、图标库（2680 个 · 38 类）、设计语言同出一门。
+
+闭环是：*选一套好看的设计系统（OD 的强项）→ 生成品牌级页面 → 逐组件给它动效（我们的强项）→ 导出成 skill 让任何人的 agent 复用。*
 
 ---
 

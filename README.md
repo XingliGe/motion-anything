@@ -2,7 +2,7 @@
 
 <p align="center"><sub>A project in the <a href="https://github.com/nexu-io/open-design"><b>nexu.io · Open Design</b></a> family — the same team's take on motion. If motion-anything clicks for you, <a href="https://github.com/nexu-io/open-design">Open Design</a> is where the full agent-era design studio lives.</sub></p>
 
-> **Describe the feeling — your AI ships the animation.** The agentic motion layer: a local-first, chat-native motion engine. Generate animated pages and launch videos from one sentence, then edit motion **on the running page, component by component** — 4 triggers, 13 motion verbs, spring easing, a full keyframe editor. Driven by **8 coding-agent engines + BYOK** (Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud), armed with **403 curated motion recipes**, and exported to anything: JSON · CSS · React · Lottie · MP4 · GIF · portable skills. Zero npm dependencies. No watermark. No per-render fees.
+> **Describe the feeling — your AI ships the animation.** The agentic motion layer: a local-first, chat-native motion engine. Generate animated pages and launch videos from one sentence, then edit motion **on the running page, component by component** — 4 triggers, 13 motion verbs, spring easing, a full keyframe editor. Driven by **8 coding-agent engines + BYOK** (Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud), armed with **403 curated motion recipes**, wired into the **Open Design ecosystem** (59 `DESIGN.md` brand packs · 58 HyperFrames video templates · 112 HTML prototype templates · 2,680 icons), and exported to anything: JSON · CSS · React · Lottie · MP4 · GIF · portable skills. Zero npm dependencies. No watermark. No per-render fees.
 
 <p align="center">
   <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner with light-mode app windows: the component-motion workbench and the launch-video compositor, plus a stats row — 403 motion recipes, 230 portable skills, 2,680 icons, 59 design systems." width="100%" />
@@ -15,6 +15,14 @@
   <a href="#export-anything"><img alt="Export" src="https://img.shields.io/badge/export-JSON%20%C2%B7%20CSS%20%C2%B7%20React%20%C2%B7%20Lottie%20%C2%B7%20MP4%20%C2%B7%20GIF-9b59b6?style=flat-square" /></a>
   <a href="#quickstart"><img alt="Quickstart" src="https://img.shields.io/badge/quickstart-1%20command-green?style=flat-square" /></a>
   <a href="#architecture"><img alt="Zero deps" src="https://img.shields.io/badge/npm%20dependencies-0-ff6b35?style=flat-square" /></a>
+</p>
+
+<p align="center">
+  <a href="#the-library"><img alt="Design systems" src="https://img.shields.io/badge/design%20systems-59-1abc9c?style=flat-square" /></a>
+  <a href="#the-library"><img alt="Video templates" src="https://img.shields.io/badge/HyperFrames%20video%20templates-58-e67e22?style=flat-square" /></a>
+  <a href="#the-library"><img alt="HTML templates" src="https://img.shields.io/badge/HTML%20prototype%20templates-112-3498db?style=flat-square" /></a>
+  <a href="#the-library"><img alt="Icons" src="https://img.shields.io/badge/icons-2680-f39c12?style=flat-square" /></a>
+  <a href="#open-design-ecosystem"><img alt="Portable skills" src="https://img.shields.io/badge/portable%20skills-230-8b7cf6?style=flat-square" /></a>
 </p>
 
 <p align="center">
@@ -173,6 +181,20 @@ Motion is one of the highest-leverage, lowest-understood parts of digital craft.
 4. **Tools lock you in** — proprietary models, per-render fees, watermarks, handoff-only artifacts. *This is Apache-2.0, local-first, engine-agnostic, and everything exports.*
 
 **vs. Figma Motion** — their artifact is a handoff; ours is the running page itself. Their timeline has no interaction triggers; hover and click are first-class here. Their motion lives in their app; ours exports to JSON / CSS / React / Lottie or a portable skill any agent can use.
+
+---
+
+## Open Design ecosystem
+
+motion-anything is not a standalone island — it is the **motion layer of the [Open Design](https://github.com/nexu-io/open-design) family**, and the interop is real, not a logo wall:
+
+- **Every recipe is an Open-Design-compatible `SKILL.md`** — export any of the 230 portable skills and drop it straight into Open Design's `skills/` (or any agent that reads skills).
+- **59 brand packs in Open Design's `DESIGN.md` format** — generation starts on-brand; the same contract your team already uses in OD drives motion here.
+- **58 HyperFrames video templates + 112 OD HTML prototype templates** shipped in the library — briefs get matched against them so output starts from proven structure, not a blank canvas.
+- **Open Design Cloud is a first-class engine** — the same ACP runtime (`vela`) that powers OD drives motion-anything, with one recharge across GPT / Claude / Gemini / DeepSeek.
+- **Shared craft assets** — agent engine icons, the icon library (2,680 icons · 38 categories), and the design language all come from the same family.
+
+The loop: *pick a beautiful design system (OD's superpower) → generate a brand-grade page → give it motion, per component (our superpower) → export it back as a skill anyone's agent can reuse.*
 
 ---
 
