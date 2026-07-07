@@ -5,7 +5,7 @@
 > **描述感觉，AI 交付动画。** agentic motion layer（智能体动效层）：本地优先、对话原生的动效引擎。一句话生成动效网页和 launch 视频，然后**在跑着的页面上逐组件编辑动效** —— 4 种触发、13 个动法、弹簧缓动、完整关键帧编辑器。**8 个编码 agent 引擎 + BYOK** 随便换（Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud），**403 个策展动效配方**弹药充足，产物随处可去：JSON · CSS · React · Lottie · MP4 · GIF · 可移植 skill。零 npm 依赖，无水印，无按次渲染收费。
 
 <p align="center">
-  <img src="docs/assets/hero.jpg" alt="motion-anything —— agentic motion layer。深紫场景中一条流光划出运动弧线与关键帧菱形，漂浮着时间轴与缓动曲线卡片。" width="100%" />
+  <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner with floating motion-editor cards and purple silk light ribbons; 403 motion recipes, 8 coding agents, 0 API key." width="100%" />
 </p>
 
 <p align="center">
@@ -26,36 +26,59 @@
 
 <table>
 <tr>
-<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.jpg" alt="Lightning 闪电" /></a></td>
-<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.jpg" alt="Galaxy 星河" /></a></td>
+<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.gif" alt="Lightning 闪电" /></a></td>
+<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.gif" alt="Galaxy 星河" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/lightning/">lightning</a></b> · GPU 着色器<br/><sub>一道带辉光的活闪电。原本要 raw WebGL + React；现在是一个 58 行运行器 + 一个文件。</sub></td>
 <td><b><a href="recipes/web/galaxy/">galaxy</a></b> · GPU 着色器<br/><sub>漂移星河与镜头光斑 —— 营销级 hero 背景。</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.jpg" alt="Silk 丝绸" /></a></td>
-<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.jpg" alt="Splash cursor 流体光标" /></a></td>
+<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.gif" alt="Silk 丝绸" /></a></td>
+<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.gif" alt="Splash cursor 流体光标" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/silk/">silk</a></b> · GPU 着色器<br/><sub>流动的丝绸，从 three.js 场景移植成单个片段着色器。</sub></td>
 <td><b><a href="recipes/web/splash-cursor/">splash-cursor</a></b> · 流体模拟<br/><sub>完整多 pass WebGL 流体模拟（curl · vorticity · pressure · advection），指针划过泼洒发光染料。</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.jpg" alt="Waves 线场" /></a></td>
-<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.jpg" alt="Faulty terminal 故障终端" /></a></td>
+<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="Waves 线场" /></a></td>
+<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="Faulty terminal 故障终端" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/waves/">waves</a></b> · canvas 2D<br/><sub>perlin 扭曲线场 + 指针尾迹 —— 有机、编辑部气质、安静。</sub></td>
 <td><b><a href="recipes/web/faulty-terminal/">faulty-terminal</a></b> · GPU 着色器<br/><sub>故障 CRT 网格，赛博 / 开发者工具气质。</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.jpg" alt="Aurora 极光" /></a></td>
-<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.jpg" alt="Pixel blast 像素爆裂" /></a></td>
+<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.gif" alt="Aurora 极光" /></a></td>
+<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.gif" alt="Pixel blast 像素爆裂" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/aurora/">aurora</a></b> · GPU 着色器<br/><sub>暗色 hero 上扫过的极光 —— 经典，但做得克制。</sub></td>
 <td><b><a href="recipes/web/pixel-blast/">pixel-blast</a></b> · GPU 着色器 · 可交互<br/><sub>漂移像素图案，每次点击荡开涟漪。</sub></td>
+</tr>
+</table>
+
+### 文字动效
+
+动效不只是背景 —— 文字是一等公民。下面这些跑在纯 DOM 上，零依赖：
+
+<table>
+<tr>
+<td width="50%"><a href="recipes/web/decrypted-text/"><img src="docs/assets/effects/decrypted-text.gif" alt="解密文字" /></a></td>
+<td width="50%"><a href="recipes/web/text-scramble/"><img src="docs/assets/effects/text-scramble.gif" alt="乱码解码" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/decrypted-text/">decrypted-text</a></b> · 文字动效<br/><sub>随机字符从左到右解析成真实文案 —— 黑客片能量，一个属性即用。</sub></td>
+<td><b><a href="recipes/web/text-scramble/">text-scramble</a></b> · 文字动效<br/><sub>任意短语间的解码切换，可编程：<code>scrambleTo(el, text)</code>。</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/count-up/"><img src="docs/assets/effects/count-up.gif" alt="数字滚动" /></a></td>
+<td width="50%"><a href="recipes/web/true-focus/"><img src="docs/assets/effects/true-focus.gif" alt="焦点跳词" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/count-up/">count-up</a></b> · 文字动效<br/><sub>数字进入视口时滚到目标值 —— 数据区的高光时刻，缓动讲究。</sub></td>
+<td><b><a href="recipes/web/true-focus/">true-focus</a></b> · 文字动效<br/><sub>焦点框逐词跳跃、其余保持虚化 —— 给你的主张打聚光灯。</sub></td>
 </tr>
 </table>
 

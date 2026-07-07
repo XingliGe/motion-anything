@@ -5,7 +5,7 @@
 > **Describe the feeling — your AI ships the animation.** The agentic motion layer: a local-first, chat-native motion engine. Generate animated pages and launch videos from one sentence, then edit motion **on the running page, component by component** — 4 triggers, 13 motion verbs, spring easing, a full keyframe editor. Driven by **8 coding-agent engines + BYOK** (Claude Code · Codex · Cursor · OpenCode · Grok Build · Hermes · Gemini · Open Design Cloud), armed with **403 curated motion recipes**, and exported to anything: JSON · CSS · React · Lottie · MP4 · GIF · portable skills. Zero npm dependencies. No watermark. No per-render fees.
 
 <p align="center">
-  <img src="docs/assets/hero.jpg" alt="motion-anything — the agentic motion layer. A luminous ribbon of motion arcs and keyframe diamonds across a dark violet scene, with floating timeline and easing-curve cards." width="100%" />
+  <img src="docs/assets/hero.jpg" alt="motion-anything — Anything becomes motion, on your laptop. Editorial dark banner with floating motion-editor cards and purple silk light ribbons; 403 motion recipes, 8 coding agents, 0 API key." width="100%" />
 </p>
 
 <p align="center">
@@ -32,36 +32,59 @@ Every tile below is a **live, dependency-free recipe** from the library — real
 
 <table>
 <tr>
-<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.jpg" alt="Lightning — a raking electric bolt with glow" /></a></td>
-<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.jpg" alt="Galaxy — a starfield with lens-flare bursts" /></a></td>
+<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.gif" alt="Lightning — a raking electric bolt with glow" /></a></td>
+<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.gif" alt="Galaxy — a starfield with lens-flare bursts" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/lightning/">lightning</a></b> · GPU shader<br/><sub>A raking electric bolt, live-animated. Was raw WebGL + React; now one 58-line runner + one file.</sub></td>
 <td><b><a href="recipes/web/galaxy/">galaxy</a></b> · GPU shader<br/><sub>A drifting starfield with flare bursts — a marketing-grade hero background.</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.jpg" alt="Silk — flowing silky fabric waves" /></a></td>
-<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.jpg" alt="Splash cursor — a WebGL fluid simulation trailing the pointer" /></a></td>
+<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.gif" alt="Silk — flowing silky fabric waves" /></a></td>
+<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.gif" alt="Splash cursor — a WebGL fluid simulation trailing the pointer" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/silk/">silk</a></b> · GPU shader<br/><sub>Flowing fabric, ported from a three.js scene to a single fragment shader.</sub></td>
 <td><b><a href="recipes/web/splash-cursor/">splash-cursor</a></b> · fluid simulation<br/><sub>A full multi-pass WebGL fluid sim (curl · vorticity · pressure · advection) splatting glowing dye behind the pointer.</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.jpg" alt="Waves — perlin-warped line field" /></a></td>
-<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.jpg" alt="Faulty terminal — CRT glitch grid" /></a></td>
+<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="Waves — perlin-warped line field" /></a></td>
+<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="Faulty terminal — CRT glitch grid" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/waves/">waves</a></b> · canvas 2D<br/><sub>A perlin-warped line field with a pointer wake — organic, editorial, calm.</sub></td>
 <td><b><a href="recipes/web/faulty-terminal/">faulty-terminal</a></b> · GPU shader<br/><sub>A glitching CRT grid for cyber / dev-tool moods.</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.jpg" alt="Aurora — northern-lights gradient sweep" /></a></td>
-<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.jpg" alt="Pixel blast — drifting pixel pattern with click ripples" /></a></td>
+<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.gif" alt="Aurora — northern-lights gradient sweep" /></a></td>
+<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.gif" alt="Pixel blast — drifting pixel pattern with click ripples" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/aurora/">aurora</a></b> · GPU shader<br/><sub>Northern lights sweeping over a dark hero — the classic, done tastefully.</sub></td>
 <td><b><a href="recipes/web/pixel-blast/">pixel-blast</a></b> · GPU shader · interactive<br/><sub>A drifting pixel pattern that ripples outward from every click.</sub></td>
+</tr>
+</table>
+
+### Kinetic text
+
+Motion is not only backgrounds — text is a first-class citizen. These run on plain DOM, dependency-free:
+
+<table>
+<tr>
+<td width="50%"><a href="recipes/web/decrypted-text/"><img src="docs/assets/effects/decrypted-text.gif" alt="Decrypted text — glyphs resolve into ACCESS GRANTED" /></a></td>
+<td width="50%"><a href="recipes/web/text-scramble/"><img src="docs/assets/effects/text-scramble.gif" alt="Text scramble — a techy decode reveal between phrases" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/decrypted-text/">decrypted-text</a></b> · kinetic text<br/><sub>Random glyphs resolve left-to-right into the real line — hacker-movie energy, one attribute to use.</sub></td>
+<td><b><a href="recipes/web/text-scramble/">text-scramble</a></b> · kinetic text<br/><sub>Decode-reveal between any phrases, programmable via <code>scrambleTo(el, text)</code>.</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/count-up/"><img src="docs/assets/effects/count-up.gif" alt="Count up — stats rolling from zero to their values" /></a></td>
+<td width="50%"><a href="recipes/web/true-focus/"><img src="docs/assets/effects/true-focus.gif" alt="True focus — a focus frame hops word to word, blurring the rest" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/count-up/">count-up</a></b> · kinetic text<br/><sub>Numbers roll up to their value on view — the stat-block moment, eased properly.</sub></td>
+<td><b><a href="recipes/web/true-focus/">true-focus</a></b> · kinetic text<br/><sub>A focus frame hops word to word while the rest stays blurred — spotlight your claim.</sub></td>
 </tr>
 </table>
 
