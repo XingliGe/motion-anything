@@ -1592,7 +1592,7 @@
     if(id==='skills'){ document.getElementById('skills').scrollTop=0; loadSkills(); rememberView({screen:'skills'}); }
   }
   let SELECTED=null;
-  const MA_REPO='https://github.com/XingliGe/motion-anything';   /* update on OSS transfer */
+  const MA_REPO='https://github.com/nexu-io/motion-anything';
   const ENGINE_NAMES={ 'claude':'Claude Code','codex':'Codex CLI','gemini':'Gemini CLI','cursor-agent':'Cursor Agent',
     'opencode':'OpenCode','grok-build':'Grok Build','hermes':'Hermes','amr':'Open Design Cloud','byok':'BYOK API' };
   let BYOK_PROVIDER='anthropic';
@@ -1627,7 +1627,7 @@
   }
   function openRepo(){ window.open(MA_REPO,'_blank'); }
   /* live star count — silent no-op while the repo is private */
-  fetch('https://api.github.com/repos/XingliGe/motion-anything').then(function(r){return r.ok?r.json():null;})
+  fetch('https://api.github.com/repos/nexu-io/motion-anything').then(function(r){return r.ok?r.json():null;})
     .then(function(d){ if(d && typeof d.stargazers_count==='number'){ var el=document.getElementById('starCount'); if(el) el.textContent=String(d.stargazers_count); } }).catch(function(){});
   let MA_CLI='claude';   /* which engine runs the generation: a local CLI id, or 'amr' (Open Design Cloud) */
   try{ var __cli=localStorage.getItem('ma:cli'); if(__cli && /^[a-z0-9-]+$/.test(__cli)) MA_CLI=__cli; }catch(e){}

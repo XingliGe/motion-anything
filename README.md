@@ -201,7 +201,7 @@ The loop: *pick a beautiful design system (OD's superpower) → generate a brand
 ## Quickstart
 
 ```bash
-git clone https://github.com/XingliGe/motion-anything.git
+git clone https://github.com/nexu-io/motion-anything.git
 cd motion-anything
 node cli/bin/motion.js serve 4399
 # open http://localhost:4399

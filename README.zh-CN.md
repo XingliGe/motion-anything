@@ -195,7 +195,7 @@ motion-anything 不是孤岛 —— 它是 [Open Design](https://github.com/nexu
 ## 快速开始
 
 ```bash
-git clone https://github.com/XingliGe/motion-anything.git
+git clone https://github.com/nexu-io/motion-anything.git
 cd motion-anything
 node cli/bin/motion.js serve 4399
 # 打开 http://localhost:4399
