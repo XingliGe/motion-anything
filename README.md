@@ -28,39 +28,55 @@
 
 ## Showcase
 
-Every tile below is a **live, dependency-free recipe** from the library — real GPU shaders and canvas engines, faithfully ported so they run with two `<script>` tags on any page (no React, no three.js, no build step). Click through to the recipe folder; each ships a self-contained `preview.html`.
+Every tile below is a **live, dependency-free recipe** from the library — real GPU shaders, canvas engines and kinetic text, faithfully ported so they run with two `<script>` tags on any page (no React, no three.js, no build step). All tiles are animated GIFs recorded from the actual previews.
 
 <table>
 <tr>
-<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.gif" alt="Lightning — a raking electric bolt with glow" /></a></td>
-<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.gif" alt="Galaxy — a starfield with lens-flare bursts" /></a></td>
+<td width="50%"><a href="recipes/slides/fx-typewriter-multi/"><img src="docs/assets/effects/typewriter-multi.gif" alt="Typewriter multi — terminal-style lines typing in sequence" /></a></td>
+<td width="50%"><a href="recipes/web/shiny-text/"><img src="docs/assets/effects/shiny-text.gif" alt="Shiny text — a highlight band sweeps across the label" /></a></td>
 </tr>
 <tr>
-<td><b><a href="recipes/web/lightning/">lightning</a></b> · GPU shader<br/><sub>A raking electric bolt, live-animated. Was raw WebGL + React; now one 58-line runner + one file.</sub></td>
-<td><b><a href="recipes/web/galaxy/">galaxy</a></b> · GPU shader<br/><sub>A drifting starfield with flare bursts — a marketing-grade hero background.</sub></td>
+<td><b><a href="recipes/slides/fx-typewriter-multi/">typewriter-multi</a></b> · kinetic text<br/><sub>Terminal-style multi-line typing with live cursors — agent-boot energy.</sub></td>
+<td><b><a href="recipes/web/shiny-text/">shiny-text</a></b> · kinetic text<br/><sub>A sheen sweeps across text-clipped gradient type. One class to use.</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/star-border/"><img src="docs/assets/effects/star-border.gif" alt="Star border — a slow light circles the button border" /></a></td>
+<td width="50%"><a href="recipes/web/rotating-text/"><img src="docs/assets/effects/rotating-text.gif" alt="Rotating text — words cycle in place" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/star-border/">star-border</a></b> · ambient CTA<br/><sub>A slow light orbits the border of your call-to-action. Pure CSS.</sub></td>
+<td><b><a href="recipes/web/rotating-text/">rotating-text</a></b> · kinetic text<br/><sub>One line, many claims — words cycle in place with a soft travel.</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/magnet-lines/"><img src="docs/assets/effects/magnet-lines.gif" alt="Magnet lines — a grid of lines tracks the pointer" /></a></td>
+<td width="50%"><a href="recipes/web/elastic-slider/"><img src="docs/assets/effects/elastic-slider.gif" alt="Elastic slider — a springy gradient fill follows the drag" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/magnet-lines/">magnet-lines</a></b> · interactive<br/><sub>A field of compass needles that swivel toward your pointer.</sub></td>
+<td><b><a href="recipes/web/elastic-slider/">elastic-slider</a></b> · feedback<br/><sub>A slider whose fill overshoots with a spring — tactile, GPU-safe.</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/bounce-cards/"><img src="docs/assets/effects/bounce-cards.gif" alt="Bounce cards — a stack fans out with a bounce" /></a></td>
+<td width="50%"><a href="recipes/web/strands/"><img src="docs/assets/effects/strands.gif" alt="Strands — flowing luminous fibers" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/bounce-cards/">bounce-cards</a></b> · entrance<br/><sub>A card stack fans out with a staggered bounce as it enters the view.</sub></td>
+<td><b><a href="recipes/web/strands/">strands</a></b> · GPU shader<br/><sub>Luminous fibers drifting like hair in water — a quiet hero backdrop.</sub></td>
 </tr>
 <tr>
 <td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.gif" alt="Silk — flowing silky fabric waves" /></a></td>
-<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.gif" alt="Splash cursor — a WebGL fluid simulation trailing the pointer" /></a></td>
+<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="Waves — perlin-warped line field with a pointer wake" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/silk/">silk</a></b> · GPU shader<br/><sub>Flowing fabric, ported from a three.js scene to a single fragment shader.</sub></td>
-<td><b><a href="recipes/web/splash-cursor/">splash-cursor</a></b> · fluid simulation<br/><sub>A full multi-pass WebGL fluid sim (curl · vorticity · pressure · advection) splatting glowing dye behind the pointer.</sub></td>
-</tr>
-<tr>
-<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="Waves — perlin-warped line field" /></a></td>
-<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="Faulty terminal — CRT glitch grid" /></a></td>
-</tr>
-<tr>
 <td><b><a href="recipes/web/waves/">waves</a></b> · canvas 2D<br/><sub>A perlin-warped line field with a pointer wake — organic, editorial, calm.</sub></td>
-<td><b><a href="recipes/web/faulty-terminal/">faulty-terminal</a></b> · GPU shader<br/><sub>A glitching CRT grid for cyber / dev-tool moods.</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.gif" alt="Aurora — northern-lights gradient sweep" /></a></td>
+<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="Faulty terminal — CRT glitch grid" /></a></td>
 <td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.gif" alt="Pixel blast — drifting pixel pattern with click ripples" /></a></td>
 </tr>
 <tr>
-<td><b><a href="recipes/web/aurora/">aurora</a></b> · GPU shader<br/><sub>Northern lights sweeping over a dark hero — the classic, done tastefully.</sub></td>
+<td><b><a href="recipes/web/faulty-terminal/">faulty-terminal</a></b> · GPU shader<br/><sub>A glitching CRT grid for cyber / dev-tool moods.</sub></td>
 <td><b><a href="recipes/web/pixel-blast/">pixel-blast</a></b> · GPU shader · interactive<br/><sub>A drifting pixel pattern that ripples outward from every click.</sub></td>
 </tr>
 </table>
@@ -88,7 +104,7 @@ Motion is not only backgrounds — text is a first-class citizen. These run on p
 </tr>
 </table>
 
-<p align="center"><sub>35 of these distinctive effects are faithful dependency-free ports — see <a href="ATTRIBUTION.md">ATTRIBUTION.md</a> for sources and permissions. The full library holds <b>403 recipes</b>.</sub></p>
+<p align="center"><sub>35 of the library's distinctive effects are faithful dependency-free ports — see <a href="ATTRIBUTION.md">ATTRIBUTION.md</a> for sources and permissions. The full library holds <b>403 recipes</b>.</sub></p>
 
 ---
 
@@ -106,18 +122,28 @@ Motion is not only backgrounds — text is a first-class citizen. These run on p
 <table>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/assets/workbench.png" alt="Workbench — component-level motion editing on the running page" /><br/>
-<sub><b>Workbench</b> — the heart. Click any component on the <i>running</i> page and give it motion: 4 triggers (load / scroll / hover / click), 13 motion verbs, spring easing, a 6-track keyframe editor with scrub + auto-keyframe. Or select a component and just tell the chat what you want.</sub>
+<img src="docs/assets/workbench.png" alt="Workbench — component-level motion editing on the running page, with the agent's plan, a keyframes inspector and the timeline" /><br/>
+<sub><b>Workbench</b> — the heart. The agent plans, generates and self-checks on the left; click any component on the <i>running</i> page and give it motion — triggers, presets or a 6-track keyframe editor with scrub + auto-keyframe. The timeline below warns when a view exceeds the restraint budget.</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/assets/video-editor.png" alt="Video editor — canvas compositor for launch videos" /><br/>
-<sub><b>Video editor</b> — a canvas compositor for launch videos: multi-scene with real transitions, per-layer keyframe tracks, kinetic typography (13 char/word presets), and in-browser WebCodecs MP4 export. No watermark, nothing uploaded.</sub>
+<img src="docs/assets/video-editor.png" alt="Video editor — layers, five scenes with transitions, film background and reference upload" /><br/>
+<sub><b>Video editor</b> — a canvas compositor for launch videos: text / shape / image / video layers, five scenes with real transitions, a shared film background, kinetic typography, and in-browser WebCodecs MP4 export. No watermark, nothing uploaded.</sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/assets/library.png" alt="Library — 403 curated motion recipes with live previews" /><br/>
-<sub><b>Library</b> — 403 curated recipes with live previews, searchable by intent. Every recipe carries <code>avoid_when</code> and a restraint budget: taste is enforced, not hoped for.</sub>
+<img src="docs/assets/motion-path.png" alt="Motion path — draw a curve on the canvas and the selected text travels it" /><br/>
+<sub><b>Motion paths</b> — draw a line on the canvas, and the selected layer travels it: as drawn, or snapped to a clean line / circle / ellipse, with eased speed and per-character text motion on top.</sub>
+</td>
+<td width="50%" valign="top">
+<img src="docs/assets/motion-presets.png" alt="Motion presets — entrance, emphasis, attention and exit presets stack onto any layer" /><br/>
+<sub><b>Motion presets</b> — entrance / emphasis / attention / exit presets stack onto any layer (text, image, video, shapes), plus the full 200+ recipe library one click away.</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<img src="docs/assets/library.png" alt="Library — recipe cards with live animated previews" /><br/>
+<sub><b>Library</b> — 403 curated recipes with live card previews, searchable by intent. Every recipe carries <code>avoid_when</code> and a restraint budget: taste is enforced, not hoped for.</sub>
 </td>
 <td width="50%" valign="top">
 <img src="docs/assets/engines.png" alt="Engines — 8 coding-agent CLIs plus BYOK" /><br/>

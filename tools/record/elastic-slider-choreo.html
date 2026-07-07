@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../elastic-slider/elastic-slider.css">
+<style>html,body{margin:0;height:100vh;overflow:hidden;background:#0a0b12;display:grid;place-items:center}
+.badge{position:absolute;top:64px;left:0;right:0;text-align:center;font:600 12px ui-sans-serif;letter-spacing:.14em;color:#8b7cf6;text-transform:uppercase}
+.hint{position:absolute;bottom:56px;left:0;right:0;text-align:center;font:13px ui-sans-serif;color:#8a8d9c}
+.es{width:340px}</style></head>
+<body>
+<div class="badge">motion-anything · feedback-delight</div>
+<div class="es"><div class="es-track"><div class="es-fill"></div><div class="es-knob"></div></div></div>
+<p class="hint">Dependency-free · respects prefers-reduced-motion.</p>
+<script>
+/* recording choreography: the recipe's real springy feel, driven via WAAPI so frames are seekable */
+const spring = 'cubic-bezier(.34,1.56,.64,1)';
+const fill = document.querySelector('.es-fill'), knob = document.querySelector('.es-knob');
+const kf = [
+  { width: '40%', offset: 0 }, { width: '40%', offset: .1 },
+  { width: '92%', offset: .42, easing: spring }, { width: '92%', offset: .58 },
+  { width: '12%', offset: .92, easing: spring }, { width: '12%', offset: 1 }
+];
+const kf2 = kf.map(k => ({ left: k.width, offset: k.offset, easing: k.easing }));
+fill.animate(kf, { duration: 3000, iterations: Infinity });
+knob.animate(kf2, { duration: 3000, iterations: Infinity });
+</script></body></html>

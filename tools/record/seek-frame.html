@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;overflow:hidden}iframe{border:0;width:960px;height:540px;display:block}</style></head>
+<body><iframe id="f"></iframe>
+<script>
+/* frame-seek wrapper for recording CSS-animated recipes: ?p=<preview path>&t=<seconds> */
+const q = new URLSearchParams(location.search);
+const t = parseFloat(q.get('t')||'0');
+const f = document.getElementById('f');
+f.src = '/' + (q.get('p')||'');
+f.onload = () => { try {
+  const d = f.contentDocument;
+  d.getAnimations({subtree:true}).forEach(a => { a.pause(); a.currentTime = t*1000; });
+  document.title = 'seeked';
+} catch(e) { document.title = 'err:' + e.message; } };
+</script></body></html>

@@ -22,39 +22,55 @@
 
 ## 效果一览
 
-下面每一格都是库里**活的零依赖配方** —— 真 GPU 着色器、真 canvas 引擎，忠实移植后只需两个 `<script>` 标签就能跑在任何网页上（无 React、无 three.js、无构建）。点击进入配方文件夹，每个都带自包含的 `preview.html`。
+下面每一格都是库里**活的零依赖配方** —— 真 GPU 着色器、canvas 引擎与文字动效，忠实移植后只需两个 `<script>` 标签就能跑在任何网页上（无 React、无 three.js、无构建）。所有格子都是从真实预览录制的 GIF 动图。
 
 <table>
 <tr>
-<td width="50%"><a href="recipes/web/lightning/"><img src="docs/assets/effects/lightning.gif" alt="Lightning 闪电" /></a></td>
-<td width="50%"><a href="recipes/web/galaxy/"><img src="docs/assets/effects/galaxy.gif" alt="Galaxy 星河" /></a></td>
+<td width="50%"><a href="recipes/slides/fx-typewriter-multi/"><img src="docs/assets/effects/typewriter-multi.gif" alt="多行打字机" /></a></td>
+<td width="50%"><a href="recipes/web/shiny-text/"><img src="docs/assets/effects/shiny-text.gif" alt="流光文字" /></a></td>
 </tr>
 <tr>
-<td><b><a href="recipes/web/lightning/">lightning</a></b> · GPU 着色器<br/><sub>一道带辉光的活闪电。原本要 raw WebGL + React；现在是一个 58 行运行器 + 一个文件。</sub></td>
-<td><b><a href="recipes/web/galaxy/">galaxy</a></b> · GPU 着色器<br/><sub>漂移星河与镜头光斑 —— 营销级 hero 背景。</sub></td>
+<td><b><a href="recipes/slides/fx-typewriter-multi/">typewriter-multi</a></b> · 文字动效<br/><sub>终端风多行打字 + 光标 —— agent 启动的仪式感。</sub></td>
+<td><b><a href="recipes/web/shiny-text/">shiny-text</a></b> · 文字动效<br/><sub>高光带扫过渐变裁剪文字。一个 class 即用。</sub></td>
 </tr>
 <tr>
-<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.gif" alt="Silk 丝绸" /></a></td>
-<td width="50%"><a href="recipes/web/splash-cursor/"><img src="docs/assets/effects/splash-cursor.gif" alt="Splash cursor 流体光标" /></a></td>
+<td width="50%"><a href="recipes/web/star-border/"><img src="docs/assets/effects/star-border.gif" alt="星光描边" /></a></td>
+<td width="50%"><a href="recipes/web/rotating-text/"><img src="docs/assets/effects/rotating-text.gif" alt="轮换文字" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/star-border/">star-border</a></b> · 氛围 CTA<br/><sub>一道慢光沿按钮描边环绕。纯 CSS。</sub></td>
+<td><b><a href="recipes/web/rotating-text/">rotating-text</a></b> · 文字动效<br/><sub>一句话轮换多个主张，带柔和位移。</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/magnet-lines/"><img src="docs/assets/effects/magnet-lines.gif" alt="磁力线阵" /></a></td>
+<td width="50%"><a href="recipes/web/elastic-slider/"><img src="docs/assets/effects/elastic-slider.gif" alt="弹性滑块" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/magnet-lines/">magnet-lines</a></b> · 可交互<br/><sub>一片指南针线阵随指针转向。</sub></td>
+<td><b><a href="recipes/web/elastic-slider/">elastic-slider</a></b> · 反馈<br/><sub>填充带弹簧过冲的滑块 —— 手感十足，GPU 安全。</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/bounce-cards/"><img src="docs/assets/effects/bounce-cards.gif" alt="弹跳卡组" /></a></td>
+<td width="50%"><a href="recipes/web/strands/"><img src="docs/assets/effects/strands.gif" alt="光丝" /></a></td>
+</tr>
+<tr>
+<td><b><a href="recipes/web/bounce-cards/">bounce-cards</a></b> · 入场<br/><sub>卡组进入视口时错峰弹跳展开。</sub></td>
+<td><b><a href="recipes/web/strands/">strands</a></b> · GPU 着色器<br/><sub>发光纤维如水中发丝漂动 —— 安静的 hero 背景。</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/silk/"><img src="docs/assets/effects/silk.gif" alt="丝绸" /></a></td>
+<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="线场" /></a></td>
 </tr>
 <tr>
 <td><b><a href="recipes/web/silk/">silk</a></b> · GPU 着色器<br/><sub>流动的丝绸，从 three.js 场景移植成单个片段着色器。</sub></td>
-<td><b><a href="recipes/web/splash-cursor/">splash-cursor</a></b> · 流体模拟<br/><sub>完整多 pass WebGL 流体模拟（curl · vorticity · pressure · advection），指针划过泼洒发光染料。</sub></td>
-</tr>
-<tr>
-<td width="50%"><a href="recipes/web/waves/"><img src="docs/assets/effects/waves.gif" alt="Waves 线场" /></a></td>
-<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="Faulty terminal 故障终端" /></a></td>
-</tr>
-<tr>
 <td><b><a href="recipes/web/waves/">waves</a></b> · canvas 2D<br/><sub>perlin 扭曲线场 + 指针尾迹 —— 有机、编辑部气质、安静。</sub></td>
+</tr>
+<tr>
+<td width="50%"><a href="recipes/web/faulty-terminal/"><img src="docs/assets/effects/faulty-terminal.gif" alt="故障终端" /></a></td>
+<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.gif" alt="像素爆裂" /></a></td>
+</tr>
+<tr>
 <td><b><a href="recipes/web/faulty-terminal/">faulty-terminal</a></b> · GPU 着色器<br/><sub>故障 CRT 网格，赛博 / 开发者工具气质。</sub></td>
-</tr>
-<tr>
-<td width="50%"><a href="recipes/web/aurora/"><img src="docs/assets/effects/aurora.gif" alt="Aurora 极光" /></a></td>
-<td width="50%"><a href="recipes/web/pixel-blast/"><img src="docs/assets/effects/pixel-blast.gif" alt="Pixel blast 像素爆裂" /></a></td>
-</tr>
-<tr>
-<td><b><a href="recipes/web/aurora/">aurora</a></b> · GPU 着色器<br/><sub>暗色 hero 上扫过的极光 —— 经典，但做得克制。</sub></td>
 <td><b><a href="recipes/web/pixel-blast/">pixel-blast</a></b> · GPU 着色器 · 可交互<br/><sub>漂移像素图案，每次点击荡开涟漪。</sub></td>
 </tr>
 </table>
@@ -82,7 +98,7 @@
 </tr>
 </table>
 
-<p align="center"><sub>35 个特别效果为忠实零依赖移植 —— 来源与授权见 <a href="ATTRIBUTION.md">ATTRIBUTION.md</a>。完整库共 <b>403 个配方</b>。</sub></p>
+<p align="center"><sub>库中 35 个特别效果为忠实零依赖移植 —— 来源与授权见 <a href="ATTRIBUTION.md">ATTRIBUTION.md</a>。完整库共 <b>403 个配方</b>。</sub></p>
 
 ---
 
@@ -100,21 +116,31 @@
 <table>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/assets/workbench.png" alt="工作台" /><br/>
-<sub><b>工作台</b> —— 产品的心脏。在<i>跑着的</i>页面上点选任意组件给它动效：4 种触发（加载/滚动/悬停/点击）、13 个动法、弹簧缓动、6 轨关键帧编辑器（scrub + 自动打点）。或者选中组件直接对它说话。</sub>
+<img src="docs/assets/workbench.png" alt="工作台 —— 跑着的页面上逐组件编辑动效，左侧 agent 计划，右侧关键帧检查器与时间轴" /><br/>
+<sub><b>工作台</b> —— 产品的心脏。左侧 agent 计划、生成、自查；在<i>跑着的</i>页面上点选任意组件给它动效 —— 触发器、预设或 6 轨关键帧编辑器（scrub + 自动打点）。底部时间轴在超出克制预算时警告。</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/assets/video-editor.png" alt="视频编辑器" /><br/>
-<sub><b>视频编辑器</b> —— launch 视频的画布合成器：多镜头真转场、逐图层关键帧轨、kinetic typography（13 个逐字/逐词预设）、浏览器内 WebCodecs 导出 MP4。无水印，不上传。</sub>
+<img src="docs/assets/video-editor.png" alt="视频编辑器 —— 图层、五个镜头与转场、整片背景与参考上传" /><br/>
+<sub><b>视频编辑器</b> —— launch 视频的画布合成器：文字/形状/图片/视频图层、五镜头真转场、整片共享背景、kinetic typography、浏览器内 WebCodecs 导出 MP4。无水印，不上传。</sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/assets/library.png" alt="动效库" /><br/>
-<sub><b>动效库</b> —— 403 个策展配方带活预览，按意图搜索。每个配方带 <code>avoid_when</code> 和克制预算：品味是强制执行的，不是碰运气的。</sub>
+<img src="docs/assets/motion-path.png" alt="运动路径 —— 在画布上画一条曲线，选中的文字沿路径运动" /><br/>
+<sub><b>运动路径</b> —— 在画布上画一条线，选中图层沿它运动：按手绘原样，或吸附成直线/圆/椭圆，配缓动速度，文字还能叠逐字动效。</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/assets/engines.png" alt="引擎" /><br/>
+<img src="docs/assets/motion-presets.png" alt="动效预设 —— 入场/强调/注意/退出预设可叠加到任意图层" /><br/>
+<sub><b>动效预设</b> —— 入场/强调/注意/退出预设可叠加到任意图层（文字、图片、视频、形状），200+ 配方库一键直达。</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+<img src="docs/assets/library.png" alt="动效库 —— 带活预览的配方卡片" /><br/>
+<sub><b>动效库</b> —— 403 个策展配方带活卡片预览，按意图搜索。每个配方带 <code>avoid_when</code> 和克制预算：品味是强制执行的，不是碰运气的。</sub>
+</td>
+<td width="50%" valign="top">
+<img src="docs/assets/engines.png" alt="引擎 —— 8 个编码 agent CLI + BYOK" /><br/>
 <sub><b>引擎</b> —— 用你已经在付费的 agent。PATH 上的 8 个 CLI 自动检测，或 BYOK 直连 Anthropic / OpenAI / Google API。key 永远不出你的机器。</sub>
 </td>
 </tr>
