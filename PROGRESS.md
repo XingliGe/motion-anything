@@ -54,3 +54,11 @@ Settings → Execution mode. Changing `cli/bin/motion.js` requires a server rest
 Add a recipe: follow the golden path in `AGENTS.md` (folder + `recipe.motion.yaml` +
 self-contained `preview.html` + implementation + `SKILL.md`), register it in
 `app/data/recipes.js`, and verify the preview renders before opening a PR.
+
+## Recent fixes
+
+- 2026-07-07: Fixed Windows local CLI detection/execution so npm shims like `codex.cmd`
+  show as installed, launch cleanly, avoid unrelated user Codex MCP config during headless
+  generation, and are killed as a process tree on timeout.
+- 2026-07-07: Routed video requests typed in the HTML workbench chat to the video compositor,
+  including the currently open HTML artifact as context instead of sending them to `/api/edit`.

@@ -2203,7 +2203,25 @@
   function rememberView(o){ try{ localStorage.setItem('ma:view', JSON.stringify(o)); }catch(e){} }   /* survive a page refresh */
   /* auto-detect a video request so the user doesn't have to pre-pick the 发布视频 chip */
   function looksLikeVideo(text){
-    return /视频|短片|片子|宣传片|发布片|开场动画|分镜|镜头|转场|trailer|launch\s*video|\bmp4\b|\bgif\b|video/i.test(String(text||''));
+    return /视频|短片|片子|宣传片|发布片|开场动画|分镜|镜头|转场|trailer|launch\s*video|\bmp4\b|\bgif\b|v[ií]deos?|videos?|filme|clipe|reels?|shorts?|tiktok|youtube|redes\s+sociais|social\s+media/i.test(String(text||''));
+  }
+  function currentArtifactVideoDoc(){
+    var slug = (typeof curSlug === 'function') ? curSlug() : '';
+    if(!slug || !HAS_ARTIFACT) return '';
+    var title = '', html = '';
+    try{
+      var doc = artifactFrame().contentDocument;
+      if(doc){
+        title = doc.title || '';
+        if(doc.documentElement) html = '<!doctype html>\n' + doc.documentElement.outerHTML;
+      }
+    }catch(e){}
+    return [
+      'The video request refers to the currently open HTML artifact.',
+      'Project: '+slug,
+      title ? ('Page title: '+title) : '',
+      html ? ('Current HTML:\n'+html) : ''
+    ].filter(Boolean).join('\n');
   }
   function showVideoPreview(on){
     var dev=document.getElementById('device'); if(dev) dev.style.display = on?'none':'';
@@ -2538,6 +2556,13 @@
     var ta=document.getElementById('wbChatInput'); var text=(ta.value||'').trim();
     if(!text) return;
     if(VIDEO_MODE){ ta.value=''; chatUser(text); runVideoEditChat(text); return; }   /* video: agent edits the composition */
+    if(looksLikeVideo(text)){
+      ta.value='';
+      VIDEO_DOC=currentArtifactVideoDoc();
+      clearEditCtx();
+      enterVideoWorkbench(text);
+      return;
+    }
     var slug=curSlug();
     if(!slug || !HAS_ARTIFACT){ toast(t('edit.noArtifact')); chatAgentHead(); chatAdd('<p class="answer">'+t('edit.noArtifact')+'</p>'); return; }
     ta.value='';
